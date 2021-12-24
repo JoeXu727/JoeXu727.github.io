@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Hexo</title>
+  
+  
+  <link href="http://example.com/atom.xml" rel="self"/>
+  
+  <link href="http://example.com/"/>
+  <updated>2021-12-24T02:45:54.077Z</updated>
+  <id>http://example.com/</id>
+  
+  <author>
+    <name>John Doe</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>基于vue3和antd vue的父子组件通信</title>
+    <link href="http://example.com/2021/12/24/%E5%9F%BA%E4%BA%8Evue3%E7%9A%84%E7%88%B6%E5%AD%90%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/"/>
+    <id>http://example.com/2021/12/24/%E5%9F%BA%E4%BA%8Evue3%E7%9A%84%E7%88%B6%E5%AD%90%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/</id>
+    <published>2021-12-24T02:15:18.000Z</published>
+    <updated>2021-12-24T02:45:54.077Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="基于vue3的父子组件通信"><a href="#基于vue3的父子组件通信" class="headerlink" title="基于vue3的父子组件通信"></a>基于vue3的父子组件通信</h1><h3 id="成果展示"><a href="#成果展示" class="headerlink" title="成果展示"></a>成果展示</h3><p>先上效果图，基本功能就是在用户输入标题之后，可以对标题的字号大小，颜色，是否加粗进行自定义；</p><p>然后可以在下面的预览框中，将用户的设置实时进行展示；</p><p>![](C:\Users\A\Pictures\Saved Pictures\1240.jpg)</p><h3 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h3><ol><li><p>效果预览属于父组件，设置字号、颜色、加粗的三个是子组件；</p></li><li><p>用户设置后监听到数据变化，通过<code>emit</code>抛出到父组件，父组件接收到新的值后修改自己的数据，最后在预览框进行动态展示；</p></li></ol><p>父子组件通信图如下所示：</p><p>![](C:\Users\A\Pictures\Saved Pictures\12401.jpg)</p><h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><p>注：本文基于 <code>vue3</code>，使用 <code>ant design vue</code> 组件库； </p><pre><code class="vue">=========== 父组件：index.vue ===========&lt;template&gt;    &lt;div class=&quot;logo-config-container&quot;&gt;        &lt;!-- 配置样式工具条 --&gt;        &lt;div class=&quot;toolBar&quot; style=&quot;display: inline-block;&quot;&gt;            &lt;toolBar @style-change=&quot;getChangeStyle&quot; :config=&quot;config&quot;&gt;&lt;/toolBar&gt;        &lt;/div&gt;        &lt;!-- 预览 --&gt;        &lt;div class=&quot;logo-preview&quot;&gt;            &lt;div class=&quot;title&quot;&gt;效果预览：&lt;/div&gt;            &lt;div class=&quot;logo-title&quot; :style=&quot;mainStyle&quot;&gt;&#123;&#123; config.topic &#125;&#125;&lt;/div&gt;        &lt;/div&gt;    &lt;/div&gt;&lt;/template&gt;&lt;script setup&gt;    import &#123; ref, reactive, computed, watch, isReactive &#125; from &#39;vue&#39;;    import toolBar from &quot;./components/toolBar&quot;;    const config = reactive(&#123;        fontSize: &quot;&quot;,        fontColor: &quot;#FFFFFF&quot;,        bold: true,    &#125;)        // 监听config.fontColor的值，如果是一个响应式数据，就把选择颜色的hex给它，如果不是一个响应式数据，就用默认的string类型的值    // 处理颜色值是一个对象，但设置的默认值类型为string    watch(() =&gt; config.fontColor,(val) =&gt; &#123;        if(isReactive(val))&#123;            config.fontColor = val.hex        &#125;    &#125;)    // 4.由于在预览中绑定了动态样式 :style=&quot;mainStyle&quot;，父组件页面的 config 一更改就可以computed，修改的样式就可以在预览框预览了；    const mainStyle = computed( () =&gt; &#123;        return &#123;            color: config.fontColor,            fontSize: config.fontSize + &quot;px&quot;,            fontWeight: config.bold ? 700 : 400,        &#125;;    &#125;)    // 3.由toolBar的 @style-change=&quot;getChangeStyle&quot; 接收到子组件传来的数据val，通过Object.assign将传来的数据赋给在父组件定义的config；    function getChangeStyle(val)&#123;        Object.assign(config, val.configData)    &#125;&lt;/script&gt;</code></pre><pre><code class="vue">=========== 子组件：components/toolBar.vue ===========&lt;template&gt;    &lt;div class=&quot;tool-bar&quot;&gt;        &lt;!-- 字号选择 --&gt;        &lt;a-input-number            v-model:value=&quot;configData.fontSize&quot;            addonAfter=&quot;px&quot;/&gt;        &lt;!-- 颜色选择器 --&gt;        &lt;span style=&quot;position: relative;&quot;&gt;            &lt;ColorPicker v-model:value=&quot;configData.fontColor&quot; v-on:change=&quot;changeColor&quot;&gt;&lt;/ColorPicker&gt;        &lt;/span&gt;        &lt;!-- 加粗 --&gt;        &lt;a-button @click=&quot;isFontBold&quot; v-model:value=&quot;configData.bold&quot;&gt;            &lt;BoldOutlined /&gt;        &lt;/a-button&gt;    &lt;/div&gt;&lt;/template&gt;&lt;script setup&gt;    import &#123; reactive, watch, onMounted, ref &#125; from &#39;vue&#39;;    import &#123; BoldOutlined &#125; from &#39;@ant-design/icons-vue&#39;;    import ColorPicker from &#39;./ColorPicker&#39;;    // emit 向父组件抛出数据    const emit = defineEmits([&quot;style-change&quot;]);    const configData = reactive(&#123;        fontSize: &quot;&quot;,        fontColor: &quot;&quot;,        bold: true,    &#125;)    // 2.利用 watch 同时监听 fontSize，color，bold 的值；    // 2.当 configData 里面的值改变时，watch监听到后通过emit抛出到父组件；    watch(() =&gt; [configData.fontSize, configData.fontColor, configData.bold],() =&gt; &#123;        emit(&quot;style-change&quot;, &#123;            configData        &#125;);    &#125;)        function changeColor(value) &#123;        configData.fontColor = value    &#125;    // 处理字体是否加粗    function isFontBold()&#123;        configData.bold = configData.bold ? false : true;    &#125;        // 组件暴露自己的属性    defineExpose(&#123;configData&#125;)&lt;/script&gt;</code></pre><p>================================================================<br> 以上为个人工作学习笔记总结，供学习参考交流，未经允许禁止转载或商用。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;基于vue3的父子组件通信&quot;&gt;&lt;a href=&quot;#基于vue3的父子组件通信&quot; class=&quot;headerlink&quot; title=&quot;基于vue3的父子组件通信&quot;&gt;&lt;/a&gt;基于vue3的父子组件通信&lt;/h1&gt;&lt;h3 id=&quot;成果展示&quot;&gt;&lt;a href=&quot;#成果展示&quot;</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://example.com/2021/12/05/hello-world/"/>
+    <id>http://example.com/2021/12/05/hello-world/</id>
+    <published>2021-12-05T11:37:35.931Z</published>
+    <updated>2021-12-05T11:37:35.931Z</updated>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;</code></pre><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo server</code></pre><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo generate</code></pre><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo deploy</code></pre><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt; for</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+</feed>
