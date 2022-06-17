@@ -1,0 +1,119 @@
+<!DOCTYPE html><html class="appearance-auto" lang="en"><head><meta charset="UTF-8"><title>Haojen's blog</title><meta name="description" content="May the Force be with you"><meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, initial-scale=1"><!-- Google Analytics --><!-- End Google Analytics -->
+<!-- Baidu Analytics --><!-- End Baidu Analytics --><link rel="icon" href="/images/favicon.png"><link rel="stylesheet" href="/style/common/bulma.css"><link rel="stylesheet" href="/style/base.css"><link rel="stylesheet" href="/style/common/helper.css"><script src="/js/common.js"></script><link rel="stylesheet" href="/style/post.css"><link rel="stylesheet" href="/style/themes/highlight-theme-light.css"><script src="/js/highlight.pack.js"></script><meta name="description" content="话不多说，先上需求 ↓
+需求：表格上方有很多的查询条件，期望在点击重置按钮后，查询条件被重置为默认值；
+
+一开始我是这么写的，在重置函数handleReset中把所有查询条件置为默认；这种写法的缺点在于：如果condition里的参数有很多个，在handleReset就要一个一个分别置空，代码可读性变差；
+
+&amp;lt;script setup&amp;gt;
+// condition里的值是双向绑定的，根据用户选择的条件动态变化
+const queryParams = reactive(&amp;#123;
+    page: 1,
+    pageSize: 20,
+    condition: &amp;#123;
+        aa: &amp;#39;&amp;#39;,
+        bb: &amp;#39;&amp;#39;,
+        c.."><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+</head><body class="is-flex is-flex-direction-column"><header class="header-widget is-flex-shrink-0 is-hidden-mobile"><div class="container is-fullhd is-flex is-justify-content-space-between is-align-items-center is-full-height"><section class="is-hidden-mobile is-flex-shrink-0"><h2><a href="/">Haojen's blog</a></h2></section><h3 class="is-hidden-mobile is-family-serif is-full-height is-flex is-align-items-center is-flex-shrink-0"><div class="is-full-height" id="postTopic"><p class="is-full-height is-flex-shrink-0 is-flex is-align-items-center is-justify-content-center"></p><p class="is-full-height is-flex-shrink-0 is-flex is-align-items-center is-justify-content-center">Click back to the top</p></div></h3><aside class="is-flex-shrink-0"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a href="/about">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></aside></div></header><header class="is-flex header-widget is-flex-shrink-0 is-align-items-center is-justify-content-center is-hidden-tablet"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a href="/about">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></header><main><main class="container is-max-widescreen content section post-page pt-4 px-4"><div class="columns is-flex-desktop is-justify-content-center is-flex-direction-row-reverse"><div class="column is-3 is-hidden-mobile is-hidden"></div><div class="column is-9"><header class="my-4"></header><h1 class="mt-0 mb-1 is-family-serif" id="postTitle"></h1><time class="has-text-grey" datetime="2022-06-17T13:18:34.022Z">2022-06-17</time><article class="mt-2 post-content"><p>话不多说，先上需求 ↓</p>
+<p><strong>需求：</strong>表格上方有很多的查询条件，期望在点击重置按钮后，查询条件被重置为默认值；</p>
+<ol>
+<li>一开始我是这么写的，在重置函数<code>handleReset</code>中把所有查询条件置为默认；这种写法的缺点在于：如果<code>condition</code>里的参数有很多个，在<code>handleReset</code>就要一个一个分别置空，代码可读性变差；</li>
+</ol>
+<pre><code class="vue">&lt;script setup&gt;
+// condition里的值是双向绑定的，根据用户选择的条件动态变化
+const queryParams = reactive(&#123;
+    page: 1,
+    pageSize: 20,
+    condition: &#123;
+        aa: &#39;&#39;,
+        bb: &#39;&#39;,
+        cc: &#39;&#39;,
+        dd: &#39;&#39;,
+    &#125;
+&#125;);
+// 处理重置逻辑
+const handleReset = () =&gt; &#123;
+    queryParams.page = 1;
+    queryParams.pageSize = 20;
+    queryParams.condition.aa = &#39;&#39;;  // 每个条件都要单独重置
+    queryParams.condition.bb = &#39;&#39;;
+    queryParams.condition.cc = &#39;&#39;;
+    queryParams.condition.dd = &#39;&#39;;
+&#125;;
+&lt;/script&gt;
+</code></pre>
+<ol start="2">
+<li>优化一下，思路是写一个默认的查询参数对象<code>defaultQueryParams</code>，在<code>handleReset</code>方法中只需要把<code>defaultQueryParams</code>赋给<code>queryParams</code>即可完成重置，看一下代码；</li>
+</ol>
+<pre><code class="vue">&lt;script setup&gt;
+// condition里的值是双向绑定的，根据用户选择的条件动态变化
+const queryParams = reactive(&#123;
+    page: 1,
+    pageSize: 20,
+    condition: &#123;
+        aa: &#39;&#39;,
+        bb: &#39;&#39;,
+        cc: &#39;&#39;,
+        dd: &#39;&#39;,
+    &#125;
+&#125;);
+// 默认查询参数
+const defaultQueryParams = &#123;
+    page: 1,
+    pageSize: 20,
+    condition: &#123;
+        aa: &#39;&#39;,
+        bb: &#39;&#39;,
+        cc: &#39;&#39;,
+        dd: &#39;&#39;,
+    &#125;
+&#125;
+// 处理重置逻辑（重置方法里的代码变得清晰，可读性提高）
+const handleReset = () =&gt; &#123;
+    Object.assign(queryParams, defaultQueryParams); //（这里的代码是有问题的，请继续往下看）
+&#125;;
+&lt;/script&gt;
+</code></pre>
+<p>实测发现，<code>defaultQueryParams</code>里的值会被<code>queryParams</code>里的值影响，打印看到是这样的：</p>
+<pre><code class="js">// queryParams 
+&#123; page: 1, pageSize: 20, condition: &#123;aa: &#39;1&#39;, bb: &#39;xx&#39;, cc: &#39;ll&#39;, dd: &#39;666&#39; &#125;&#125;
+// defaultQueryParams 
+&#123; page: 1, pageSize: 20, condition: &#123;aa: &#39;1&#39;, bb: &#39;xx&#39;, cc: &#39;ll&#39;, dd: &#39;666&#39; &#125;&#125;
+</code></pre>
+<p>可是我记得<code>Object.assign</code>只会影响<code>target</code>啊~ 于是搜了下<code>Object.assign</code>的用法，终于破案了！下面这句话就是我这次踩坑的原因：</p>
+<p><strong><code>Object.assign</code>复制的是属性值，如果属性值是一个引用类型，那么复制的其实是引用地址，就会存在引用共享的问题。</strong></p>
+<ol start="3">
+<li>修改代码，为了防止引用地址，<code>defaultQueryParams</code>只能是单层结构，这下没有问题了；</li>
+</ol>
+<pre><code class="vue">&lt;script setup&gt;
+const queryParams = reactive(&#123;
+    page: 1,
+    pageSize: 20,
+    condition: &#123;
+        aa: &#39;&#39;,
+        bb: &#39;&#39;,
+        cc: &#39;&#39;,
+        dd: &#39;&#39;,
+    &#125;
+&#125;);
+
+// 默认查询参数
+const defaultQueryParams = &#123;
+    aa: &#39;&#39;,
+    bb: &#39;&#39;,
+    cc: &#39;&#39;,
+    dd: &#39;&#39;,
+&#125;
+
+// 处理重置逻辑
+const handleReset = () =&gt; &#123;
+    queryParams.page = 1;  // page和pageSize只能单独重置了
+    queryParams.pageSize = 20;
+    
+    // 下面两种写法都可以实现重置，任选一种：
+    // Object.assign(queryParams.condition, defaultCondition);
+    queryParams.condition = &#123;...defaultCondition&#125;;
+&#125;;
+&lt;/script&gt;
+</code></pre>
+<p>================================================================<br> 以上为个人工作学习笔记总结，供学习参考交流，未经允许禁止转载或商用。</p>
+</article><section class="jump-container is-flex is-justify-content-space-between my-6"><!-- em is empty placeholder--><em></em><a class="button is-default" href="/2021/12/24/%E5%9F%BA%E4%BA%8Evue3%E7%9A%84%E7%88%B6%E5%AD%90%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/" title="基于vue3和antd vue的父子组件通信"><span class="has-text-weight-semibold">Next: 基于vue3和antd vue的父子组件通信</span><i class="iconfont icon-next ml-2 has-text-grey"></i></a></section><article class="mt-6 comment-container"><script async repo="Haojen/Claudia-theme-blog" src="https://utteranc.es/client.js" issue-term="pathname" theme="preferred-color-scheme"></script></article></div></div></main></main><footer class="is-flex is-flex-direction-column is-align-items-center is-flex-shrink-0 is-family-serif"><section class="sns-container"><a title="twitter" target="_blank" rel="noopener nofollow" href="//twitter.com//"><i class="iconfont icon-twitter"></i></a><!-- Github--><a title="github" target="_blank" rel="noopener nofollow" href="//github.com/haojen"><i class="iconfont icon-github"></i></a><!-- Ins--><a title="instagram" target="_blank" rel="noopener nofollow" href="//www.instagram.com//"><i class="iconfont icon-ins"></i></a><!-- RSS--><!-- 知乎--><!-- 领英--><!-- 脸书--><a title="facebook" target="_blank" rel="noopener nofollow" href="//www.facebook.com//"><i class="iconfont icon-tian7_facebook"></i></a></section><p><span>Copyright ©</span><span> Haojen 2022</span></p><div class="is-flex is-justify-content-center is-flex-wrap-wrap"><p>Powered by Hexo &verbar;&nbsp;</p><p class="is-flex is-justify-content-center"><a title="Hexo theme author" target="_blank" rel="noopener" href="//github.com/haojen">Theme by Haojen&nbsp;</a></p><div style="margin-top: 2px"><a class="github-button" title="github-button" target="_blank" rel="noopener" href="https://github.com/haojen/hexo-theme-Claudia" data-color-scheme="no-preference: light; light: light; dark: dark;" data-show-count="true"></a></div></div><div><span></span></div></footer><script async defer src="https://buttons.github.io/buttons.js"></script><script src="/js/post.js"></script></body></html>
