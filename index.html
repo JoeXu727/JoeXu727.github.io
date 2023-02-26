@@ -110,7 +110,70 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/02/26/hello-world/" data-id="clel1lx9l00000ktnf4x79r43" data-title="Hello World" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/02/26/hello-world/" data-id="clel5doz20001cstn1rbgeno4" data-title="Hello World" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Object.assign重置踩坑" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/17/Object.assign%E9%87%8D%E7%BD%AE%E8%B8%A9%E5%9D%91/" class="article-date">
+  <time class="dt-published" datetime="2022-06-17T14:20:18.000Z" itemprop="datePublished">2022-06-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/06/17/Object.assign%E9%87%8D%E7%BD%AE%E8%B8%A9%E5%9D%91/">前端菜鸡的踩坑之路（一）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Vue3-使用Object-assign-进行重置踩坑记录"><a href="#Vue3-使用Object-assign-进行重置踩坑记录" class="headerlink" title="Vue3 使用Object.assign()进行重置踩坑记录"></a>Vue3 使用Object.assign()进行重置踩坑记录</h1><p>话不多说，先上需求 ↓</p>
+<p><strong>需求：</strong>表格上方有很多的查询条件，期望在点击重置按钮后，查询条件被重置为默认值；</p>
+<ol>
+<li>一开始我是这么写的，在重置函数<code>handleReset</code>中把所有查询条件置为默认；这种写法的缺点在于：如果<code>condition</code>里的参数有很多个，在<code>handleReset</code>就要一个一个分别置空，代码可读性变差；</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;script setup&gt;</span><br><span class="line">// condition里的值是双向绑定的，根据用户选择的条件动态变化</span><br><span class="line">const queryParams = reactive(&#123;</span><br><span class="line">    page: 1,</span><br><span class="line">    pageSize: 20,</span><br><span class="line">    condition: &#123;</span><br><span class="line">        aa: &#x27;&#x27;,</span><br><span class="line">        bb: &#x27;&#x27;,</span><br><span class="line">        cc: &#x27;&#x27;,</span><br><span class="line">        dd: &#x27;&#x27;,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line">// 处理重置逻辑</span><br><span class="line">const handleReset = () =&gt; &#123;</span><br><span class="line">    queryParams.page = 1;</span><br><span class="line">    queryParams.pageSize = 20;</span><br><span class="line">    queryParams.condition.aa = &#x27;&#x27;;  // 每个条件都要单独重置</span><br><span class="line">    queryParams.condition.bb = &#x27;&#x27;;</span><br><span class="line">    queryParams.condition.cc = &#x27;&#x27;;</span><br><span class="line">    queryParams.condition.dd = &#x27;&#x27;;</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>优化一下，思路是写一个默认的查询参数对象<code>defaultQueryParams</code>，在<code>handleReset</code>方法中只需要把<code>defaultQueryParams</code>赋给<code>queryParams</code>即可完成重置，看一下代码；</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;script setup&gt;</span><br><span class="line">// condition里的值是双向绑定的，根据用户选择的条件动态变化</span><br><span class="line">const queryParams = reactive(&#123;</span><br><span class="line">    page: 1,</span><br><span class="line">    pageSize: 20,</span><br><span class="line">    condition: &#123;</span><br><span class="line">        aa: &#x27;&#x27;,</span><br><span class="line">        bb: &#x27;&#x27;,</span><br><span class="line">        cc: &#x27;&#x27;,</span><br><span class="line">        dd: &#x27;&#x27;,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line">// 默认查询参数</span><br><span class="line">const defaultQueryParams = &#123;</span><br><span class="line">    page: 1,</span><br><span class="line">    pageSize: 20,</span><br><span class="line">    condition: &#123;</span><br><span class="line">        aa: &#x27;&#x27;,</span><br><span class="line">        bb: &#x27;&#x27;,</span><br><span class="line">        cc: &#x27;&#x27;,</span><br><span class="line">        dd: &#x27;&#x27;,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">// 处理重置逻辑（重置方法里的代码变得清晰，可读性提高）</span><br><span class="line">const handleReset = () =&gt; &#123;</span><br><span class="line">    Object.assign(queryParams, defaultQueryParams); //（这里的代码是有问题的，请继续往下看）</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>实测发现，<code>defaultQueryParams</code>里的值会被<code>queryParams</code>里的值影响，打印看到是这样的：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// queryParams </span></span><br><span class="line">&#123; <span class="attr">page</span>: <span class="number">1</span>, <span class="attr">pageSize</span>: <span class="number">20</span>, <span class="attr">condition</span>: &#123;<span class="attr">aa</span>: <span class="string">&#x27;1&#x27;</span>, <span class="attr">bb</span>: <span class="string">&#x27;xx&#x27;</span>, <span class="attr">cc</span>: <span class="string">&#x27;ll&#x27;</span>, <span class="attr">dd</span>: <span class="string">&#x27;666&#x27;</span> &#125;&#125;</span><br><span class="line"><span class="comment">// defaultQueryParams </span></span><br><span class="line">&#123; <span class="attr">page</span>: <span class="number">1</span>, <span class="attr">pageSize</span>: <span class="number">20</span>, <span class="attr">condition</span>: &#123;<span class="attr">aa</span>: <span class="string">&#x27;1&#x27;</span>, <span class="attr">bb</span>: <span class="string">&#x27;xx&#x27;</span>, <span class="attr">cc</span>: <span class="string">&#x27;ll&#x27;</span>, <span class="attr">dd</span>: <span class="string">&#x27;666&#x27;</span> &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可是我记得<code>Object.assign</code>只会影响<code>target</code>啊~ 于是搜了下<code>Object.assign</code>的用法，终于破案了！下面这句话就是我这次踩坑的原因：</p>
+<p><strong><code>Object.assign</code>复制的是属性值，如果属性值是一个引用类型，那么复制的其实是引用地址，就会存在引用共享的问题。</strong></p>
+<ol start="3">
+<li>修改代码，为了防止引用地址，<code>defaultQueryParams</code>只能是单层结构，这下没有问题了；</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;script setup&gt;</span><br><span class="line">const queryParams = reactive(&#123;</span><br><span class="line">    page: 1,</span><br><span class="line">    pageSize: 20,</span><br><span class="line">    condition: &#123;</span><br><span class="line">        aa: &#x27;&#x27;,</span><br><span class="line">        bb: &#x27;&#x27;,</span><br><span class="line">        cc: &#x27;&#x27;,</span><br><span class="line">        dd: &#x27;&#x27;,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">// 默认查询参数</span><br><span class="line">const defaultQueryParams = &#123;</span><br><span class="line">    aa: &#x27;&#x27;,</span><br><span class="line">    bb: &#x27;&#x27;,</span><br><span class="line">    cc: &#x27;&#x27;,</span><br><span class="line">    dd: &#x27;&#x27;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 处理重置逻辑</span><br><span class="line">const handleReset = () =&gt; &#123;</span><br><span class="line">    queryParams.page = 1;  // page和pageSize只能单独重置了</span><br><span class="line">    queryParams.pageSize = 20;</span><br><span class="line">    </span><br><span class="line">    // 下面两种写法都可以实现重置，任选一种：</span><br><span class="line">    // Object.assign(queryParams.condition, defaultCondition);</span><br><span class="line">    queryParams.condition = &#123;...defaultCondition&#125;;</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;<br> 以上为个人工作学习笔记总结，供学习参考交流，未经允许禁止转载或商用。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/17/Object.assign%E9%87%8D%E7%BD%AE%E8%B8%A9%E5%9D%91/" data-id="clel5doyy0000cstnhffa9ek3" data-title="前端菜鸡的踩坑之路（一）" class="article-share-link">Share</a>
       
       
       
@@ -171,7 +234,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/12/24/%E5%9F%BA%E4%BA%8Evue3%E7%9A%84%E7%88%B6%E5%AD%90%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/" data-id="clel1lx9u00010ktn8x8m3kei" data-title="基于vue3和antd vue的父子组件通信" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/12/24/%E5%9F%BA%E4%BA%8Evue3%E7%9A%84%E7%88%B6%E5%AD%90%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/" data-id="clel5doz70002cstn688f3ile" data-title="基于vue3和antd vue的父子组件通信" class="article-share-link">Share</a>
       
       
       
@@ -201,7 +264,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">December 2021</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">June 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">December 2021</a></li></ul>
     </div>
   </div>
 
@@ -215,6 +278,10 @@
         
           <li>
             <a href="/2023/02/26/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/17/Object.assign%E9%87%8D%E7%BD%AE%E8%B8%A9%E5%9D%91/">前端菜鸡的踩坑之路（一）</a>
           </li>
         
           <li>
