@@ -1,339 +1,189 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
-  
-  <title>Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>Hexo</title><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
 <meta property="og:title" content="Hexo">
 <meta property="og:url" content="http://example.com/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Hexo',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2023-03-25 19:28:26'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
   
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
   
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
   
-    <link rel="shortcut icon" href="/favicon.png">
-  
-  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
     
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
-
-  
-  
-<link rel="stylesheet" href="/css/style.css">
-
-  
-    
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
-
-  
-<meta name="generator" content="Hexo 6.3.0"></head>
-
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
         
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
-
-      <div class="outer">
-        <section id="main">
-  
-    <article id="post-Object.assign重置踩坑" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/06/17/Object.assign%E9%87%8D%E7%BD%AE%E8%B8%A9%E5%9D%91/" class="article-date">
-  <time class="dt-published" datetime="2022-06-17T14:20:18.000Z" itemprop="datePublished">2022-06-17</time>
-</a>
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
     
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/06/17/Object.assign%E9%87%8D%E7%BD%AE%E8%B8%A9%E5%9D%91/">前端菜鸡的踩坑之路（一）</a>
-    </h1>
-  
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">3</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><hr/></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="Hexo"><span class="site-name">Hexo</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">Hexo</h1></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/06/17/Object.assign%E9%87%8D%E7%BD%AE%E8%B8%A9%E5%9D%91/" title="前端菜鸡的踩坑之路（一）">前端菜鸡的踩坑之路（一）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2022-06-17T14:20:18.000Z" title="Created 2022-06-17 22:20:18">2022-06-17</time></span></div><div class="content">Vue3 使用Object.assign()进行重置踩坑记录话不多说，先上需求 ↓
+需求：表格上方有很多的查询条件，期望在点击重置按钮后，查询条件被重置为默认值；
 
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="Vue3-使用Object-assign-进行重置踩坑记录"><a href="#Vue3-使用Object-assign-进行重置踩坑记录" class="headerlink" title="Vue3 使用Object.assign()进行重置踩坑记录"></a>Vue3 使用Object.assign()进行重置踩坑记录</h1><p>话不多说，先上需求 ↓</p>
-<p><strong>需求：</strong>表格上方有很多的查询条件，期望在点击重置按钮后，查询条件被重置为默认值；</p>
-<ol>
-<li>一开始我是这么写的，在重置函数<code>handleReset</code>中把所有查询条件置为默认；这种写法的缺点在于：如果<code>condition</code>里的参数有很多个，在<code>handleReset</code>就要一个一个分别置空，代码可读性变差；</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;script setup&gt;</span><br><span class="line">// condition里的值是双向绑定的，根据用户选择的条件动态变化</span><br><span class="line">const queryParams = reactive(&#123;</span><br><span class="line">    page: 1,</span><br><span class="line">    pageSize: 20,</span><br><span class="line">    condition: &#123;</span><br><span class="line">        aa: &#x27;&#x27;,</span><br><span class="line">        bb: &#x27;&#x27;,</span><br><span class="line">        cc: &#x27;&#x27;,</span><br><span class="line">        dd: &#x27;&#x27;,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line">// 处理重置逻辑</span><br><span class="line">const handleReset = () =&gt; &#123;</span><br><span class="line">    queryParams.page = 1;</span><br><span class="line">    queryParams.pageSize = 20;</span><br><span class="line">    queryParams.condition.aa = &#x27;&#x27;;  // 每个条件都要单独重置</span><br><span class="line">    queryParams.condition.bb = &#x27;&#x27;;</span><br><span class="line">    queryParams.condition.cc = &#x27;&#x27;;</span><br><span class="line">    queryParams.condition.dd = &#x27;&#x27;;</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+一开始我是这么写的，在重置函数handleReset中把所有查询条件置为默认；这种写法的缺点在于：如果condition里的参数有很多个，在handleReset就要一个一个分别置空，代码可读性变差；
 
-<ol start="2">
-<li>优化一下，思路是写一个默认的查询参数对象<code>defaultQueryParams</code>，在<code>handleReset</code>方法中只需要把<code>defaultQueryParams</code>赋给<code>queryParams</code>即可完成重置，看一下代码；</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;script setup&gt;</span><br><span class="line">// condition里的值是双向绑定的，根据用户选择的条件动态变化</span><br><span class="line">const queryParams = reactive(&#123;</span><br><span class="line">    page: 1,</span><br><span class="line">    pageSize: 20,</span><br><span class="line">    condition: &#123;</span><br><span class="line">        aa: &#x27;&#x27;,</span><br><span class="line">        bb: &#x27;&#x27;,</span><br><span class="line">        cc: &#x27;&#x27;,</span><br><span class="line">        dd: &#x27;&#x27;,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line">// 默认查询参数</span><br><span class="line">const defaultQueryParams = &#123;</span><br><span class="line">    page: 1,</span><br><span class="line">    pageSize: 20,</span><br><span class="line">    condition: &#123;</span><br><span class="line">        aa: &#x27;&#x27;,</span><br><span class="line">        bb: &#x27;&#x27;,</span><br><span class="line">        cc: &#x27;&#x27;,</span><br><span class="line">        dd: &#x27;&#x27;,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">// 处理重置逻辑（重置方法里的代码变得清晰，可读性提高）</span><br><span class="line">const handleReset = () =&gt; &#123;</span><br><span class="line">    Object.assign(queryParams, defaultQueryParams); //（这里的代码是有问题的，请继续往下看）</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+12345678910111213141516171819202122&lt;script setup&gt;// condition里的值是双向绑定的，根据用户选择的条件动态变化const queryParams = reactive(&#123;    page: 1,    pageSize: 20,    condition: &#123;        aa: &#x27;&#x27;,        bb: &#x27;&#x27;,        cc: &#x27;&#x27;,        dd: &#x27;&#x27;,    &#125;&#125;);// 处理重置逻辑const handleR ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2021/12/24/%E5%9F%BA%E4%BA%8Evue3%E7%9A%84%E7%88%B6%E5%AD%90%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/" title="基于vue3和antd vue的父子组件通信">基于vue3和antd vue的父子组件通信</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2021-12-24T02:15:18.000Z" title="Created 2021-12-24 10:15:18">2021-12-24</time></span></div><div class="content">基于vue3的父子组件通信成果展示先上效果图，基本功能就是在用户输入标题之后，可以对标题的字号大小，颜色，是否加粗进行自定义；
+然后可以在下面的预览框中，将用户的设置实时进行展示；
+![](C:\Users\A\Pictures\Saved Pictures\1240.jpg)
+实现思路
+效果预览属于父组件，设置字号、颜色、加粗的三个是子组件；
 
-<p>实测发现，<code>defaultQueryParams</code>里的值会被<code>queryParams</code>里的值影响，打印看到是这样的：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// queryParams </span></span><br><span class="line">&#123; <span class="attr">page</span>: <span class="number">1</span>, <span class="attr">pageSize</span>: <span class="number">20</span>, <span class="attr">condition</span>: &#123;<span class="attr">aa</span>: <span class="string">&#x27;1&#x27;</span>, <span class="attr">bb</span>: <span class="string">&#x27;xx&#x27;</span>, <span class="attr">cc</span>: <span class="string">&#x27;ll&#x27;</span>, <span class="attr">dd</span>: <span class="string">&#x27;666&#x27;</span> &#125;&#125;</span><br><span class="line"><span class="comment">// defaultQueryParams </span></span><br><span class="line">&#123; <span class="attr">page</span>: <span class="number">1</span>, <span class="attr">pageSize</span>: <span class="number">20</span>, <span class="attr">condition</span>: &#123;<span class="attr">aa</span>: <span class="string">&#x27;1&#x27;</span>, <span class="attr">bb</span>: <span class="string">&#x27;xx&#x27;</span>, <span class="attr">cc</span>: <span class="string">&#x27;ll&#x27;</span>, <span class="attr">dd</span>: <span class="string">&#x27;666&#x27;</span> &#125;&#125;</span><br></pre></td></tr></table></figure>
-
-<p>可是我记得<code>Object.assign</code>只会影响<code>target</code>啊~ 于是搜了下<code>Object.assign</code>的用法，终于破案了！下面这句话就是我这次踩坑的原因：</p>
-<p><strong><code>Object.assign</code>复制的是属性值，如果属性值是一个引用类型，那么复制的其实是引用地址，就会存在引用共享的问题。</strong></p>
-<ol start="3">
-<li>修改代码，为了防止引用地址，<code>defaultQueryParams</code>只能是单层结构，这下没有问题了；</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;script setup&gt;</span><br><span class="line">const queryParams = reactive(&#123;</span><br><span class="line">    page: 1,</span><br><span class="line">    pageSize: 20,</span><br><span class="line">    condition: &#123;</span><br><span class="line">        aa: &#x27;&#x27;,</span><br><span class="line">        bb: &#x27;&#x27;,</span><br><span class="line">        cc: &#x27;&#x27;,</span><br><span class="line">        dd: &#x27;&#x27;,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">// 默认查询参数</span><br><span class="line">const defaultQueryParams = &#123;</span><br><span class="line">    aa: &#x27;&#x27;,</span><br><span class="line">    bb: &#x27;&#x27;,</span><br><span class="line">    cc: &#x27;&#x27;,</span><br><span class="line">    dd: &#x27;&#x27;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 处理重置逻辑</span><br><span class="line">const handleReset = () =&gt; &#123;</span><br><span class="line">    queryParams.page = 1;  // page和pageSize只能单独重置了</span><br><span class="line">    queryParams.pageSize = 20;</span><br><span class="line">    </span><br><span class="line">    // 下面两种写法都可以实现重置，任选一种：</span><br><span class="line">    // Object.assign(queryParams.condition, defaultCondition);</span><br><span class="line">    queryParams.condition = &#123;...defaultCondition&#125;;</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+用户设置后监听到数据变化，通过emit抛出到父组件，父组件接收到新的值后修改自己的数据，最后在预览框进行动态展示；
 
 
+父子组件通信图如下所示：
+![](C:\Users\A\Pictures\Saved Pictures\12401.jpg)
+代码实现注：本文基于 vue3，使用 ant design vue 组件库； 
+12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849=========== 父组件：index.vue ===========&lt;template&gt;    &lt;div class=&q ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2021/10/24/hello-world/" title="Hello World">Hello World</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2021-10-24T06:02:18.000Z" title="Created 2021-10-24 14:02:18">2021-10-24</time></span></div><div class="content">Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
+Quick StartCreate a new post1$ hexo new &quot;My New Post&quot;
 
-<p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;<br> 以上为个人工作学习笔记总结，供学习参考交流，未经允许禁止转载或商用。</p>
+More info: Writing
+Run server1$ hexo server
 
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/06/17/Object.assign%E9%87%8D%E7%BD%AE%E8%B8%A9%E5%9D%91/" data-id="clel5ovsm0000potn1pas9k0h" data-title="前端菜鸡的踩坑之路（一）" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
+More info: Server
+Generate static files1$ hexo generate
 
+More info: Generating
+Deploy to remote sites1$ hexo deploy
 
-
-  
-    <article id="post-基于vue3的父子组件通信" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2021/12/24/%E5%9F%BA%E4%BA%8Evue3%E7%9A%84%E7%88%B6%E5%AD%90%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/" class="article-date">
-  <time class="dt-published" datetime="2021-12-24T02:15:18.000Z" itemprop="datePublished">2021-12-24</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/12/24/%E5%9F%BA%E4%BA%8Evue3%E7%9A%84%E7%88%B6%E5%AD%90%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/">基于vue3和antd vue的父子组件通信</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="基于vue3的父子组件通信"><a href="#基于vue3的父子组件通信" class="headerlink" title="基于vue3的父子组件通信"></a>基于vue3的父子组件通信</h1><h3 id="成果展示"><a href="#成果展示" class="headerlink" title="成果展示"></a>成果展示</h3><p>先上效果图，基本功能就是在用户输入标题之后，可以对标题的字号大小，颜色，是否加粗进行自定义；</p>
-<p>然后可以在下面的预览框中，将用户的设置实时进行展示；</p>
-<p>![](C:\Users\A\Pictures\Saved Pictures\1240.jpg)</p>
-<h3 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h3><ol>
-<li><p>效果预览属于父组件，设置字号、颜色、加粗的三个是子组件；</p>
-</li>
-<li><p>用户设置后监听到数据变化，通过<code>emit</code>抛出到父组件，父组件接收到新的值后修改自己的数据，最后在预览框进行动态展示；</p>
-</li>
-</ol>
-<p>父子组件通信图如下所示：</p>
-<p>![](C:\Users\A\Pictures\Saved Pictures\12401.jpg)</p>
-<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><p>注：本文基于 <code>vue3</code>，使用 <code>ant design vue</code> 组件库； </p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">=========== 父组件：index.vue ===========</span><br><span class="line"></span><br><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div class=&quot;logo-config-container&quot;&gt;</span><br><span class="line">        &lt;!-- 配置样式工具条 --&gt;</span><br><span class="line">        &lt;div class=&quot;toolBar&quot; style=&quot;display: inline-block;&quot;&gt;</span><br><span class="line">            &lt;toolBar @style-change=&quot;getChangeStyle&quot; :config=&quot;config&quot;&gt;&lt;/toolBar&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;!-- 预览 --&gt;</span><br><span class="line">        &lt;div class=&quot;logo-preview&quot;&gt;</span><br><span class="line">            &lt;div class=&quot;title&quot;&gt;效果预览：&lt;/div&gt;</span><br><span class="line">            &lt;div class=&quot;logo-title&quot; :style=&quot;mainStyle&quot;&gt;&#123;&#123; config.topic &#125;&#125;&lt;/div&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script setup&gt;</span><br><span class="line">    import &#123; ref, reactive, computed, watch, isReactive &#125; from &#x27;vue&#x27;;</span><br><span class="line">    import toolBar from &quot;./components/toolBar&quot;;</span><br><span class="line"></span><br><span class="line">    const config = reactive(&#123;</span><br><span class="line">        fontSize: &quot;&quot;,</span><br><span class="line">        fontColor: &quot;#FFFFFF&quot;,</span><br><span class="line">        bold: true,</span><br><span class="line">    &#125;)</span><br><span class="line">	</span><br><span class="line">    // 监听config.fontColor的值，如果是一个响应式数据，就把选择颜色的hex给它，如果不是一个响应式数据，就用默认的string类型的值</span><br><span class="line">    // 处理颜色值是一个对象，但设置的默认值类型为string</span><br><span class="line">    watch(() =&gt; config.fontColor,(val) =&gt; &#123;</span><br><span class="line">        if(isReactive(val))&#123;</span><br><span class="line">            config.fontColor = val.hex</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    // 4.由于在预览中绑定了动态样式 :style=&quot;mainStyle&quot;，父组件页面的 config 一更改就可以computed，修改的样式就可以在预览框预览了；</span><br><span class="line">    const mainStyle = computed( () =&gt; &#123;</span><br><span class="line">        return &#123;</span><br><span class="line">            color: config.fontColor,</span><br><span class="line">            fontSize: config.fontSize + &quot;px&quot;,</span><br><span class="line">            fontWeight: config.bold ? 700 : 400,</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    // 3.由toolBar的 @style-change=&quot;getChangeStyle&quot; 接收到子组件传来的数据val，通过Object.assign将传来的数据赋给在父组件定义的config；</span><br><span class="line">    function getChangeStyle(val)&#123;</span><br><span class="line">        Object.assign(config, val.configData)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">=========== 子组件：components/toolBar.vue ===========</span><br><span class="line"></span><br><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div class=&quot;tool-bar&quot;&gt;</span><br><span class="line">        &lt;!-- 字号选择 --&gt;</span><br><span class="line">        &lt;a-input-number</span><br><span class="line">            v-model:value=&quot;configData.fontSize&quot;</span><br><span class="line">            addonAfter=&quot;px&quot;/&gt;</span><br><span class="line">        &lt;!-- 颜色选择器 --&gt;</span><br><span class="line">        &lt;span style=&quot;position: relative;&quot;&gt;</span><br><span class="line">            &lt;ColorPicker v-model:value=&quot;configData.fontColor&quot; v-on:change=&quot;changeColor&quot;&gt;&lt;/ColorPicker&gt;</span><br><span class="line">        &lt;/span&gt;</span><br><span class="line">        &lt;!-- 加粗 --&gt;</span><br><span class="line">        &lt;a-button @click=&quot;isFontBold&quot; v-model:value=&quot;configData.bold&quot;&gt;</span><br><span class="line">            &lt;BoldOutlined /&gt;</span><br><span class="line">        &lt;/a-button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script setup&gt;</span><br><span class="line">    import &#123; reactive, watch, onMounted, ref &#125; from &#x27;vue&#x27;;</span><br><span class="line">    import &#123; BoldOutlined &#125; from &#x27;@ant-design/icons-vue&#x27;;</span><br><span class="line">    import ColorPicker from &#x27;./ColorPicker&#x27;;</span><br><span class="line"></span><br><span class="line">    // emit 向父组件抛出数据</span><br><span class="line">    const emit = defineEmits([&quot;style-change&quot;]);</span><br><span class="line"></span><br><span class="line">    const configData = reactive(&#123;</span><br><span class="line">        fontSize: &quot;&quot;,</span><br><span class="line">        fontColor: &quot;&quot;,</span><br><span class="line">        bold: true,</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    // 2.利用 watch 同时监听 fontSize，color，bold 的值；</span><br><span class="line">    // 2.当 configData 里面的值改变时，watch监听到后通过emit抛出到父组件；</span><br><span class="line">    watch(() =&gt; [configData.fontSize, configData.fontColor, configData.bold],() =&gt; &#123;</span><br><span class="line">        emit(&quot;style-change&quot;, &#123;</span><br><span class="line">            configData</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;)</span><br><span class="line">    </span><br><span class="line">    function changeColor(value) &#123;</span><br><span class="line">        configData.fontColor = value</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 处理字体是否加粗</span><br><span class="line">    function isFontBold()&#123;</span><br><span class="line">        configData.bold = configData.bold ? false : true;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">	// 组件暴露自己的属性</span><br><span class="line">    defineExpose(&#123;configData&#125;)</span><br><span class="line"></span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;<br> 以上为个人工作学习笔记总结，供学习参考交流，未经允许禁止转载或商用。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2021/12/24/%E5%9F%BA%E4%BA%8Evue3%E7%9A%84%E7%88%B6%E5%AD%90%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/" data-id="clel5ovsw0002potnb2ndef3d" data-title="基于vue3和antd vue的父子组件通信" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2021/10/24/hello-world/" class="article-date">
-  <time class="dt-published" datetime="2021-10-24T06:02:18.000Z" itemprop="datePublished">2021-10-24</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/10/24/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2021/10/24/hello-world/" data-id="clel5ovsq0001potn6o3j6t49" data-title="Hello World" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-
-  
-    
-
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">June 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">December 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">October 2021</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2022/06/17/Object.assign%E9%87%8D%E7%BD%AE%E8%B8%A9%E5%9D%91/">前端菜鸡的踩坑之路（一）</a>
-          </li>
-        
-          <li>
-            <a href="/2021/12/24/%E5%9F%BA%E4%BA%8Evue3%E7%9A%84%E7%88%B6%E5%AD%90%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/">基于vue3和antd vue的父子组件通信</a>
-          </li>
-        
-          <li>
-            <a href="/2021/10/24/hello-world/">Hello World</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      
-      &copy; 2023 John Doe<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
-
-
-<script src="/js/jquery-3.4.1.min.js"></script>
-
-
-
-  
-<script src="/fancybox/jquery.fancybox.min.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-
-
-
-  </div>
-</body>
-</html>
+More info: Deployment
+</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">John Doe</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">3</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/06/17/Object.assign%E9%87%8D%E7%BD%AE%E8%B8%A9%E5%9D%91/" title="前端菜鸡的踩坑之路（一）">前端菜鸡的踩坑之路（一）</a><time datetime="2022-06-17T14:20:18.000Z" title="Created 2022-06-17 22:20:18">2022-06-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/12/24/%E5%9F%BA%E4%BA%8Evue3%E7%9A%84%E7%88%B6%E5%AD%90%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/" title="基于vue3和antd vue的父子组件通信">基于vue3和antd vue的父子组件通信</a><time datetime="2021-12-24T02:15:18.000Z" title="Created 2021-12-24 10:15:18">2021-12-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/10/24/hello-world/" title="Hello World">Hello World</a><time datetime="2021-10-24T06:02:18.000Z" title="Created 2021-10-24 14:02:18">2021-10-24</time></div></div></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>Archives</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/06/"><span class="card-archive-list-date">June 2022</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/12/"><span class="card-archive-list-date">December 2021</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/10/"><span class="card-archive-list-date">October 2021</span><span class="card-archive-list-count">1</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article :</div><div class="item-count">3</div></div><div class="webinfo-item"><div class="item-name">UV :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">PV :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Last Push :</div><div class="item-count" id="last-push-date" data-lastPushDate="2023-03-25T11:28:26.246Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By John Doe</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
