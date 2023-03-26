@@ -1,0 +1,203 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>Debug the World</title><meta name="author" content="Joe Xu"><meta name="copyright" content="Joe Xu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Stay hungry, Stay Foolish">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Debug the World">
+<meta property="og:url" content="http://example.com/page/2/index.html">
+<meta property="og:site_name" content="Debug the World">
+<meta property="og:description" content="Stay hungry, Stay Foolish">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://avatars.githubusercontent.com/u/67886383?s=400&u=99fc4b7b2788d8823a12f2924f7942669b39b105&v=4">
+<meta property="article:author" content="Joe Xu">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://avatars.githubusercontent.com/u/67886383?s=400&u=99fc4b7b2788d8823a12f2924f7942669b39b105&v=4"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/page/2/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":288},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Debug the World',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2023-03-26 21:00:00'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://avatars.githubusercontent.com/u/67886383?s=400&amp;u=99fc4b7b2788d8823a12f2924f7942669b39b105&amp;v=4" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">14</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">2</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">2</div></a></div><hr/></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://www.helloimg.com/images/2023/03/25/o1uao5.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Debug the World"><span class="site-name">Debug the World</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">Debug the World</h1><div id="site_social_icons"><a class="social-icon" href="https://github.com/JoeXu727" target="_blank" title="Github"><i class="fab fa-github"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2020/03/20/%E3%80%90python%E5%BC%80%E5%8F%91%E3%80%91%E2%80%94%20MySQL%EF%BC%88%E4%B8%80%EF%BC%89/" title="【python开发】— MySQL（一）">【python开发】— MySQL（一）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2020-03-20T06:35:02.000Z" title="Created 2020-03-20 14:35:02">2020-03-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/python/">python</a></span></div><div class="content">【python开发】— MySQL（一）一、数据库操作（cmd终端操作）1. 显示数据库
+1SHOW DATABASES;
+
+   默认数据库：　　 mysql - 用户权限相关数据　　 test - 用于用户测试数据　　 information_schema - MySQL本身架构相关数据　　2、创建数据库
+12345#utf-8CREATE DATABASE 数据库名称 DEFAULT CHARSET utf8 COLLATE utf8_general_ci; #gbkCREATE DATABASE 数据库名称 DEFAULT CHARACTER SET gbk COLLATE gbk_chinese_ci;
+3、使用数据库
+1USE db_name;
+显示当前使用的数据库中所有表：SHOW TABLES;
+4、用户管理
+12345678910创建用户    create user &#x27;用户名&#x27;@&#x27;IP地址&#x27; identified by &#x27;密码&#x27;;删除用户    drop user &#x27;用户名&#x27;@&#x27 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2020/03/07/%E3%80%90python%E5%BC%80%E5%8F%91%E3%80%91%E2%80%94%20%E5%AE%9E%E7%8E%B0%E9%80%89%E8%AF%BE%E7%B3%BB%E7%BB%9F%E5%8A%9F%E8%83%BD/" title="【python开发】— 实现选课系统功能">【python开发】— 实现选课系统功能</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2020-03-07T11:31:31.000Z" title="Created 2020-03-07 19:31:31">2020-03-07</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/python/">python</a></span></div><div class="content">【python开发】— 实现选课系统功能一、需求
+创建北京、上海 2 所校区
+创建linux , python , go 3个课程 ， linux\py 在北京开， go 在上海开
+课程包含，周期，价格，通过学校创建课程
+通过学校创建班级， 班级关联课程
+创建学员时，关联班级
+提供三个角色接口 （1）学员视图：可以注册，交学费，选择班级（交学费未实现） （2）讲师视图：讲师可管理自己的班级，上课时选择班级，查看班级学员列表，修改所管理的学员的成绩（未实现） （3）管理视图：创建校区，创建讲师，创建班级，创建课程
+上面的操作产生的数据都通过pickle序列化保存到文件里。
+主要目的是熟悉Python面向对象编程，清楚类之间的关系
+
+二、程序目录结构123456789101112131415161718192021222324252627|----bin(可执行目录)|      |----admin.py|      |----initialize.py|      |----student.py|----config(配置文件目录)|      |----settings.py(配置文 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2020/03/07/%E3%80%90python%E5%BC%80%E5%8F%91%E3%80%91%E2%80%94%20Game-of-Life-%E7%94%9F%E5%91%BD%E6%B8%B8%E6%88%8F/" title="【python开发】— Game of Life 生命游戏">【python开发】— Game of Life 生命游戏</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2020-03-07T08:17:44.000Z" title="Created 2020-03-07 16:17:44">2020-03-07</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/python/">python</a></span></div><div class="content">【python开发】— Game of Life 生命游戏一、Game of Life 生命游戏1. 简介
+生命游戏是英国数学家John Conway在1970年发明的细胞自动机。它最初于1970年10月在《科学美国人》杂志中马丁·葛登（Martin Gardner，1914年11月21日－2010年5月22日。又译：马丁·加德纳）的“数学游戏”专栏出现。
+生命游戏其实是一个零玩家游戏，它包括一个二维矩形世界，这个世界中的每个方格居住着一个活着的或死了的细胞。一个细胞在下一个时刻生死取决于相邻八个方格中活着的或死了的细胞的数量。如果相邻方格活着的细胞数量过多，这个细胞会因为资源匮乏而在下一个时刻死去；相反，如果周围活细胞过少，这个细胞会因太孤单而死去。实际中，你可以设定周围活细胞的数目怎样时才适宜该细胞的生存。如果这个数目设定过高，世界中的大部分细胞会因为找不到太多的活的邻居而死去，直到整个世界都没有生命；如果这个数目设定过低，世界中又会被生命充满而没有什么变化。实际中，这个数目一般选取2或者3；这样整个生命世界才不至于太过荒凉或拥挤，而是一种动态的平衡。
+
+2. 游戏规则
+活细胞周围 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2020/03/03/%E3%80%90python%E5%BC%80%E5%8F%91%E3%80%91%E2%80%94%20%E5%AE%9E%E7%8E%B0FTP%E6%9C%8D%E5%8A%A1%E5%8A%9F%E8%83%BD/" title="【python开发】— 实现FTP服务功能">【python开发】— 实现FTP服务功能</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2020-03-03T13:35:32.000Z" title="Created 2020-03-03 21:35:32">2020-03-03</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/python/">python</a></span></div><div class="content">【python开发】— 实现FTP服务功能一、需求
+用户加密认证
+允许同时多用户登录
+每个用户有自己的家目录 ，且只能访问自己的家目录
+对用户进行磁盘配额，每个用户的可用空间不同 (未完成)
+允许用户在ftp server上随意切换目录 cd (未完成)
+允许用户查看当前目录下文件 dir
+允许上传 post 和下载 download 文件
+文件传输过程中显示进度条
+附加功能：支持文件的断点续传
+
+二、程序目录结构- EasyClientFTP123456789101112131415161718|----bin(可执行目录)|      |----__init__.py|      |----ftp_client.py(客户端入口)   |----config(配置文件目录)|      |----__init__.py|      |----settings.py(配置文件) |----core(核心代码)|      |----__init__.py|      |----service.py(主要逻辑)|----lib(公共的类库)|      |----__init__.py ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://avatars.githubusercontent.com/u/67886383?s=400&amp;u=99fc4b7b2788d8823a12f2924f7942669b39b105&amp;v=4" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Joe Xu</div><div class="author-info__description">Stay hungry, Stay Foolish</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">14</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">2</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">2</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/JoeXu727" target="_blank" title="Github"><i class="fab fa-github"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/06/17/Object.assign%E9%87%8D%E7%BD%AE%E8%B8%A9%E5%9D%91/" title="前端菜鸡的踩坑之路（一）">前端菜鸡的踩坑之路（一）</a><time datetime="2022-06-17T14:20:18.000Z" title="Created 2022-06-17 22:20:18">2022-06-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/12/24/%E5%9F%BA%E4%BA%8Evue3%E7%9A%84%E7%88%B6%E5%AD%90%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/" title="基于vue3和antd vue的父子组件通信">基于vue3和antd vue的父子组件通信</a><time datetime="2021-12-24T02:15:18.000Z" title="Created 2021-12-24 10:15:18">2021-12-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/10/24/hello-world/" title="Hello World">Hello World</a><time datetime="2021-10-24T06:02:18.000Z" title="Created 2021-10-24 14:02:18">2021-10-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2020/03/30/%E3%80%90python%E5%BC%80%E5%8F%91%E3%80%91%E2%80%94%20Socket%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" title="【python开发】— Socket网络编程">【python开发】— Socket网络编程</a><time datetime="2020-03-30T11:47:25.000Z" title="Created 2020-03-30 19:47:25">2020-03-30</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2020/03/29/%E3%80%90%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E3%80%91%E2%80%94%20%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/" title="【网络基础】— 网络协议">【网络基础】— 网络协议</a><time datetime="2020-03-29T07:09:48.000Z" title="Created 2020-03-29 15:09:48">2020-03-29</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>Categories</span>
+            
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/python/"><span class="card-category-list-name">python</span><span class="card-category-list-count">9</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/"><span class="card-category-list-name">网络基础</span><span class="card-category-list-count">2</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/" style="font-size: 1.1em; color: #999">网络基础</a> <a href="/tags/python/" style="font-size: 1.5em; color: #99a9bf">python</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>Archives</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/06/"><span class="card-archive-list-date">June 2022</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/12/"><span class="card-archive-list-date">December 2021</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/10/"><span class="card-archive-list-date">October 2021</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/03/"><span class="card-archive-list-date">March 2020</span><span class="card-archive-list-count">11</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article :</div><div class="item-count">14</div></div><div class="webinfo-item"><div class="item-name">UV :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">PV :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Last Push :</div><div class="item-count" id="last-push-date" data-lastPushDate="2023-03-26T13:00:00.356Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://www.helloimg.com/images/2023/03/25/o1uao5.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Joe Xu</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

@@ -1,0 +1,323 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>【网络基础】— 网络协议 | Debug the World</title><meta name="author" content="Joe Xu"><meta name="copyright" content="Joe Xu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="【网络基础】— 网络协议一、网络通信原理1.互联网本质 互联网的本质就是一系列的协议，总称为‘互联网协议’（Internet Protocol Suite). 互联网协议的功能：定义计算机如何接入internet，以及接入internet的计算机通信的标准。 计算机（硬件）–&gt; 操作系统OS –&gt; 软件一台电脑有了硬件设备之后，需要安装操作系统才能运行各种软件，任何软件都必须在操作系统">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【网络基础】— 网络协议">
+<meta property="og:url" content="http://example.com/2020/03/29/%E3%80%90%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E3%80%91%E2%80%94%20%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/index.html">
+<meta property="og:site_name" content="Debug the World">
+<meta property="og:description" content="【网络基础】— 网络协议一、网络通信原理1.互联网本质 互联网的本质就是一系列的协议，总称为‘互联网协议’（Internet Protocol Suite). 互联网协议的功能：定义计算机如何接入internet，以及接入internet的计算机通信的标准。 计算机（硬件）–&gt; 操作系统OS –&gt; 软件一台电脑有了硬件设备之后，需要安装操作系统才能运行各种软件，任何软件都必须在操作系统">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://avatars.githubusercontent.com/u/67886383?s=400&u=99fc4b7b2788d8823a12f2924f7942669b39b105&v=4">
+<meta property="article:published_time" content="2020-03-29T07:09:48.000Z">
+<meta property="article:modified_time" content="2023-03-26T12:49:08.761Z">
+<meta property="article:author" content="Joe Xu">
+<meta property="article:tag" content="网络基础">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://avatars.githubusercontent.com/u/67886383?s=400&u=99fc4b7b2788d8823a12f2924f7942669b39b105&v=4"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2020/03/29/%E3%80%90%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E3%80%91%E2%80%94%20%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":288},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【网络基础】— 网络协议',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-03-26 20:49:08'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://avatars.githubusercontent.com/u/67886383?s=400&amp;u=99fc4b7b2788d8823a12f2924f7942669b39b105&amp;v=4" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">14</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">2</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">2</div></a></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="Debug the World"><span class="site-name">Debug the World</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">【网络基础】— 网络协议</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2020-03-29T07:09:48.000Z" title="Created 2020-03-29 15:09:48">2020-03-29</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-03-26T12:49:08.761Z" title="Updated 2023-03-26 20:49:08">2023-03-26</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/">网络基础</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="【网络基础】— 网络协议"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="【网络基础】—-网络协议"><a href="#【网络基础】—-网络协议" class="headerlink" title="【网络基础】— 网络协议"></a>【网络基础】— 网络协议</h1><h2 id="一、网络通信原理"><a href="#一、网络通信原理" class="headerlink" title="一、网络通信原理"></a>一、网络通信原理</h2><h2 id="1-互联网本质"><a href="#1-互联网本质" class="headerlink" title="1.互联网本质"></a>1.互联网本质</h2><ul>
+<li>互联网的本质就是一系列的协议，总称为‘互联网协议’（Internet Protocol Suite).</li>
+<li>互联网协议的功能：定义计算机如何接入internet，以及接入internet的计算机通信的标准。</li>
+<li>计算机（硬件）–&gt; 操作系统OS –&gt; 软件<br>一台电脑有了硬件设备之后，需要安装操作系统才能运行各种软件，任何软件都必须在操作系统的支持下运行。然而每台计算机只能独立工作，将其接入Internet后便可实现计算机之间的通信。</li>
+</ul>
+<h2 id="2-osi七层协议"><a href="#2-osi七层协议" class="headerlink" title="2.osi七层协议"></a>2.osi七层协议</h2><p>互联网协议按照功能不同分为osi七层或tcp&#x2F;ip五层或tcp&#x2F;ip四层：<br>用户感知到的只是最上面一层应用层，自上而下每层都依赖于下一层，每层都运行特定的协议，越往上越靠近用户，越往下越靠近硬件。<br><img src="/2020/03/29/%E3%80%90%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E3%80%91%E2%80%94%20%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/20200205163302659.jpg" alt="在这里插入图片描述">每层运行常见物理设备：<br><img src="/2020/03/29/%E3%80%90%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E3%80%91%E2%80%94%20%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/20200205163422765.jpg" alt="在这里插入图片描述">  </p>
+<h2 id="3-TCP-x2F-IP五层模型"><a href="#3-TCP-x2F-IP五层模型" class="headerlink" title="3.TCP&#x2F;IP五层模型"></a>3.TCP&#x2F;IP五层模型</h2><p>每层都运行特定的协议，越往上越靠近用户，越往下越靠近硬件。</p>
+<h3 id="3-1-物理层"><a href="#3-1-物理层" class="headerlink" title="3.1 物理层"></a>3.1 物理层</h3><ul>
+<li>物理层由来：上面提到，孤立的计算机之间要想一起玩，就必须接入internet，言外之意就是计算机之间必须完成组网。</li>
+<li>物理层功能：主要是基于电器特性发送高低电压(电信号)，高电压对应数字1，低电压对应数字0，所以计算机只能识别二进制。<br><img src="/2020/03/29/%E3%80%90%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E3%80%91%E2%80%94%20%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/20200205164058432.jpg" alt="物理层"></li>
+</ul>
+<h3 id="3-2-数据链路层"><a href="#3-2-数据链路层" class="headerlink" title="3.2 数据链路层"></a>3.2 数据链路层</h3><ul>
+<li>数据链路层由来：单纯的电信号0和1没有任何意义，必须规定电信号多少位一组，每组什么意思。</li>
+<li>数据链路层的功能：定义了电信号的分组方式。</li>
+</ul>
+<h4 id="x3D-x3D-以太网协议：-x3D-x3D"><a href="#x3D-x3D-以太网协议：-x3D-x3D" class="headerlink" title="&#x3D;&#x3D;以太网协议：&#x3D;&#x3D;"></a>&#x3D;&#x3D;以太网协议：&#x3D;&#x3D;</h4><p>早期的时候各个公司都有自己的分组方式，后来形成了统一的标准，即以太网协议ethernet。</p>
+<p>ethernet规定：</p>
+<ul>
+<li><p>一组电信号构成一个数据包，叫做‘帧’</p>
+</li>
+<li><p>每一数据帧分成：报头head和数据data两部分<br><img src="/2020/03/29/%E3%80%90%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E3%80%91%E2%80%94%20%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/20200205170858609.png" alt="在这里插入图片描述"><br>head包含：(固定18个字节)</p>
+</li>
+<li><p>发送者／源地址，6个字节</p>
+</li>
+<li><p>接收者／目标地址，6个字节</p>
+</li>
+<li><p>数据类型，6个字节</p>
+</li>
+</ul>
+<p>data包含：(最短46字节，最长1500字节)</p>
+<ul>
+<li>数据包的具体内容</li>
+</ul>
+<p>head长度＋data长度＝最短64字节，最长1518字节，超过最大限制就分片发送。</p>
+<h4 id="x3D-x3D-Mac地址：-x3D-x3D"><a href="#x3D-x3D-Mac地址：-x3D-x3D" class="headerlink" title="&#x3D;&#x3D;Mac地址：&#x3D;&#x3D;"></a>&#x3D;&#x3D;Mac地址：&#x3D;&#x3D;</h4><ul>
+<li>head中包含的源和目标地址由来：ethernet规定接入internet的设备都必须具备网卡，发送端和接收端的地址便是指网卡的地址，即mac地址。</li>
+<li>mac地址：每块网卡出厂时都被烧制上一个世界唯一的mac地址，长度为48位2进制，通常由12位16进制数表示（前六位是厂商编号，后六位是流水线号）。<br><img src="/2020/03/29/%E3%80%90%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E3%80%91%E2%80%94%20%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/20200205173404741.png" alt="在这里插入图片描述"></li>
+</ul>
+<h4 id="x3D-x3D-广播：-x3D-x3D"><a href="#x3D-x3D-广播：-x3D-x3D" class="headerlink" title="&#x3D;&#x3D;广播：&#x3D;&#x3D;"></a>&#x3D;&#x3D;广播：&#x3D;&#x3D;</h4><ul>
+<li>有了mac地址，同一网络内的两台主机就可以通信了（一台主机通过arp协议获取另外一台主机的mac地址）。</li>
+<li>ethernet采用最原始的方式，广播的方式进行通信，即计算机通信基本靠吼。</li>
+<li>一台主机按照固定格式以广播的形式发送以太网包，同一网络下的其他主机都会收到包，拆开包后如果发现目标Mac不是自己就会丢弃包，是自己则作出响应。</li>
+</ul>
+<h3 id="3-3-网络层"><a href="#3-3-网络层" class="headerlink" title="3.3 网络层"></a>3.3 网络层</h3><ul>
+<li>网络层由来：有了ethernet、mac地址、广播的发送方式，世界上的计算机就可以彼此通信了，问题是世界范围的互联网是由一个个彼此隔离的小的局域网组成的，那么如果所有的通信都采用以太网的广播方式，那么一台机器发送的包全世界都会收到，这就不仅仅是效率低的问题了，这会是一种灾难。<br> <img src="/2020/03/29/%E3%80%90%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E3%80%91%E2%80%94%20%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/20200205174154801.jpg" alt="在这里插入图片描述">上图结论：必须找出一种方法来区分哪些计算机属于同一广播域，哪些不是，如果是就采用广播的方式发送，如果不是，就采用路由的方式（向不同广播域／子网分发数据包），mac地址是无法区分的，它只跟厂商有关。</li>
+<li>网络层功能：引入一套新的地址用来区分不同的广播域／子网，这套地址即网络地址。</li>
+</ul>
+<h4 id="x3D-x3D-IP协议：-x3D-x3D"><a href="#x3D-x3D-IP协议：-x3D-x3D" class="headerlink" title="&#x3D;&#x3D;IP协议：&#x3D;&#x3D;"></a>&#x3D;&#x3D;IP协议：&#x3D;&#x3D;</h4><ul>
+<li>规定网络地址的协议叫ip协议，它定义的地址称之为ip地址，广泛采用的v4版本即ipv4，它规定网络地址由32位2进制表示。</li>
+<li>范围0.0.0.0-255.255.255.255</li>
+<li>一个ip地址通常写成四段十进制数，例：172.16.10.1</li>
+</ul>
+<p>ip地址分成两部分：</p>
+<ul>
+<li>网络部分：标识子网</li>
+<li>主机部分：标识主机</li>
+</ul>
+<p>注意：单纯的ip地址段只是标识了ip地址的种类，从网络部分或主机部分都无法辨识一个ip所处的子网。<br>例：172.16.10.1与172.16.10.2并不能确定二者处于同一子网。</p>
+<h4 id="x3D-x3D-子网掩码：-x3D-x3D"><a href="#x3D-x3D-子网掩码：-x3D-x3D" class="headerlink" title="&#x3D;&#x3D;子网掩码：&#x3D;&#x3D;"></a>&#x3D;&#x3D;子网掩码：&#x3D;&#x3D;</h4><ul>
+<li>所谓”子网掩码”，就是表示子网络特征的一个参数。它在形式上等同于IP地址，也是一个32位二进制数字，它的网络部分全部为1，主机部分全部为0。比如，IP地址172.16.10.1，如果已知网络部分是前24位，主机部分是后8位，那么子网络掩码就是11111111.11111111.11111111.00000000，写成十进制就是255.255.255.0，此时主机ip也可写为172.16.10.1&#x2F;24。</li>
+<li>知道”子网掩码”，我们就能判断，任意两个IP地址是否处在同一个子网络。方法是将两个IP地址与子网掩码分别进行AND运算（两个数位都为1，运算结果为1，否则为0），然后比较结果是否相同，如果是的话，就表明它们在同一个子网络中，否则就不是。<strong>IP地址和子网掩码进行AND运算，才能得到网络地址。</strong></li>
+</ul>
+<p>比如，已知IP地址172.16.10.1和172.16.10.2的子网掩码都是255.255.255.0，请问它们是否在同一个子网络？两者与子网掩码分别进行AND运算：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">172.16</span><span class="number">.10</span><span class="number">.1</span>：<span class="number">10101100.00010000</span><span class="number">.00001010</span><span class="number">.000000001</span></span><br><span class="line"><span class="number">255255.255</span><span class="number">.255</span><span class="number">.0</span>:<span class="number">11111111.11111111</span><span class="number">.11111111</span><span class="number">.00000000</span></span><br><span class="line">AND运算得网络地址结果：<span class="number">10101100.00010000</span><span class="number">.00001010</span><span class="number">.000000001</span>-&gt;<span class="number">172.16</span><span class="number">.10</span><span class="number">.0</span></span><br><span class="line"></span><br><span class="line"><span class="number">172.16</span><span class="number">.10</span><span class="number">.2</span>：<span class="number">10101100.00010000</span><span class="number">.00001010</span><span class="number">.000000010</span></span><br><span class="line"><span class="number">255255.255</span><span class="number">.255</span><span class="number">.0</span>:<span class="number">11111111.11111111</span><span class="number">.11111111</span><span class="number">.00000000</span></span><br><span class="line">AND运算得网络地址结果：<span class="number">10101100.00010000</span><span class="number">.00001010</span><span class="number">.000000001</span>-&gt;<span class="number">172.16</span><span class="number">.10</span><span class="number">.0</span></span><br><span class="line"></span><br><span class="line">结果都是<span class="number">172.16</span><span class="number">.10</span><span class="number">.0</span>，因此它们在同一个子网络。</span><br></pre></td></tr></table></figure>
+
+<p>总结一下，IP协议的作用主要有两个，一个是为每一台计算机分配IP地址，另一个是确定哪些地址在同一个子网络。</p>
+<h4 id="x3D-x3D-IP数据包：-x3D-x3D"><a href="#x3D-x3D-IP数据包：-x3D-x3D" class="headerlink" title="&#x3D;&#x3D;IP数据包：&#x3D;&#x3D;"></a>&#x3D;&#x3D;IP数据包：&#x3D;&#x3D;</h4><p> ip数据包也分为head和data部分，无须为ip包定义单独的栏位，直接放入以太网包的data部分：</p>
+<ul>
+<li>head：长度为20到60字节</li>
+<li>data：最长为65,515字节。</li>
+</ul>
+<p>而以太网数据包的”数据”部分，最长只有1500字节。因此，如果IP数据包超过了1500字节，它就需要分割成几个以太网数据包，分开发送了。<br><img src="/2020/03/29/%E3%80%90%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E3%80%91%E2%80%94%20%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/20200205180128501.png" alt="在这里插入图片描述"></p>
+<h4 id="x3D-x3D-ARP协议：-x3D-x3D"><a href="#x3D-x3D-ARP协议：-x3D-x3D" class="headerlink" title="&#x3D;&#x3D;ARP协议：&#x3D;&#x3D;"></a>&#x3D;&#x3D;ARP协议：&#x3D;&#x3D;</h4><ul>
+<li>arp协议由来：计算机通信基本靠吼，即广播的方式，所有上层的包到最后都要封装上以太网头，然后通过以太网协议发送，在谈及以太网协议时候，我门了解到通信是基于mac的广播方式实现，计算机在发包时，获取自身的mac是容易的，如何获取目标主机的mac，就需要通过arp协议。</li>
+<li>arp协议功能：广播的方式发送数据包，获取目标主机的mac地址 。</li>
+<li>协议工作方式：每台主机ip都是已知的。</li>
+</ul>
+<p> 获取目标主机的Mac地址有两种情况：<br>     - 1. 主机A和主机B处于同一子网络下。<br>          - 2. 主机A和主机C处于不同的子网络下。<br><img src="/2020/03/29/%E3%80%90%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E3%80%91%E2%80%94%20%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/20200205191232232.png" alt="在这里插入图片描述"><strong>情况1：</strong><br>主机A会以广播的形式把该包发送给同一子网络下的所有主机，所有主机接收后拆开包查看目标ip是不是自己，不是自己就丢弃包，主机B发现找的是自己，就响应，返回给主机A自己的Mac地址。主机A获得主机B的Mac地址便可与其通信。<br><img src="/2020/03/29/%E3%80%90%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E3%80%91%E2%80%94%20%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/20200205194320375.png" alt="在这里插入图片描述"><br><img src="/2020/03/29/%E3%80%90%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E3%80%91%E2%80%94%20%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/20200205193827223.png" alt="在这里插入图片描述"><strong>情况2：</strong><br>主机A无法直接找到不在同一子网络下的主机C，需要借助网关，所以目标ip地址是子网1的网关的ip地址，主机A获取到子网1的网关的Mac地址后，将目标Mac地址改为子网1的网关的Mac地址，目标ip还是子网1的网关的ip地址，与子网1的网关进行通信。<br>子网1的网关通过路由规则找到子网2的网关，再由子网2的网关找到主机C，之后再由原路线返回。</p>
+<h3 id="3-4-传输层"><a href="#3-4-传输层" class="headerlink" title="3.4 传输层"></a>3.4 传输层</h3><ul>
+<li>传输层的由来：网络层的ip帮我们区分子网，以太网层的mac帮我们找到主机，然后大家使用的都是应用程序，你的电脑上可能同时开启qq，暴风影音，等多个应用程序，那么我们通过ip和mac找到了一台特定的主机，如何标识这台主机上的应用程序，答案就是端口，端口即应用程序与网卡关联的编号。</li>
+<li>传输层功能：建立端口到端口的通信。</li>
+<li>端口范围0-65535，0-1023为系统占用端口。</li>
+</ul>
+<p><strong>tcp协议：</strong> Transmission Control Protocol传输控制协议<br>可靠传输，TCP数据包没有长度限制，理论上可以无限长，但是为了保证网络的效率，通常TCP数据包的长度不会超过IP数据包的长度，以确保单个TCP数据包不必再分割。是面向链接的，相对安全。</p>
+<p> 特点：</p>
+<ul>
+<li>面向连接：传输数据之前需要建立连接。</li>
+<li>在连接过程中进行大量数据传输。</li>
+<li>通过“三次握手”的方式完成连接，是安全可靠协议。</li>
+<li>传输速度慢，效率低。</li>
+</ul>
+<p><img src="/2020/03/29/%E3%80%90%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E3%80%91%E2%80%94%20%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/20200207122228884.png" alt="在这里插入图片描述"><br><strong>udp协议：</strong> User Datagram Protocol用户数据报协议<br>不可靠传输，”报头”部分一共只有8个字节，总长度不超过65,535字节，正好放进一个IP数据包。是无链接的，相对不安全。优点：处理速度快，适合于直播或者实时游戏。</p>
+<p>特点：</p>
+<ul>
+<li>面向无连接：传输数据之前源端和目的端不需要建立连接。</li>
+<li>每个数据报的大小都限制在64K（8个字节）以内。</li>
+<li>面向报文的不可靠协议。（即：发送出去的数据不一定会接收得到）</li>
+<li>传输速率快，效率高。</li>
+<li>现实生活实例：邮局寄件、实时在线聊天、视频会议…等。</li>
+</ul>
+<p><img src="/2020/03/29/%E3%80%90%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E3%80%91%E2%80%94%20%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/20200207122338260.png" alt="在这里插入图片描述"><br><strong>tcp报文：</strong></p>
+<p><img src="/2020/03/29/%E3%80%90%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E3%80%91%E2%80%94%20%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/20200207122855214.jpg" alt="在这里插入图片描述"><br><strong>tcp三次握手和四次挥手：</strong><br><img src="/2020/03/29/%E3%80%90%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E3%80%91%E2%80%94%20%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/20200207122944704.jpg" alt="在这里插入图片描述"></p>
+<ul>
+<li>TCP标志位：<strong>SYN</strong>(synchronous建立联机)；<strong>ACK</strong>(acknowledgement 确认) ；PSH(push传送)； <strong>FIN</strong>(finish结束)； RST(reset重置)； URG(urgent紧急)；<strong>Sequence number</strong>(顺序号码)；Acknowledge number(确认号码)；</li>
+</ul>
+<p><strong>Q</strong>：为什么TCP协议建立连接时是“三次握手”，但是断开连接时需要“四次挥手”？<br><strong>A</strong>：因为建立连接时只要双方都同意了就可以开始传输数据了，为了提高效率只用三次，但是断开连接时，其中一方断开就需要两次，双方都主动断开则需要四次，如果断开连接只用三次就会造成有一方是被动断开的连接。当右边确认了左边的断开请求，不代表右边已经传输完数据准备断开，所以右边需要主动发起断开请求才能表示右边要断开连接。</p>
+<h3 id="3-5-应用层"><a href="#3-5-应用层" class="headerlink" title="3.5 应用层"></a>3.5 应用层</h3><ul>
+<li>应用层由来：用户使用的都是应用程序，均工作于应用层，互联网是开发的，大家都可以开发自己的应用程序，数据多种多样，必须规定好数据的组织形式。</li>
+<li>应用层功能：规定应用程序的数据格式。</li>
+<li>例：TCP协议可以为各种各样的程序传递数据，比如Email、WWW、FTP等等。那么，必须有不同协议规定电子邮件、网页、FTP数据的格式，这些应用程序协议就构成了”应用层”。</li>
+<li>发送数据是从上往下封装，接收数据是从下往上解封装。</li>
+</ul>
+<p><img src="/2020/03/29/%E3%80%90%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E3%80%91%E2%80%94%20%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/20200207135849328.jpg" alt="在这里插入图片描述"> </p>
+<h2 id="4-socket"><a href="#4-socket" class="headerlink" title="4.socket"></a>4.socket</h2><p>我们经常把socket翻译为套接字，socket是在应用层和传输层之间的一个抽象层，它把TCP&#x2F;IP层复杂的操作抽象为几个简单的接口供应用层调用已实现进程在网络中通信。<br><img src="/2020/03/29/%E3%80%90%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E3%80%91%E2%80%94%20%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/20200207140238522.png" alt="在这里插入图片描述"></p>
+<h2 id="二、网络通信实现"><a href="#二、网络通信实现" class="headerlink" title="二、网络通信实现"></a>二、网络通信实现</h2><p>想实现网络通信，每台主机需具备四要素：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- 本机的IP地址</span><br><span class="line">- 子网掩码</span><br><span class="line">- 网关的IP地址</span><br><span class="line">- DNS的IP地址</span><br></pre></td></tr></table></figure>
+<p>获取这四要素分两种方式：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>静态获取，即手动配置。</span><br><span class="line"><span class="number">2.</span>动态获取，通过dhcp获取。</span><br></pre></td></tr></table></figure>
+<p><img src="/2020/03/29/%E3%80%90%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E3%80%91%E2%80%94%20%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/20200207140817376.png" alt="在这里插入图片描述">（1）最前面的”以太网标头”，设置发出方（本机）的MAC地址和接收方（DHCP服务器）的MAC地址。前者就是本机网卡的MAC地址，后者这时不知道，就填入一个广播地址：FF-FF-FF-FF-FF-FF。<br>（2）后面的”IP标头”，设置发出方的IP地址和接收方的IP地址。这时，对于这两者，本机都不知道。于是，发出方的IP地址就设为0.0.0.0，接收方的IP地址设为255.255.255.255。<br>（3）最后的”UDP标头”，设置发出方的端口和接收方的端口。这一部分是DHCP协议规定好的，发出方是68端口，接收方是67端口。</p>
+<p>这个数据包构造完成后，就可以发出了。以太网是广播发送，同一个子网络的每台计算机都收到了这个包。因为接收方的MAC地址是FF-FF-FF-FF-FF-FF，看不出是发给谁的，所以每台收到这个包的计算机，还必须分析这个包的IP地址，才能确定是不是发给自己的。当看到发出方IP地址是0.0.0.0，接收方是255.255.255.255，于是DHCP服务器知道”这个包是发给我的”，而其他计算机就可以丢弃这个包。</p>
+<p>接下来，DHCP服务器读出这个包的数据内容，分配好IP地址，发送回去一个”DHCP响应”数据包。这个响应包的结构也是类似的，以太网标头的MAC地址是双方的网卡地址，IP标头的IP地址是DHCP服务器的IP地址（发出方）和255.255.255.255（接收方），UDP标头的端口是67（发出方）和68（接收方），分配给请求端的IP地址和本网络的具体参数则包含在Data部分。</p>
+<p>新加入的计算机收到这个响应包，于是就知道了自己的IP地址、子网掩码、网关地址、DNS服务器等等参数。</p>
+<h2 id="三、网络通信流程"><a href="#三、网络通信流程" class="headerlink" title="三、网络通信流程"></a>三、网络通信流程</h2><p><strong>1.本机获取：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">本机的IP地址：<span class="number">192.168</span><span class="number">.1</span><span class="number">.100</span></span><br><span class="line">子网掩码：<span class="number">255.255</span><span class="number">.255</span><span class="number">.0</span></span><br><span class="line">网关的IP地址：<span class="number">192.168</span><span class="number">.1</span><span class="number">.1</span></span><br><span class="line">DNS的IP地址：<span class="number">8.8</span><span class="number">.8</span><span class="number">.8</span></span><br></pre></td></tr></table></figure>
+<p><strong>2.打开浏览器，想要访问Google，在地址栏输入了网址：<a target="_blank" rel="noopener" href="http://www.google.com./">www.google.com。</a></strong><br><strong>3.dns协议(基于udp协议)</strong><br><img src="/2020/03/29/%E3%80%90%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E3%80%91%E2%80%94%20%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/20200207141748398.jpg" alt="在这里插入图片描述"></p>
+<h4 id="x3D-x3D-DNS解析域名的两种方式：-x3D-x3D"><a href="#x3D-x3D-DNS解析域名的两种方式：-x3D-x3D" class="headerlink" title="&#x3D;&#x3D;DNS解析域名的两种方式：&#x3D;&#x3D;"></a>&#x3D;&#x3D;DNS解析域名的两种方式：&#x3D;&#x3D;</h4><p><strong>1. DNS的递归查询：</strong><br>A问B一个问题，B不知道，B自己去问下一个人，直到问出答案后返回给B，B再返回给A。递归查询对应上图中的step1和step8。<br><strong>2. DNS的迭代查询：</strong><br>A问B一个问题，B不知道，B说C知道，A就跑去问C，C也不知道，但C说D知道，A又跑去问D，最终A得到答案。迭代查询对应上图中的step2， step3， step4， step5， step6，step7。</p>
+<h4 id="x3D-x3D-13台根dns：-x3D-x3D"><a href="#x3D-x3D-13台根dns：-x3D-x3D" class="headerlink" title="&#x3D;&#x3D;13台根dns：&#x3D;&#x3D;"></a>&#x3D;&#x3D;13台根dns：&#x3D;&#x3D;</h4><p>A.root-servers.net198.41.0.4美国<br>B.root-servers.net192.228.79.201美国（另支持IPv6）<br>C.root-servers.net192.33.4.12法国<br>D.root-servers.net128.8.10.90美国<br>E.root-servers.net192.203.230.10美国<br>F.root-servers.net192.5.5.241美国（另支持IPv6）<br>G.root-servers.net192.112.36.4美国<br>H.root-servers.net128.63.2.53美国（另支持IPv6）<br>I.root-servers.net192.36.148.17瑞典<br>J.root-servers.net192.58.128.30美国<br>K.root-servers.net193.0.14.129英国（另支持IPv6）<br>L.root-servers.net198.32.64.12美国<br>M.root-servers.net202.12.27.33日本（另支持IPv6）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">uri地址：http://www.cnblogs.com/alex3714</span><br><span class="line">url地址：http://www.cnblogs.com</span><br><span class="line"></span><br><span class="line">协议部分：http://</span><br><span class="line">域名部分：/www.cnblogs.com</span><br><span class="line">资源部分：/alex3714</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>根域：域名后面通常省略了一个点“.”，这个点叫做根域（全球13台）。</li>
+<li>顶级域名：以.com,.net,.org,.cn等等属于国际顶级域名，根据目前的国际互联网域名体系，国际顶级域名分为两类：类别顶级域名(gTLD)和地理顶级域名(ccTLD)两种。类别顶级域名是以”COM”、”NET”、”ORG”、”BIZ”、”INFO”等结尾的域名，均由国外公司负责管理。地理顶级域名是以国家或地区代码为结尾的域名，如”CN”代表中国，”UK”代表英国。地理顶级域名一般由各个国家或地区负责管理。</li>
+<li>二级域名：二级域名是以顶级域名为基础的地理域名，比如中国的二级域有，.com.cn,.net.cn,.org.cn,.gd.cn等.子域名是其父域名的子域名，比喻父域名是abc.com,子域名就是<a target="_blank" rel="noopener" href="http://www.abc.com或者*.abc.com/">www.abc.com或者*.abc.com</a>. 一般来说，二级域名是域名的一条记录，比如alidiedie.com是一个域名，<a target="_blank" rel="noopener" href="http://www.alidiedie.com是其中比较常用的记录,一般默认是用这个,但是类似*.alidiedie.com的域名全部称作是alidiedie.com的二级./">www.alidiedie.com是其中比较常用的记录，一般默认是用这个，但是类似*.alidiedie.com的域名全部称作是alidiedie.com的二级。</a><br> <img src="/2020/03/29/%E3%80%90%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E3%80%91%E2%80%94%20%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/20200207144455313.png" alt="在这里插入图片描述"></li>
+</ul>
+<p><strong>4.HTTP部分的内容，类似于下面这样：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">GET / HTTP/<span class="number">1.1</span></span><br><span class="line">Host: www.google.com</span><br><span class="line">Connection: keep-alive</span><br><span class="line">User-Agent: Mozilla/<span class="number">5.0</span> (Windows NT <span class="number">6.1</span>) ……</span><br><span class="line">Accept: text/html,application/xhtml+xml,application/xml;q=<span class="number">0.9</span>,*/*;q=<span class="number">0.8</span></span><br><span class="line">Accept-Encoding: gzip,deflate,sdch</span><br><span class="line">Accept-Language: zh-CN,zh;q=<span class="number">0.8</span></span><br><span class="line">Accept-Charset: GBK,utf-<span class="number">8</span>;q=<span class="number">0.7</span>,*;q=<span class="number">0.3</span></span><br><span class="line">Cookie: … …</span><br></pre></td></tr></table></figure>
+<p>我们假定这个部分的长度为4960字节，它会被嵌在TCP数据包之中。</p>
+<p><strong>5. TCP协议：</strong></p>
+<ul>
+<li>TCP数据包需要设置端口，接收方（Google）的HTTP端口默认是80，发送方（本机）的端口是一个随机生成的1024-65535之间的整数，假定为51775。</li>
+<li>TCP数据包的标头长度为20字节，加上嵌入HTTP的数据包，总长度变为4980字节。</li>
+</ul>
+<p><strong>6. IP协议：</strong></p>
+<ul>
+<li>然后，TCP数据包再嵌入IP数据包。IP数据包需要设置双方的IP地址，这是已知的，发送方是192.168.1.100（本机），接收方是172.194.72.105（Google）。</li>
+<li>IP数据包的标头长度为20字节，加上嵌入的TCP数据包，总长度变为5000字节。</li>
+</ul>
+<p><strong>7. 以太网协议：</strong></p>
+<ul>
+<li>最后，IP数据包嵌入以太网数据包。以太网数据包需要设置双方的MAC地址，发送方为本机的网卡MAC地址，接收方为网关192.168.1.1的MAC地址（通过ARP协议得到）。</li>
+<li>以太网数据包的数据部分，最大长度为1500字节，而现在的IP数据包长度为5000字节。因此，IP数据包必须分割成四个包。因为每个包都有自己的IP标头（20字节），所以四个包的IP数据包的长度分别为1500、1500、1500、560。<br><img src="/2020/03/29/%E3%80%90%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E3%80%91%E2%80%94%20%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/20200207142531250.jpg" alt="在这里插入图片描述"></li>
+</ul>
+<p><strong>8. 服务器端响应：</strong></p>
+<ul>
+<li>经过多个网关的转发，Google的服务器172.194.72.105，收到了这四个以太网数据包。</li>
+<li>根据IP标头的序号，Google将四个包拼起来，取出完整的TCP数据包，然后读出里面的”HTTP请求”，接着做出”HTTP响应”，再用TCP协议发回来。</li>
+<li>本机收到HTTP响应以后，就可以将网页显示出来，完成一次网络通信。</li>
+</ul>
+<p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;<br>参考文献：<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/linhaifeng/articles/5937962.html">https://www.cnblogs.com/linhaifeng/articles/5937962.html</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/zhang6223284/article/details/81414149">https://blog.csdn.net/zhang6223284/article/details/81414149</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/yuanchenqi/articles/5692716.html">https://www.cnblogs.com/yuanchenqi/articles/5692716.html</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="http://example.com">JoeXu</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://blog.csdn.net/Dr_BigJoe/article/details/104184478">https://blog.csdn.net/Dr_BigJoe/article/details/104184478</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">以上为个人学习笔记总结，供学习参考交流，转载请注明出处。</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/">网络基础</a></div><div class="post_share"><div class="social-share" data-image="https://avatars.githubusercontent.com/u/67886383?s=400&amp;u=99fc4b7b2788d8823a12f2924f7942669b39b105&amp;v=4" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/03/30/%E3%80%90python%E5%BC%80%E5%8F%91%E3%80%91%E2%80%94%20Socket%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" title="【python开发】— Socket网络编程"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">【python开发】— Socket网络编程</div></div></a></div><div class="next-post pull-right"><a href="/2020/03/26/%E3%80%90%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E3%80%91%E2%80%94%20%E5%AD%90%E7%BD%91%E5%88%92%E5%88%86/" title="【网络基础】— 子网划分"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">【网络基础】— 子网划分</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2020/03/26/%E3%80%90%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E3%80%91%E2%80%94%20%E5%AD%90%E7%BD%91%E5%88%92%E5%88%86/" title="【网络基础】— 子网划分"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-03-26</div><div class="title">【网络基础】— 子网划分</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://avatars.githubusercontent.com/u/67886383?s=400&amp;u=99fc4b7b2788d8823a12f2924f7942669b39b105&amp;v=4" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Joe Xu</div><div class="author-info__description">Stay hungry, Stay Foolish</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">14</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">2</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">2</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/JoeXu727" target="_blank" title="Github"><i class="fab fa-github"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E3%80%90%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E3%80%91%E2%80%94-%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE"><span class="toc-number">1.</span> <span class="toc-text">【网络基础】— 网络协议</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86"><span class="toc-number">1.1.</span> <span class="toc-text">一、网络通信原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E4%BA%92%E8%81%94%E7%BD%91%E6%9C%AC%E8%B4%A8"><span class="toc-number">1.2.</span> <span class="toc-text">1.互联网本质</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-osi%E4%B8%83%E5%B1%82%E5%8D%8F%E8%AE%AE"><span class="toc-number">1.3.</span> <span class="toc-text">2.osi七层协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-TCP-x2F-IP%E4%BA%94%E5%B1%82%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.4.</span> <span class="toc-text">3.TCP&#x2F;IP五层模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E7%89%A9%E7%90%86%E5%B1%82"><span class="toc-number">1.4.1.</span> <span class="toc-text">3.1 物理层</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82"><span class="toc-number">1.4.2.</span> <span class="toc-text">3.2 数据链路层</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#x3D-x3D-%E4%BB%A5%E5%A4%AA%E7%BD%91%E5%8D%8F%E8%AE%AE%EF%BC%9A-x3D-x3D"><span class="toc-number">1.4.2.1.</span> <span class="toc-text">&#x3D;&#x3D;以太网协议：&#x3D;&#x3D;</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#x3D-x3D-Mac%E5%9C%B0%E5%9D%80%EF%BC%9A-x3D-x3D"><span class="toc-number">1.4.2.2.</span> <span class="toc-text">&#x3D;&#x3D;Mac地址：&#x3D;&#x3D;</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#x3D-x3D-%E5%B9%BF%E6%92%AD%EF%BC%9A-x3D-x3D"><span class="toc-number">1.4.2.3.</span> <span class="toc-text">&#x3D;&#x3D;广播：&#x3D;&#x3D;</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E7%BD%91%E7%BB%9C%E5%B1%82"><span class="toc-number">1.4.3.</span> <span class="toc-text">3.3 网络层</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#x3D-x3D-IP%E5%8D%8F%E8%AE%AE%EF%BC%9A-x3D-x3D"><span class="toc-number">1.4.3.1.</span> <span class="toc-text">&#x3D;&#x3D;IP协议：&#x3D;&#x3D;</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#x3D-x3D-%E5%AD%90%E7%BD%91%E6%8E%A9%E7%A0%81%EF%BC%9A-x3D-x3D"><span class="toc-number">1.4.3.2.</span> <span class="toc-text">&#x3D;&#x3D;子网掩码：&#x3D;&#x3D;</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#x3D-x3D-IP%E6%95%B0%E6%8D%AE%E5%8C%85%EF%BC%9A-x3D-x3D"><span class="toc-number">1.4.3.3.</span> <span class="toc-text">&#x3D;&#x3D;IP数据包：&#x3D;&#x3D;</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#x3D-x3D-ARP%E5%8D%8F%E8%AE%AE%EF%BC%9A-x3D-x3D"><span class="toc-number">1.4.3.4.</span> <span class="toc-text">&#x3D;&#x3D;ARP协议：&#x3D;&#x3D;</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-%E4%BC%A0%E8%BE%93%E5%B1%82"><span class="toc-number">1.4.4.</span> <span class="toc-text">3.4 传输层</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-%E5%BA%94%E7%94%A8%E5%B1%82"><span class="toc-number">1.4.5.</span> <span class="toc-text">3.5 应用层</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-socket"><span class="toc-number">1.5.</span> <span class="toc-text">4.socket</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.6.</span> <span class="toc-text">二、网络通信实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%E6%B5%81%E7%A8%8B"><span class="toc-number">1.7.</span> <span class="toc-text">三、网络通信流程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#x3D-x3D-DNS%E8%A7%A3%E6%9E%90%E5%9F%9F%E5%90%8D%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%96%B9%E5%BC%8F%EF%BC%9A-x3D-x3D"><span class="toc-number">1.7.0.1.</span> <span class="toc-text">&#x3D;&#x3D;DNS解析域名的两种方式：&#x3D;&#x3D;</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#x3D-x3D-13%E5%8F%B0%E6%A0%B9dns%EF%BC%9A-x3D-x3D"><span class="toc-number">1.7.0.2.</span> <span class="toc-text">&#x3D;&#x3D;13台根dns：&#x3D;&#x3D;</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/06/17/Object.assign%E9%87%8D%E7%BD%AE%E8%B8%A9%E5%9D%91/" title="前端菜鸡的踩坑之路（一）">前端菜鸡的踩坑之路（一）</a><time datetime="2022-06-17T14:20:18.000Z" title="Created 2022-06-17 22:20:18">2022-06-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/12/24/%E5%9F%BA%E4%BA%8Evue3%E7%9A%84%E7%88%B6%E5%AD%90%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/" title="基于vue3和antd vue的父子组件通信">基于vue3和antd vue的父子组件通信</a><time datetime="2021-12-24T02:15:18.000Z" title="Created 2021-12-24 10:15:18">2021-12-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/10/24/hello-world/" title="Hello World">Hello World</a><time datetime="2021-10-24T06:02:18.000Z" title="Created 2021-10-24 14:02:18">2021-10-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2020/03/30/%E3%80%90python%E5%BC%80%E5%8F%91%E3%80%91%E2%80%94%20Socket%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" title="【python开发】— Socket网络编程">【python开发】— Socket网络编程</a><time datetime="2020-03-30T11:47:25.000Z" title="Created 2020-03-30 19:47:25">2020-03-30</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2020/03/29/%E3%80%90%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E3%80%91%E2%80%94%20%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/" title="【网络基础】— 网络协议">【网络基础】— 网络协议</a><time datetime="2020-03-29T07:09:48.000Z" title="Created 2020-03-29 15:09:48">2020-03-29</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Joe Xu</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
