@@ -1,0 +1,294 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>【python开发】— 协程与IO模型 | Debug the World</title><meta name="author" content="Joe Xu"><meta name="copyright" content="Joe Xu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="【python开发】— 协程与IO模型一、协程 协程，又称微线程，纤程。英文名Coroutine。一句话说明什么是线程：协程是一种用户态的轻量级线程。  协程拥有自己的寄存器上下文和栈。协程调度切换时，将寄存器上下文和栈保存到其他地方，在切回来的时候，恢复先前保存的寄存器上下文和栈。因此：协程能保留上一次调用时的状态（即所有局部状态的一个特定组合），每次过程重入时，就相当于进入上一次调用的状态，换">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【python开发】— 协程与IO模型">
+<meta property="og:url" content="http://example.com/2020/04/06/%E3%80%90python%E5%BC%80%E5%8F%91%E3%80%91%E2%80%94%20%E5%8D%8F%E7%A8%8B%E4%B8%8EIO%E6%A8%A1%E5%9E%8B/index.html">
+<meta property="og:site_name" content="Debug the World">
+<meta property="og:description" content="【python开发】— 协程与IO模型一、协程 协程，又称微线程，纤程。英文名Coroutine。一句话说明什么是线程：协程是一种用户态的轻量级线程。  协程拥有自己的寄存器上下文和栈。协程调度切换时，将寄存器上下文和栈保存到其他地方，在切回来的时候，恢复先前保存的寄存器上下文和栈。因此：协程能保留上一次调用时的状态（即所有局部状态的一个特定组合），每次过程重入时，就相当于进入上一次调用的状态，换">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://avatars.githubusercontent.com/u/67886383?s=400&u=99fc4b7b2788d8823a12f2924f7942669b39b105&v=4">
+<meta property="article:published_time" content="2020-04-06T14:22:32.000Z">
+<meta property="article:modified_time" content="2023-04-02T03:29:39.397Z">
+<meta property="article:author" content="Joe Xu">
+<meta property="article:tag" content="python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://avatars.githubusercontent.com/u/67886383?s=400&u=99fc4b7b2788d8823a12f2924f7942669b39b105&v=4"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2020/04/06/%E3%80%90python%E5%BC%80%E5%8F%91%E3%80%91%E2%80%94%20%E5%8D%8F%E7%A8%8B%E4%B8%8EIO%E6%A8%A1%E5%9E%8B/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":288},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【python开发】— 协程与IO模型',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-04-02 11:29:39'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://avatars.githubusercontent.com/u/67886383?s=400&amp;u=99fc4b7b2788d8823a12f2924f7942669b39b105&amp;v=4" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">20</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">3</div></a></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="Debug the World"><span class="site-name">Debug the World</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">【python开发】— 协程与IO模型</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2020-04-06T14:22:32.000Z" title="Created 2020-04-06 22:22:32">2020-04-06</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-04-02T03:29:39.397Z" title="Updated 2023-04-02 11:29:39">2023-04-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/python/">python</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="【python开发】— 协程与IO模型"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="【python开发】—-协程与IO模型"><a href="#【python开发】—-协程与IO模型" class="headerlink" title="【python开发】— 协程与IO模型"></a>【python开发】— 协程与IO模型</h1><h2 id="一、协程"><a href="#一、协程" class="headerlink" title="一、协程"></a>一、协程</h2><ul>
+<li><p>协程，又称微线程，纤程。英文名Coroutine。一句话说明什么是线程：协程是一种用户态的轻量级线程。</p>
+</li>
+<li><p>协程拥有自己的寄存器上下文和栈。协程调度切换时，将寄存器上下文和栈保存到其他地方，在切回来的时候，恢复先前保存的寄存器上下文和栈。因此：协程能保留上一次调用时的状态（即所有局部状态的一个特定组合），每次过程重入时，就相当于进入上一次调用的状态，换种说法：进入上一次离开时所处逻辑流的位置。</p>
+</li>
+<li><p><strong>协程标准定义：</strong></p>
+<ol>
+<li>必须在只有一个单线程里实现并发。</li>
+<li>修改共享数据不需加锁。</li>
+<li>用户程序里自己保存多个控制流的上下文栈。</li>
+<li>一个协程遇到IO操作自动切换到其它协程。</li>
+</ol>
+</li>
+<li><p><strong>协程的好处：</strong></p>
+<ol>
+<li>无需线程上下文切换的开销。</li>
+<li>无需原子操作锁定及同步的开销：”原子操作(atomic operation)是不需要synchronized”，所谓原子操作是指不会被线程调度机制打断的操作；这种操作一旦开始，就一直运行到结束，中间不会有任何 context switch（切换到另一个线程）。原子操作可以是一个步骤，也可以是多个操作步骤，但是其顺序是不可以被打乱，或者切割掉只执行部分。视作整体是原子性的核心。   </li>
+<li>方便切换控制流，简化编程模型。</li>
+<li>高并发+高扩展性+低成本：一个CPU支持上万的协程都不是问题。所以很适合用于高并发处理。</li>
+</ol>
+</li>
+<li><p><strong>协程的缺点：</strong></p>
+<ol>
+<li>无法利用多核资源：协程的本质是个单线程,它不能同时将 单个CPU 的多个核用上,协程需要和进程配合才能运行在多CPU上.当然我们日常所编写的绝大部分应用都没有这个必要，除非是cpu密集型应用。</li>
+<li>进行阻塞（Blocking）操作（如IO时）会阻塞掉整个程序。</li>
+</ol>
+</li>
+</ul>
+<h3 id="1-使用yield实现协程操作"><a href="#1-使用yield实现协程操作" class="headerlink" title="1. 使用yield实现协程操作"></a>1. 使用yield实现协程操作</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> queue</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">consumer</span>(<span class="params">name</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;---&gt;starting eating baozi...&quot;</span>)</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        new_baozi = <span class="keyword">yield</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;[%s] is eating baozi %s&quot;</span> % (name, new_baozi))</span><br><span class="line">        time.sleep(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">producer</span>():</span><br><span class="line">    <span class="built_in">next</span>(con)     <span class="comment">#两个协程都是先走到new_baozi = yield然后被yield住</span></span><br><span class="line">    <span class="built_in">next</span>(con2)</span><br><span class="line">    n = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> n &lt; <span class="number">5</span>:</span><br><span class="line">        n += <span class="number">1</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;\033[32;1m[producer]\033[0m is making baozi %s&quot;</span> % n)</span><br><span class="line">        con.send(n)   <span class="comment">#接着在con.send(n)继续从new_baozi = yield开始走，同时传给yield参数n</span></span><br><span class="line">        con2.send(n)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    con = consumer(<span class="string">&quot;c1&quot;</span>)    <span class="comment">#创建一个生成器对象con</span></span><br><span class="line">    con2 = consumer(<span class="string">&quot;c2&quot;</span>)   <span class="comment">#创建一个生成器对象con2</span></span><br><span class="line">    p = producer()         <span class="comment">#执行producer函数，p就是函数返回值</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-Greenlet协程"><a href="#2-Greenlet协程" class="headerlink" title="2. Greenlet协程"></a>2. Greenlet协程</h3><p>greenlet是一个用C实现的协程模块，相比与python自带的yield，它可以使你在任意函数之间随意切换，而不需把这个函数先声明为generator。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> greenlet <span class="keyword">import</span> greenlet</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">test1</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="number">12</span>)</span><br><span class="line">    gr2.switch()</span><br><span class="line">    <span class="built_in">print</span>(<span class="number">34</span>)</span><br><span class="line">    gr2.switch()</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">test2</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="number">56</span>)</span><br><span class="line">    gr1.switch()</span><br><span class="line">    <span class="built_in">print</span>(<span class="number">78</span>)</span><br><span class="line"></span><br><span class="line">gr1 = greenlet(test1)</span><br><span class="line">gr2 = greenlet(test2)</span><br><span class="line">gr1.switch()</span><br><span class="line"><span class="string">&quot;&quot;&quot;首先调用gr1的switch，打印12，接着调用gr2的switch，打印56，之后又调用gr1</span></span><br><span class="line"><span class="string">的switch，打印34，以此类推，打印78&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-Gevent操作协程"><a href="#3-Gevent操作协程" class="headerlink" title="3. Gevent操作协程"></a>3. Gevent操作协程</h3><p>Gevent 是一个第三方库，可以轻松通过gevent实现并发同步或异步编程，在gevent中用到的主要模式是Greenlet, 它是以C扩展模块形式接入Python的轻量级协程。 Greenlet全部运行在主程序操作系统进程的内部，但它们被协作式地调度。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> gevent</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">func1</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;Explicit context to func1&#x27;</span>,time.ctime())</span><br><span class="line">    gevent.sleep(<span class="number">1</span>)   <span class="comment">#模拟IO阻塞的效果,此时该线程会切换去执行别的任务</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;Implicit context switch back to func1&#x27;</span>,time.ctime())</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">func2</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;Explicit context to func2&#x27;</span>,time.ctime())</span><br><span class="line">    gevent.sleep(<span class="number">2</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;Implicit context switch back to func2&#x27;</span>,time.ctime())</span><br><span class="line"></span><br><span class="line">gevent.joinall([</span><br><span class="line">    gevent.spawn(func1),</span><br><span class="line">    gevent.spawn(func2),</span><br><span class="line">])</span><br></pre></td></tr></table></figure>
+<p><strong>使用Gevent爬网页：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> gevent <span class="keyword">import</span> monkey;</span><br><span class="line"></span><br><span class="line">monkey.patch_all()   <span class="comment">#该补丁最大程度的监听IO阻塞，在爬网页遇到IO阻塞时能够立刻切换</span></span><br><span class="line"><span class="keyword">import</span> gevent,time</span><br><span class="line"><span class="keyword">from</span> urllib.request <span class="keyword">import</span> urlopen</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">f</span>(<span class="params">url</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;GET: %s&#x27;</span> % url)</span><br><span class="line">    resp = urlopen(url)</span><br><span class="line">    data = resp.read()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;%d bytes received from %s.&#x27;</span> % (<span class="built_in">len</span>(data), url))</span><br><span class="line">start = time.time()</span><br><span class="line"><span class="comment"># l = [&#x27;https://www.python.org/&#x27;,&#x27;https://www.yahoo.com/&#x27;,&#x27;https://github.com/&#x27;]</span></span><br><span class="line"><span class="comment"># for url in l:    #不用协程</span></span><br><span class="line"><span class="comment">#     f(url)</span></span><br><span class="line"></span><br><span class="line">gevent.joinall([     <span class="comment">#用协程</span></span><br><span class="line">    gevent.spawn(f, <span class="string">&#x27;https://www.python.org/&#x27;</span>),</span><br><span class="line">    gevent.spawn(f, <span class="string">&#x27;https://www.yahoo.com/&#x27;</span>),</span><br><span class="line">    gevent.spawn(f, <span class="string">&#x27;https://github.com/&#x27;</span>),</span><br><span class="line">])</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(time.time()-start)</span><br></pre></td></tr></table></figure>
+
+<h2 id="二、事件驱动模型"><a href="#二、事件驱动模型" class="headerlink" title="二、事件驱动模型"></a>二、事件驱动模型</h2><ul>
+<li>传统的编程是如下线性模式的：<br>开始—&gt;代码块A—&gt;代码块B—&gt;代码块C—&gt;代码块D—&gt;……—&gt;结束<br>每一个代码块里是完成各种各样事情的代码，但编程者知道代码块A,B,C,D…的执行顺序，唯一能够改变这个流程的是数据。输入不同的数据，根据条件语句判断，流程或许就改为A—&gt;C—&gt;E…—&gt;结束。每一次程序运行顺序或许都不同，但它的控制流程是由输入数据和你编写的程序决定的。如果你知道这个程序当前的运行状态（包括输入数据和程序本身），那你就知道接下来甚至一直到结束它的运行流程。</li>
+<li>对于事件驱动型程序模型，它的流程大致如下：<br>开始—&gt;初始化—&gt;等待<br>与上面传统编程模式不同，事件驱动程序在启动之后，就在那等待，等待什么呢？等待被事件触发。传统编程下也有“等待”的时候，比如在代码块D中，你定义了一个input()，需要用户输入数据。但这与下面的等待不同，传统编程的“等待”，比如input()，你作为程序编写者是知道或者强制用户输入某个东西的，或许是数字，或许是文件名称，如果用户输入错误，你还需要提醒他，并请他重新输入。事件驱动程序的等待则是完全不知道，也不强制用户输入或者干什么。只要某一事件发生，那程序就会做出相应的“反应”。这些事件包括：输入信息、鼠标、敲击键盘上某个键还有系统内部定时器触发。</li>
+</ul>
+<h3 id="1-事件驱动模型介绍"><a href="#1-事件驱动模型介绍" class="headerlink" title="1. 事件驱动模型介绍"></a>1. 事件驱动模型介绍</h3><p>通常，我们写服务器处理模型的程序时，有以下几种模型：</p>
+<p>（1）每收到一个请求，创建一个新的进程，来处理该请求；<br>（2）每收到一个请求，创建一个新的线程，来处理该请求；<br>（3）每收到一个请求，放入一个事件列表，让主进程通过非阻塞I&#x2F;O方式来处理请求；</p>
+<p>第三种就是协程、事件驱动的方式，一般普遍认为第（3）种方式是大多数网络服务器采用的方式。</p>
+<p> <strong>事件驱动之鼠标点击事件实例：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">&quot;en&quot;</span>&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">&quot;UTF-8&quot;</span>&gt;</span><br><span class="line">    &lt;title&gt;Title&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;p onclick=<span class="string">&quot;fun()&quot;</span>&gt;点我呀&lt;/p&gt;</span><br><span class="line"></span><br><span class="line">&lt;script <span class="built_in">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><br><span class="line">    function fun() &#123;</span><br><span class="line">          alert(<span class="string">&#x27;约吗?&#x27;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>获得鼠标点击的两种方式：</strong></p>
+<p><strong>1. 创建一个线程循环检测是否有鼠标点击</strong>，那么这个方式有以下几个缺点：</p>
+<ul>
+<li>CPU资源浪费，可能鼠标点击的频率非常小，但是扫描线程还是会一直循环检测，这会造成很多的CPU资源浪费；如果扫描鼠标点击的接口是阻塞的呢？</li>
+<li>如果是阻塞的，又会出现下面这样的问题，如果我们不但要扫描鼠标点击，还要扫描键盘是否按下，由于扫描鼠标时被堵塞了，那么可能永远不会去扫描键盘；</li>
+<li>如果一个循环需要扫描的设备非常多，这又会引来响应时间的问题； 所以，该方式是非常不好的。</li>
+</ul>
+<p><strong>2. 利用事件驱动模型：</strong><br> 目前大部分的UI编程都是事件驱动模型，如很多UI平台都会提供onClick()事件，这个事件就代表鼠标按下事件。事件驱动模型大体思路如下：<br>       （1）有一个事件（消息）队列；<br>       （2）鼠标按下时，往这个队列中增加一个点击事件（消息）；<br>       （3）有个循环，不断从队列取出事件，根据不同的事件，调用不同的函数，如onClick()、onKeyDown()等；<br>       （4）事件（消息）一般都各自保存各自的处理函数指针，这样，每个消息都有独立的处理函数；<br><img src="/2020/04/06/%E3%80%90python%E5%BC%80%E5%8F%91%E3%80%91%E2%80%94%20%E5%8D%8F%E7%A8%8B%E4%B8%8EIO%E6%A8%A1%E5%9E%8B/20200216115746809.png" alt="在这里插入图片描述"><br>事件驱动编程是一种编程范式，这里程序的执行流由外部事件来决定。它的特点是包含一个事件循环，当外部事件发生时使用回调机制来触发相应的处理。另外两种常见的编程范式是（单线程）同步以及多线程编程。 </p>
+<p>让我们用例子来比较和对比一下单线程、多线程以及事件驱动编程模型。下图展示了随着时间的推移，这三种模式下程序所做的工作。这个程序有3个任务需要完成，每个任务都在等待I&#x2F;O操作时阻塞自身。阻塞在I&#x2F;O操作上所花费的时间已经用灰色框标示出来了。<br><img src="/2020/04/06/%E3%80%90python%E5%BC%80%E5%8F%91%E3%80%91%E2%80%94%20%E5%8D%8F%E7%A8%8B%E4%B8%8EIO%E6%A8%A1%E5%9E%8B/20200216120018984.png" alt="在这里插入图片描述"></p>
+<ol>
+<li>要理解事件驱动和程序，就需要与非事件驱动的程序进行比较。实际上，现代的程序大多是事件驱动的，比如多线程的程序，肯定是事件驱动的。早期则存在许多非事件驱动的程序，这样的程序，在需要等待某个条件触发时，会不断地检查这个条件，直到条件满足，这是很浪费cpu时间的。而事件驱动的程序，则有机会释放cpu从而进入睡眠态（注意是有机会，当然程序也可自行决定不释放cpu），当事件触发时被操作系统唤醒，这样就能更加有效地使用cpu。</li>
+<li>再说什么是事件驱动的程序。一个典型的事件驱动的程序，就是一个死循环，并以一个线程的形式存在，这个死循环包括两个部分，第一个部分是按照一定的条件接收并选择一个要处理的事件，第二个部分就是事件的处理过程。程序的执行过程就是选择事件和处理事件，而当没有任何事件触发时，程序会因查询事件队列失败而进入睡眠状态，从而释放cpu。</li>
+<li>事件驱动的程序，必定会直接或者间接拥有一个事件队列，用于存储未能及时处理的事件。</li>
+<li>事件驱动的程序的行为，完全受外部输入的事件控制，所以，事件驱动的系统中，存在大量这种程序，并以事件作为主要的通信方式。</li>
+<li>事件驱动的程序，还有一个最大的好处，就是可以按照一定的顺序处理队列中的事件，而这个顺序则是由事件的触发顺序决定的，这一特性往往被用于保证某些过程的原子化。</li>
+<li>目前windows, linux, nucleus, vxworks都是事件驱动的，只有一些单片机可能是非事件驱动的。</li>
+<li>注意，事件驱动的监听事件是由操作系统调用的cpu来完成的。</li>
+</ol>
+<h2 id="三、IO多路复用"><a href="#三、IO多路复用" class="headerlink" title="三、IO多路复用"></a>三、IO多路复用</h2><p>前面是用协程实现的IO阻塞自动切换，那么协程又是怎么实现的，在原理是是怎么实现的。如何去实现事件驱动的情况下IO的自动阻塞的切换，这个学名叫什么呢？ &#x3D;&gt; <strong>IO多路复用</strong>。比如socketserver，多个客户端连接，单线程下实现并发效果，就叫多路复用。 同步IO和异步IO，阻塞IO和非阻塞IO分别是什么，到底有什么区别？不同的人在不同的上下文下给出的答案是不同的。所以先限定一下本文的上下文：<strong>本文讨论的背景是Linux环境下的network IO</strong>。</p>
+<h3 id="1-IO模型基础"><a href="#1-IO模型基础" class="headerlink" title="1. IO模型基础"></a>1. IO模型基础</h3><ul>
+<li><p><strong>用户空间与内核空间：</strong></p>
+<p>现在操作系统都是采用虚拟存储器，那么对32位操作系统而言，它的寻址空间（虚拟存储空间）为4G（2的32次方）。<br>操作系统的核心是内核，独立于普通的应用程序，可以访问受保护的内存空间，也有访问底层硬件设备的所有权限。<br>为了保证用户进程不能直接操作内核（kernel），保证内核的安全，操心系统将虚拟空间划分为两部分，一部分为内核空间，一部分为用户空间。<br>针对linux操作系统而言，将最高的1G字节（从虚拟地址0xC0000000到0xFFFFFFFF），供内核使用，称为内核空间，而将较低的3G字节（从虚拟地址0x00000000到0xBFFFFFFF），供各个进程使用，称为用户空间。</p>
+</li>
+<li><p><strong>进程切换：</strong></p>
+<p>为了控制进程的执行，内核必须有能力挂起正在CPU上运行的进程，并恢复以前挂起的某个进程的执行。这种行为被称为进程切换，这种切换是由操作系统来完成的。因此可以说，任何进程都是在操作系统内核的支持下运行的，是与内核紧密相关的。<br>从一个进程的运行转到另一个进程上运行，这个过程中经过下面这些变化：<br>保存处理机上下文，包括程序计数器和其他寄存器。<br>更新PCB信息。<br>把进程的PCB移入相应的队列，如就绪、在某事件阻塞等队列。<br>选择另一个进程执行，并更新其PCB。<br>更新内存管理的数据结构。<br>恢复处理机上下文。  注：总而言之就是很耗资源的。</p>
+</li>
+<li><p><strong>进程的阻塞：</strong></p>
+<p>正在执行的进程，由于期待的某些事件未发生，如请求系统资源失败、等待某种操作的完成、新数据尚未到达或无新工作做等，则由系统自动执行阻塞原语(Block)，使自己由运行状态变为阻塞状态。可见，进程的阻塞是进程自身的一种主动行为，也因此只有处于运行态的进程（获得CPU），才可能将其转为阻塞状态。当进程进入阻塞状态，是不占用CPU资源的。</p>
+</li>
+<li><p><strong>文件描述符fd：</strong></p>
+<p>文件描述符（File descriptor）是计算机科学中的一个术语，是一个用于表述指向文件的引用的抽象化概念。<br>文件描述符在形式上是一个非负整数。实际上，它是一个索引值，指向内核为每一个进程所维护的该进程打开文件的记录表。当程序打开一个现有文件或者创建一个新文件时，内核向进程返回一个文件描述符。在程序设计中，一些涉及底层的程序编写往往会围绕着文件描述符展开。但是文件描述符这一概念往往只适用于UNIX、Linux这样的操作系统。</p>
+</li>
+<li><p><strong>缓存 I&#x2F;O：</strong></p>
+<p>缓存 I&#x2F;O 又被称作标准 I&#x2F;O，大多数文件系统的默认 I&#x2F;O 操作都是缓存 I&#x2F;O。在 Linux 的缓存 I&#x2F;O机制中，操作系统会将 I&#x2F;O 的数据缓存在文件系统的页缓存（ page cache）中，也就是说，数据会先被拷贝到操作系统内核的缓冲区中，然后才会从操作系统内核的缓冲区拷贝到应用程序的地址空间。用户空间没法直接访问内核空间的，内核态到用户态的数据拷贝。<br>缓存 I&#x2F;O 的缺点：数据在传输过程中需要在应用程序地址空间和内核进行多次数据拷贝操作，这些数据拷贝操作所带来的 CPU 以及内存开销是非常大的。</p>
+</li>
+</ul>
+<p>对于一个network IO (这里我们以read举例)，它会涉及到两个系统对象，一个是调用这个IO的process (or thread)，另一个就是系统内核(kernel)。当一个read操作发生时，它会经历两个阶段：</p>
+<ol>
+<li>等待数据准备 (Waiting for the data to be ready)</li>
+<li>将数据从内核拷贝到进程中 (Copying the data from the kernel to the process)<br>记住这两点很重要，因为这些IO Model的区别就是在两个阶段上各有不同的情况。</li>
+</ol>
+<h3 id="2-blocking-IO（阻塞IO）"><a href="#2-blocking-IO（阻塞IO）" class="headerlink" title="2. blocking IO（阻塞IO）"></a>2. blocking IO（阻塞IO）</h3><p>在linux中，默认情况下所有的socket都是blocking，一个典型的读操作流程大概是这样：<br><img src="/2020/04/06/%E3%80%90python%E5%BC%80%E5%8F%91%E3%80%91%E2%80%94%20%E5%8D%8F%E7%A8%8B%E4%B8%8EIO%E6%A8%A1%E5%9E%8B/20200216174626715.png" alt="在这里插入图片描述"><br>当用户进程调用了recvfrom这个系统调用，kernel就开始了IO的第一个阶段：准备数据。对于network io来说，很多时候数据在一开始还没有到达（比如，还没有收到一个完整的UDP包），这个时候kernel就要等待足够的数据到来。而在用户进程这边，整个进程会被阻塞。当kernel一直等到数据准备好了，它就会将数据从kernel中拷贝到用户内存，然后kernel返回结果，用户进程才解除block的状态，重新运行起来。所以，blocking IO的特点就是在IO执行的两个阶段都被block了。</p>
+<h3 id="3-non-blocking-IO（非阻塞IO）"><a href="#3-non-blocking-IO（非阻塞IO）" class="headerlink" title="3. non-blocking IO（非阻塞IO）"></a>3. non-blocking IO（非阻塞IO）</h3><p>linux下，可以通过设置socket使其变为non-blocking。当对一个non-blocking socket执行读操作时，流程是这个样子：<br><img src="/2020/04/06/%E3%80%90python%E5%BC%80%E5%8F%91%E3%80%91%E2%80%94%20%E5%8D%8F%E7%A8%8B%E4%B8%8EIO%E6%A8%A1%E5%9E%8B/20200216181537799.png" alt="在这里插入图片描述"><br>从图中可以看出，当用户进程发出read操作时，如果kernel中的数据还没有准备好，那么它并不会block用户进程，而是立刻返回一个error。从用户进程角度讲 ，它发起一个read操作后，并不需要等待，而是马上就得到了一个结果。用户进程判断结果是一个error时，它就知道数据还没有准备好，于是它可以再次发送read操作。一旦kernel中的数据准备好了，并且又再次收到了用户进程的system call，那么它马上就将数据拷贝到了用户内存，然后返回。所以，用户进程其实是需要不断的主动询问kernel数据好了没有。</p>
+<p> <strong>注意</strong>：在网络IO时候，非阻塞IO也会进行recvform系统调用，检查数据是否准备好，与阻塞IO不一样，”非阻塞将大的整片时间的阻塞分成N多的小的阻塞, 所以进程不断地有机会 ‘被’ CPU光顾”。即每次recvform系统调用之间，cpu的权限还在进程手中，这段时间是可以做其他事情的，也就是说非阻塞的recvform系统调用调用之后，进程并没有被阻塞，内核马上返回给进程，如果数据还没准备好，此时会返回一个error。进程在返回之后，可以干点别的事情，然后再发起recvform系统调用。重复上面的过程，循环往复的进行recvform系统调用。这个过程通常被称之为轮询。轮询检查内核数据，直到数据准备好，再拷贝数据到进程，进行数据处理。需要注意，拷贝数据整个过程，进程仍然是属于阻塞的状态。</p>
+<h3 id="4-IO-multiplexing（IO多路复用）"><a href="#4-IO-multiplexing（IO多路复用）" class="headerlink" title="4. IO multiplexing（IO多路复用）"></a>4. IO multiplexing（IO多路复用）</h3><p>IO multiplexing这个词可能有点陌生，但是如果我说select，epoll，大概就都能明白了。有些地方也称这种IO方式为event driven IO。我们都知道，select&#x2F;epoll的好处就在于单个process就可以同时处理多个网络连接的IO。它的基本原理就是select&#x2F;epoll这个function会不断的轮询所负责的所有socket，当某个socket有数据到达了，就通知用户进程。它的流程如图：<br><img src="/2020/04/06/%E3%80%90python%E5%BC%80%E5%8F%91%E3%80%91%E2%80%94%20%E5%8D%8F%E7%A8%8B%E4%B8%8EIO%E6%A8%A1%E5%9E%8B/20200216184522867.png" alt="在这里插入图片描述"><br>当用户进程调用了select，那么整个进程会被block，而同时，kernel会“监视”所有select负责的socket，当任何一个socket中的数据准备好了，select就会返回。这个时候用户进程再调用read操作，将数据从kernel拷贝到用户进程。</p>
+<p>这个图和blocking IO的图其实并没有太大的不同，事实上，还更差一些。因为这里需要使用两个system call (select 和 recvfrom)，而blocking IO只调用了一个system call (recvfrom)。但是，用select的优势在于它可以同时处理多个connection。（多说一句。所以，如果处理的连接数不是很高的话，使用select&#x2F;epoll的web server不一定比使用multi-threading + blocking IO的web server性能更好，可能延迟还更大。select&#x2F;epoll的优势并不是对于单个连接能处理得更快，而是在于能处理更多的连接。）</p>
+<p>在IO multiplexing Model中，实际中，对于每一个socket，一般都设置成为non-blocking，但是，如上图所示，整个用户的process其实是一直被block的。只不过process是被select这个函数block，而不是被socket IO给block。</p>
+<p>注意1：select函数返回结果中如果有文件可读了，那么进程就可以通过调用accept()或recv()来让kernel将位于内核中准备到的数据copy到用户区。</p>
+<p>注意2: select的优势在于可以处理多个连接，不适用于单个连接。</p>
+<h3 id="5-signal-driven-IO-信号驱动式IO"><a href="#5-signal-driven-IO-信号驱动式IO" class="headerlink" title="5. signal-driven IO (信号驱动式IO)"></a>5. signal-driven IO (信号驱动式IO)</h3><p><img src="/2020/04/06/%E3%80%90python%E5%BC%80%E5%8F%91%E3%80%91%E2%80%94%20%E5%8D%8F%E7%A8%8B%E4%B8%8EIO%E6%A8%A1%E5%9E%8B/20200217115858538.png" alt="在这里插入图片描述"></p>
+<ul>
+<li>应用进程使用sigaction系统调用，发生I&#x2F;O时内核立即返回，应用程序可以继续执行（等待数据阶段非阻塞）；</li>
+<li>当内核中有数据到达时向应用程序发出SIGIO信号，应用程序接收到信号在信号处理程序中调用recvfrom，将数据从内核复制到应用程序中；</li>
+<li>由于不需要轮询系统调用，信号驱动I&#x2F;O的CPU利用率比非阻塞式I&#x2F;O更高。</li>
+</ul>
+<h3 id="6-Asynchronous-I-x2F-O（异步IO）"><a href="#6-Asynchronous-I-x2F-O（异步IO）" class="headerlink" title="6. Asynchronous I&#x2F;O（异步IO）"></a>6. Asynchronous I&#x2F;O（异步IO）</h3><p>linux下的asynchronous IO其实用得很少。先看一下它的流程：<br><img src="/2020/04/06/%E3%80%90python%E5%BC%80%E5%8F%91%E3%80%91%E2%80%94%20%E5%8D%8F%E7%A8%8B%E4%B8%8EIO%E6%A8%A1%E5%9E%8B/20200216185508355.png" alt="在这里插入图片描述"><br>用户进程发起read操作之后，立刻就可以开始去做其它的事。而另一方面，从kernel的角度，当它受到一个asynchronous read之后，首先它会立刻返回，所以不会对用户进程产生任何block。然后，kernel会等待数据准备完成，然后将数据拷贝到用户内存，当这一切都完成之后，kernel会给用户进程发送一个signal，告诉它read操作完成了。</p>
+<h3 id="7-五种-I-x2F-O模型"><a href="#7-五种-I-x2F-O模型" class="headerlink" title="7. 五种 I&#x2F;O模型"></a>7. 五种 I&#x2F;O模型</h3><ul>
+<li><strong>blocking VS non-blocking：</strong><br>调用blocking IO会一直block住对应的进程直到操作完成，而non-blocking<br>IO在kernel还准备数据的情况下会立刻返回。</li>
+<li><strong>synchronous VS asynchronous：</strong><br>两者的区别就在于synchronous IO做”IO operation”的时候会将process阻塞。按照这个定义，之前所述的blocking IO，non-blocking IO，IO multiplexing都属于synchronous IO。有人可能会说，non-blocking IO并没有被block啊。这里有个非常“狡猾”的地方，定义中所指的”IO operation”是指真实的IO操作，就是例子中的recvfrom这个system call。non-blocking IO在执行recvfrom这个systemcall的时候，如果kernel的数据没有准备好，这时候不会block进程。但是，当kernel中数据准备好的时候，recvfrom会将数据从kernel拷贝到用户内存中，这个时候进程是被block了，在这段时间内，进程是被block的。而asynchronous IO则不一样，当进程发起IO操作之后，就直接返回再也不理睬了，直到kernel发送一个信号，告诉进程说IO完成。在这整个过程中，进程完全没有被block。</li>
+<li><strong>non-blocking IO VS asynchronous IO：</strong><br>在non-blocking IO中，虽然进程大部分时间都不会被block，但是它仍然要求进程去主动的check，并且当数据准备完成以后，也需要进程主动的再次调用recvfrom来将数据拷贝到用户内存。而asynchronous IO则完全不同。它就像是用户进程将整个IO操作交给了他人（kernel）完成，然后他人做完后发信号通知。在此期间，用户进程不需要去检查IO操作的状态，也不需要主动的去拷贝数据。</li>
+<li>注意：由于咱们接下来要讲的select，poll，epoll都属于IO多路复用，而IO多路复用又属于同步的范畴，故，epoll只是一个伪异步而已。</li>
+</ul>
+<p><strong>五种IO模型比较：</strong><br><img src="/2020/04/06/%E3%80%90python%E5%BC%80%E5%8F%91%E3%80%91%E2%80%94%20%E5%8D%8F%E7%A8%8B%E4%B8%8EIO%E6%A8%A1%E5%9E%8B/20200216190416456.png" alt="在这里插入图片描述"></p>
+<h3 id="8-select-poll-epoll-IO多路复用介绍"><a href="#8-select-poll-epoll-IO多路复用介绍" class="headerlink" title="8. select poll epoll IO多路复用介绍"></a>8. select poll epoll IO多路复用介绍</h3><ul>
+<li><p><strong>select：</strong><br>select最早于1983年出现在4.2BSD中，它通过一个select()系统调用来监视多个文件描述符的数组，当select()返回后，该数组中就绪的文件描述符便会被内核修改标志位，使得进程可以获得这些文件描述符从而进行后续的读写操作。<br>   select目前几乎在所有的平台上支持。 </p>
+<p>   select的一个缺点在于单个进程能够监视的文件描述符的数量存在最大限制，在Linux上一般为1024，不过可以通过修改宏定义甚至重新编译内核的方式提升这一限制。</p>
+<p>   另外，select()所维护的存储大量文件描述符的数据结构，随着文件描述符数量的增大，其复制的开销也线性增长。同时，由于网络响应时间的延迟使得大量TCP连接处于非活跃状态，但调用select()会对所有socket进行一次线性扫描，所以这也浪费了一定的开销。</p>
+</li>
+<li><p><strong>poll：</strong><br>它和select在本质上没有多大差别，但是poll没有最大文件描述符数量的限制。<br>   一般也不用它，相当于过渡阶段。</p>
+</li>
+<li><p><strong>epoll：</strong><br>直到Linux2.6才出现了由内核直接支持的实现方法，那就是epoll。被公认为Linux2.6下性能最好的多路I&#x2F;O就绪通知方法。windows不支持。<br>   没有最大文件描述符数量的限制。 </p>
+<p>   比如100个连接，有两个活跃了，epoll会告诉用户这两个两个活跃了，直接取就ok了，而select是循环一遍。 </p>
+<p>   （了解）epoll可以同时支持水平触发和边缘触发（Edge Triggered，只告诉进程哪些文件描述符刚刚变为就绪状态，它只说一遍，如果我们没有采取行动，那么它将不会再次告知，这种方式称为边缘触发），理论上边缘触发的性能要更高一些，但是代码实现相当复杂。</p>
+<p>   另一个本质的改进在于epoll采用基于事件的就绪通知方式。在select&#x2F;poll中，进程只有在调用一定的方法后，内核才对所有监视的文件描述符进行扫描，而epoll事先通过epoll_ctl()来注册一个文件描述符，一旦基于某个文件描述符就绪时，内核会采用类似callback的回调机制，迅速激活这个文件描述符，当进程调用epoll_wait()时便得到通知。</p>
+</li>
+<li><p>所以市面上上见到的所谓的异步IO，比如nginx、Tornado、等，我们叫它异步IO，实际上是IO多路复用。</p>
+</li>
+<li><p>文件描述符其实就是咱们平时说的句柄，只不过文件描述符是linux中的概念。注意，我们的accept或recv调用时即向系统发出recvfrom请求：</p>
+<p>  (1)  如果内核缓冲区没有数据－－－&gt;等待－－－&gt;数据到了内核缓冲区，转到用户进程缓冲区；</p>
+<p>   (2) 如果先用select监听到某个文件描述符对应的内核缓冲区有了数据，当我们再调用accept或recv时，直接将数据转到用户缓冲区。<br>   <img src="/2020/04/06/%E3%80%90python%E5%BC%80%E5%8F%91%E3%80%91%E2%80%94%20%E5%8D%8F%E7%A8%8B%E4%B8%8EIO%E6%A8%A1%E5%9E%8B/20200216191544461.png" alt="在这里插入图片描述"></p>
+</li>
+</ul>
+<p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;<br>参考文献：<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/alex3714/articles/5248247.html">https://www.cnblogs.com/alex3714/articles/5248247.html</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/yuanchenqi/articles/5722574.html">https://www.cnblogs.com/yuanchenqi/articles/5722574.html</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="http://example.com">JoeXu</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://blog.csdn.net/Dr_BigJoe/article/details/104339478">https://blog.csdn.net/Dr_BigJoe/article/details/104339478</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">以上为个人学习笔记总结，供学习参考交流，转载请注明出处。</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/python/">python</a></div><div class="post_share"><div class="social-share" data-image="https://avatars.githubusercontent.com/u/67886383?s=400&amp;u=99fc4b7b2788d8823a12f2924f7942669b39b105&amp;v=4" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/04/08/%E3%80%90%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E3%80%91%E2%80%94%20HTML%E4%B8%8EHttp%E5%8D%8F%E8%AE%AE/" title="【前端开发】— HTML与Http协议"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">【前端开发】— HTML与Http协议</div></div></a></div><div class="next-post pull-right"><a href="/2020/04/02/%E4%BB%8E%E6%B1%89%E8%AF%BA%E5%A1%94%E5%88%B0Python%E9%80%92%E5%BD%92%EF%BC%8C%E4%B8%80%E6%B3%A2%E5%B8%A6%E8%B5%B0/" title="从汉诺塔到Python递归，一波带走"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">从汉诺塔到Python递归，一波带走</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2020/03/07/%E3%80%90python%E5%BC%80%E5%8F%91%E3%80%91%E2%80%94%20Game-of-Life-%E7%94%9F%E5%91%BD%E6%B8%B8%E6%88%8F/" title="【python开发】— Game of Life 生命游戏"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-03-07</div><div class="title">【python开发】— Game of Life 生命游戏</div></div></a></div><div><a href="/2020/03/20/%E3%80%90python%E5%BC%80%E5%8F%91%E3%80%91%E2%80%94%20MySQL%EF%BC%88%E4%B8%80%EF%BC%89/" title="【python开发】— MySQL（一）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-03-20</div><div class="title">【python开发】— MySQL（一）</div></div></a></div><div><a href="/2020/03/20/%E3%80%90python%E5%BC%80%E5%8F%91%E3%80%91%E2%80%94%20MySQL%EF%BC%88%E4%B8%89%EF%BC%89/" title="【python开发】— MySQL（三）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-03-20</div><div class="title">【python开发】— MySQL（三）</div></div></a></div><div><a href="/2020/03/20/%E3%80%90python%E5%BC%80%E5%8F%91%E3%80%91%E2%80%94%20MySQL%EF%BC%88%E4%BA%8C%EF%BC%89/" title="【python开发】— MySQL（二）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-03-20</div><div class="title">【python开发】— MySQL（二）</div></div></a></div><div><a href="/2020/03/30/%E3%80%90python%E5%BC%80%E5%8F%91%E3%80%91%E2%80%94%20Socket%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" title="【python开发】— Socket网络编程"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-03-30</div><div class="title">【python开发】— Socket网络编程</div></div></a></div><div><a href="/2020/04/02/%E4%BB%8E%E6%B1%89%E8%AF%BA%E5%A1%94%E5%88%B0Python%E9%80%92%E5%BD%92%EF%BC%8C%E4%B8%80%E6%B3%A2%E5%B8%A6%E8%B5%B0/" title="从汉诺塔到Python递归，一波带走"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-04-02</div><div class="title">从汉诺塔到Python递归，一波带走</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://avatars.githubusercontent.com/u/67886383?s=400&amp;u=99fc4b7b2788d8823a12f2924f7942669b39b105&amp;v=4" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Joe Xu</div><div class="author-info__description">Stay hungry, Stay Foolish</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">20</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">3</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/JoeXu727" target="_blank" title="Github"><i class="fab fa-github"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E3%80%90python%E5%BC%80%E5%8F%91%E3%80%91%E2%80%94-%E5%8D%8F%E7%A8%8B%E4%B8%8EIO%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.</span> <span class="toc-text">【python开发】— 协程与IO模型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%8D%8F%E7%A8%8B"><span class="toc-number">1.1.</span> <span class="toc-text">一、协程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BD%BF%E7%94%A8yield%E5%AE%9E%E7%8E%B0%E5%8D%8F%E7%A8%8B%E6%93%8D%E4%BD%9C"><span class="toc-number">1.1.1.</span> <span class="toc-text">1. 使用yield实现协程操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Greenlet%E5%8D%8F%E7%A8%8B"><span class="toc-number">1.1.2.</span> <span class="toc-text">2. Greenlet协程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Gevent%E6%93%8D%E4%BD%9C%E5%8D%8F%E7%A8%8B"><span class="toc-number">1.1.3.</span> <span class="toc-text">3. Gevent操作协程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E4%BA%8B%E4%BB%B6%E9%A9%B1%E5%8A%A8%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.2.</span> <span class="toc-text">二、事件驱动模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BA%8B%E4%BB%B6%E9%A9%B1%E5%8A%A8%E6%A8%A1%E5%9E%8B%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.2.1.</span> <span class="toc-text">1. 事件驱动模型介绍</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81IO%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8"><span class="toc-number">1.3.</span> <span class="toc-text">三、IO多路复用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-IO%E6%A8%A1%E5%9E%8B%E5%9F%BA%E7%A1%80"><span class="toc-number">1.3.1.</span> <span class="toc-text">1. IO模型基础</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-blocking-IO%EF%BC%88%E9%98%BB%E5%A1%9EIO%EF%BC%89"><span class="toc-number">1.3.2.</span> <span class="toc-text">2. blocking IO（阻塞IO）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-non-blocking-IO%EF%BC%88%E9%9D%9E%E9%98%BB%E5%A1%9EIO%EF%BC%89"><span class="toc-number">1.3.3.</span> <span class="toc-text">3. non-blocking IO（非阻塞IO）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-IO-multiplexing%EF%BC%88IO%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8%EF%BC%89"><span class="toc-number">1.3.4.</span> <span class="toc-text">4. IO multiplexing（IO多路复用）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-signal-driven-IO-%E4%BF%A1%E5%8F%B7%E9%A9%B1%E5%8A%A8%E5%BC%8FIO"><span class="toc-number">1.3.5.</span> <span class="toc-text">5. signal-driven IO (信号驱动式IO)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-Asynchronous-I-x2F-O%EF%BC%88%E5%BC%82%E6%AD%A5IO%EF%BC%89"><span class="toc-number">1.3.6.</span> <span class="toc-text">6. Asynchronous I&#x2F;O（异步IO）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E4%BA%94%E7%A7%8D-I-x2F-O%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.3.7.</span> <span class="toc-text">7. 五种 I&#x2F;O模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-select-poll-epoll-IO%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.3.8.</span> <span class="toc-text">8. select poll epoll IO多路复用介绍</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/06/17/Object.assign%E9%87%8D%E7%BD%AE%E8%B8%A9%E5%9D%91/" title="前端菜鸡的踩坑之路（一）">前端菜鸡的踩坑之路（一）</a><time datetime="2022-06-17T14:20:18.000Z" title="Created 2022-06-17 22:20:18">2022-06-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/12/24/%E5%9F%BA%E4%BA%8Evue3%E7%9A%84%E7%88%B6%E5%AD%90%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/" title="基于vue3和antd vue的父子组件通信">基于vue3和antd vue的父子组件通信</a><time datetime="2021-12-24T02:15:18.000Z" title="Created 2021-12-24 10:15:18">2021-12-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/10/24/hello-world/" title="Hello World">Hello World</a><time datetime="2021-10-24T06:02:18.000Z" title="Created 2021-10-24 14:02:18">2021-10-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2020/04/10/%E3%80%90%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E3%80%91%E2%80%94%20JavaScript/" title="【前端开发】— JavaScript">【前端开发】— JavaScript</a><time datetime="2020-04-10T12:59:21.000Z" title="Created 2020-04-10 20:59:21">2020-04-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2020/04/09/%E3%80%90%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E3%80%91%E2%80%94%20CSS/" title="【前端开发】— CSS">【前端开发】— CSS</a><time datetime="2020-04-09T11:42:13.000Z" title="Created 2020-04-09 19:42:13">2020-04-09</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Joe Xu</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
