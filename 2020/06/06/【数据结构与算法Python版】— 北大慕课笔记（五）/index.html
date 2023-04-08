@@ -1,0 +1,422 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>【数据结构与算法Python版】— 北大慕课笔记（五） | Debug the World</title><meta name="author" content="Joe Xu"><meta name="copyright" content="Joe Xu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="【数据结构与算法Python版】— 北大慕课笔记（五）一、图Graph1. 图的基础知识 图Graph是比树更为一般的结构，也是由节点和边构成的，实际上树是一种具有特殊性质的图。  顶点Vertex(也称“节点Node”)是图的基本组成部分，顶点具有名称标识Key，也可以携带数据项payload。  边Edge(也称“弧Arc”)，作为2个顶点之间关系的表示，边连接两个顶点；边可以是无向或者有向的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【数据结构与算法Python版】— 北大慕课笔记（五）">
+<meta property="og:url" content="http://example.com/2020/06/06/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95Python%E7%89%88%E3%80%91%E2%80%94%20%E5%8C%97%E5%A4%A7%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89/index.html">
+<meta property="og:site_name" content="Debug the World">
+<meta property="og:description" content="【数据结构与算法Python版】— 北大慕课笔记（五）一、图Graph1. 图的基础知识 图Graph是比树更为一般的结构，也是由节点和边构成的，实际上树是一种具有特殊性质的图。  顶点Vertex(也称“节点Node”)是图的基本组成部分，顶点具有名称标识Key，也可以携带数据项payload。  边Edge(也称“弧Arc”)，作为2个顶点之间关系的表示，边连接两个顶点；边可以是无向或者有向的">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://avatars.githubusercontent.com/u/67886383?s=400&u=99fc4b7b2788d8823a12f2924f7942669b39b105&v=4">
+<meta property="article:published_time" content="2020-06-06T06:29:05.000Z">
+<meta property="article:modified_time" content="2023-04-08T03:28:47.989Z">
+<meta property="article:author" content="Joe Xu">
+<meta property="article:tag" content="数据结构与算法">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://avatars.githubusercontent.com/u/67886383?s=400&u=99fc4b7b2788d8823a12f2924f7942669b39b105&v=4"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2020/06/06/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95Python%E7%89%88%E3%80%91%E2%80%94%20%E5%8C%97%E5%A4%A7%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":288},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【数据结构与算法Python版】— 北大慕课笔记（五）',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-04-08 11:28:47'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://avatars.githubusercontent.com/u/67886383?s=400&amp;u=99fc4b7b2788d8823a12f2924f7942669b39b105&amp;v=4" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">34</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">5</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">5</div></a></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="Debug the World"><span class="site-name">Debug the World</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">【数据结构与算法Python版】— 北大慕课笔记（五）</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2020-06-06T06:29:05.000Z" title="Created 2020-06-06 14:29:05">2020-06-06</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-04-08T03:28:47.989Z" title="Updated 2023-04-08 11:28:47">2023-04-08</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="【数据结构与算法Python版】— 北大慕课笔记（五）"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="【数据结构与算法Python版】—-北大慕课笔记（五）"><a href="#【数据结构与算法Python版】—-北大慕课笔记（五）" class="headerlink" title="【数据结构与算法Python版】— 北大慕课笔记（五）"></a>【数据结构与算法Python版】— 北大慕课笔记（五）</h1><h2 id="一、图Graph"><a href="#一、图Graph" class="headerlink" title="一、图Graph"></a>一、图Graph</h2><h3 id="1-图的基础知识"><a href="#1-图的基础知识" class="headerlink" title="1. 图的基础知识"></a>1. 图的基础知识</h3><ul>
+<li><p>图Graph是比树更为一般的结构，也是由节点和边构成的，实际上树是一种具有特殊性质的图。</p>
+</li>
+<li><p>顶点Vertex(也称“节点Node”)是图的基本组成部分，顶点具有名称标识Key，也可以携带数据项payload。</p>
+</li>
+<li><p>边Edge(也称“弧Arc”)，作为2个顶点之间关系的表示，边连接两个顶点；边可以是无向或者有向的，相应的图称作“无向图”和“有向图”。</p>
+</li>
+<li><p>权重Weight，为了表达从一个顶点到另一个顶点的代价，可以给边赋权。例如公交网络中两个站点之间的距离、通行时间和票价都可以作为权重。</p>
+<p>  <img src="/2020/06/06/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95Python%E7%89%88%E3%80%91%E2%80%94%20%E5%8C%97%E5%A4%A7%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89/20200424182335159.png" alt="在这里插入图片描述"></p>
+</li>
+</ul>
+<h3 id="2-图的定义"><a href="#2-图的定义" class="headerlink" title="2. 图的定义"></a>2. 图的定义</h3><ul>
+<li>一个图G可以定义为G &#x3D; (V,E)，其中V是顶点的集合，E是边的集合，E中的每条边e &#x3D; (v, w)，v和w都是V中的顶点；如果是赋权图，则可以在e中添加权重分量子图：V和E的子集。 </li>
+<li>路径Path，图中的路径，是由边依次连接起来的顶点序列；无权路径的长度为边的数量；带权路径的长度为所有边权重的和。</li>
+<li>圈Cycle，圈是首尾顶点相同的路径。如果有向图不存在任何圈，则称作“有向无圈图 directed acyclic graph: DAG”。如果一个问题能表示成DAG，就可以用图算法很好地解决。</li>
+</ul>
+<h2 id="二、ADT-Graph"><a href="#二、ADT-Graph" class="headerlink" title="二、ADT Graph"></a>二、ADT Graph</h2><p>ADT Graph的实现方法有两种主要形式：邻接矩阵adjacency matrix；邻接表adjacency list，两种方法各有优劣，需要在不同应用中加以选择。</p>
+<h3 id="1-邻接矩阵"><a href="#1-邻接矩阵" class="headerlink" title="1. 邻接矩阵"></a>1. 邻接矩阵</h3><ul>
+<li><p>矩阵的每行和每列都代表图中的顶点。</p>
+</li>
+<li><p>如果两个顶点之间有边相连，设定行列值。无权边则将矩阵分量有就标注为1，没有就标注为0；带权边则将权重保存为矩阵分量值。</p>
+<p>  <img src="/2020/06/06/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95Python%E7%89%88%E3%80%91%E2%80%94%20%E5%8C%97%E5%A4%A7%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89/20200424182441602.png" alt="在这里插入图片描述"></p>
+</li>
+<li><p>邻接矩阵实现法的优点是简单，可以很容易得到顶点是如何相连的。</p>
+</li>
+<li><p>但如果图中的边数很少则效率低下，成为稀疏sparse矩阵。而大多数问题所对应的图都是稀疏的，边远远少于|v|^2 这个量级。</p>
+</li>
+</ul>
+<h3 id="2-邻接列表"><a href="#2-邻接列表" class="headerlink" title="2. 邻接列表"></a>2. 邻接列表</h3><ul>
+<li><p>邻接列表可以成为稀疏图的更高效实现方案。维护一个包含所有顶点的主列表(master list)，主列表中的每个顶点，再关联一个与自身有边连接的所有顶点的列表。</p>
+</li>
+<li><p>邻接列表法的存储空间紧凑高效，很容易获得顶点所连接的所有顶点，以及连接边的信息。<br>  <img src="/2020/06/06/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95Python%E7%89%88%E3%80%91%E2%80%94%20%E5%8C%97%E5%A4%A7%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89/2020042418250663.png" alt="在这里插入图片描述"></p>
+</li>
+</ul>
+<h3 id="3-ADT-Graph的实现"><a href="#3-ADT-Graph的实现" class="headerlink" title="3. ADT Graph的实现"></a>3. ADT Graph的实现</h3><ul>
+<li><p>顶点Vertex类：Vertex包含了顶点信息，以及顶点连接边信息。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Vertex</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, key</span>):</span><br><span class="line">        self.<span class="built_in">id</span> = key</span><br><span class="line">        self.connectedTo = &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">addNeighbor</span>(<span class="params">self, nbr, weight=<span class="number">0</span></span>):</span><br><span class="line">        self.connectedTo[nbr] = weight  <span class="comment"># nbr是顶点对象的key</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__str__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">str</span>(self.<span class="built_in">id</span>) + <span class="string">&#x27;connectedTo:&#x27;</span> + <span class="built_in">str</span>([x.<span class="built_in">id</span> <span class="keyword">for</span> x <span class="keyword">in</span> self.connectedTo])</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">getConnections</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> self.connectedTo.keys()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">getId</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> self.<span class="built_in">id</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">getWeight</span>(<span class="params">self, nbr</span>):</span><br><span class="line">        <span class="keyword">return</span> self.connectedTo[nbr]</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>图Graph类：Graph保存了包含所有顶点的主表。	  </p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Graph</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        self.verList = &#123;&#125;</span><br><span class="line">        self.numVertices = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">addVertex</span>(<span class="params">self, key</span>):  <span class="comment"># 新加顶点</span></span><br><span class="line">        self.numVertices = self.numVertices + <span class="number">1</span></span><br><span class="line">        newVertex = Vertex(key)</span><br><span class="line">        self.verList[key] = newVertex</span><br><span class="line">        <span class="keyword">return</span> newVertex</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">getVertex</span>(<span class="params">self, n</span>):  <span class="comment"># 通过key查找顶点</span></span><br><span class="line">        <span class="keyword">if</span> n <span class="keyword">in</span> self.verList:</span><br><span class="line">            <span class="keyword">return</span> self.verList[n]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__contains__</span>(<span class="params">self, n</span>):</span><br><span class="line">        <span class="keyword">return</span> n <span class="keyword">in</span> self.verList</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">addEdge</span>(<span class="params">self, f, t, cost=<span class="number">0</span></span>):</span><br><span class="line">        <span class="keyword">if</span> f <span class="keyword">not</span> <span class="keyword">in</span> self.verList:</span><br><span class="line">            nv = self.addVertex(f)  <span class="comment"># 不存在的顶点先添加</span></span><br><span class="line">        <span class="keyword">if</span> t <span class="keyword">not</span> <span class="keyword">in</span> self.verList:</span><br><span class="line">            nv = self.addVertex(t)</span><br><span class="line">        self.verList[f].addNeighbor(self.verList[t], cost) <span class="comment"># 调用起始顶点的方法添加临街边</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">getVertices</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> self.verList.keys()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__iter__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">iter</span>(self.verList.values())</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="三、图的应用"><a href="#三、图的应用" class="headerlink" title="三、图的应用"></a>三、图的应用</h2><h3 id="1-词梯Word-Ladder问题"><a href="#1-词梯Word-Ladder问题" class="headerlink" title="1. 词梯Word Ladder问题"></a>1. 词梯Word Ladder问题</h3><ul>
+<li>由爱丽丝漫游奇境的作者Lewis Carroll在1878年所发明的单词游戏。</li>
+<li>从一个单词演变为另一个单词，其中的过程可以经过多个中间单词，要求是相邻两个单词之间差异只能是1个字母。如FOOL变为SAGE：FOOL &gt;&gt; POOL &gt;&gt; POLL &gt;&gt; POLE &gt;&gt; PALE &gt;&gt; SALE &gt;&gt; SAGE</li>
+<li>我们的目标是找到最短的单词变换序列，采用图来解决这个问题的步骤如下：将可能的单词之间的演变关系表达为图，采用广度优先搜索BFS，来搜寻从开始单词到结束单词之间的所有有效路径，选择其中最快到达目标单词的路径。</li>
+</ul>
+<p><strong>构建单词关系图：</strong></p>
+<ul>
+<li><p>首先是如何将大量的单词集放到图中，将单词作为顶点的标识key，如果两个单词之间仅相差1个字母，就在它们之间设一条边。</p>
+<p>  <img src="/2020/06/06/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95Python%E7%89%88%E3%80%91%E2%80%94%20%E5%8C%97%E5%A4%A7%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89/20200424182539456.png" alt="在这里插入图片描述"></p>
+</li>
+<li><p>下图是从FOOL到SAGE的词梯解，所用的图是无向图，边没有权重，FOOL到SAGE的每条路径都是一个解。</p>
+<p>  <img src="/2020/06/06/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95Python%E7%89%88%E3%80%91%E2%80%94%20%E5%8C%97%E5%A4%A7%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89/20200424182604384.png" alt="在这里插入图片描述"></p>
+</li>
+<li><p>单词关系图可以通过不同的算法来构建（以4个字母的单词表为例），首先是将所有单词作为顶点加入图中，再设法建立顶点之间的边。</p>
+</li>
+<li><p>建立边的最直接算法，是对每个顶点(单词)，与其它所有单词进行比较，如果相差仅1个字母，则建立一条边。时间复杂度是0(n^2)，对于所有4个字母的5110个单词，需要超过2600万次比较。</p>
+</li>
+<li><p>改进的算法是创建大量的桶，每个桶可以存放若干单词，通标记是去掉1个字母，通配符“_”占空的单词。</p>
+</li>
+<li><p>所有匹配标记的单词都放到这个桶里，所有单词就位后，再在同一个桶的单词之间建立边即可。</p>
+<p>  <img src="/2020/06/06/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95Python%E7%89%88%E3%80%91%E2%80%94%20%E5%8C%97%E5%A4%A7%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89/20200424182620497.png" alt="在这里插入图片描述"></p>
+</li>
+<li><p>对于所有4个字母的5110个单词建立的单词关系图总计有53286条边，仅仅达到矩阵单元数量的0.2%，因此单词关系图是一个非常稀疏的图。</p>
+</li>
+</ul>
+<p><strong>代码实现：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">buildGraph</span>(<span class="params">wordFile</span>):</span><br><span class="line">    d = &#123;&#125;</span><br><span class="line">    g = Graph()</span><br><span class="line">    wfile = <span class="built_in">open</span>(wordFile,<span class="string">&#x27;r&#x27;</span>)</span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> wfile:</span><br><span class="line">        word = line[:-<span class="number">1</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(word)):  <span class="comment"># 4字母单词可属于4个桶</span></span><br><span class="line">            bucket = word[:i] + <span class="string">&#x27;_&#x27;</span> + word[i+<span class="number">1</span>:]</span><br><span class="line">            <span class="keyword">if</span> bucket <span class="keyword">in</span> d:</span><br><span class="line">                d[bucket].append(word)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                d[bucket] = [word]</span><br><span class="line">    <span class="keyword">for</span> bucket <span class="keyword">in</span> d.keys():  <span class="comment"># 同一个桶的单词之间建立边</span></span><br><span class="line">        <span class="keyword">for</span> word1 <span class="keyword">in</span> d[bucket]:</span><br><span class="line">            <span class="keyword">for</span> word2 <span class="keyword">in</span> d[bucket]:</span><br><span class="line">                <span class="keyword">if</span> word1 != word2:</span><br><span class="line">                    g.addEdge(word1,word2)</span><br><span class="line">    <span class="keyword">return</span> g</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>实现广度优先搜索：</strong></p>
+<ul>
+<li><p>BFS是搜索图的最简单算法之一，也是其它一些重要的图算法的基础。</p>
+</li>
+<li><p>给定图G，以及开始搜索的起始顶点s。BFS搜索所有从s可到达顶点的边，而且在达到更远的距离k+1的顶点之前，BFS会找到全部距离为k的顶点。可以想象为以s为根，构建一棵树的过程，从顶部向下逐步增加层次。广度优先搜索能保证在增加层次之前，添加了所有兄弟节点到树中。</p>
+</li>
+<li><p>为了跟踪顶点的加入过程，并避免重复顶点，要为顶点增加3个属性。</p>
+<ol>
+<li>距离distance：从起始顶点到此顶点路径长度；</li>
+<li>前驱顶点predecessor：可反向追溯到起点；</li>
+<li>颜色color：标识了此顶点是尚未发现(白色)、已经发现(灰色)、还是已经完成探索(黑色)。</li>
+</ol>
+</li>
+<li><p>还需要一个队列queue来对已发现的顶点进行排列，决定下一个要探索的顶点(队首顶点)。</p>
+</li>
+<li><p>从起始顶点s开始，作为刚发现的顶点，标注为灰色，距离为0，前驱为None，加入队列，接下来是个循环迭代过程：从队首取出一个顶点作为当前顶点；遍历当前顶点的邻接顶点，如果是尚未发现的白色顶点，则将其颜色改为灰色(已发现)，距离增加1，前驱顶点为当前顶点，加入到队列中；遍历完成后，将当前顶点设置为黑色(已探索过)，循环回到步骤1的队首取当前顶点。</p>
+<p>  <img src="/2020/06/06/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95Python%E7%89%88%E3%80%91%E2%80%94%20%E5%8C%97%E5%A4%A7%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89/20200424182644199.png" alt="在这里插入图片描述"></p>
+</li>
+<li><p>在以FOOL为起始顶点，遍历了所有顶点，并为每个顶点着色，赋距离和前驱之后，既可以通过一个回途追溯函数来确定FOOL到任何单词顶点的最短词梯。</p>
+</li>
+</ul>
+<p><strong>代码实现：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># BFS代码：</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">bfs</span>(<span class="params">g,start</span>):</span><br><span class="line">    start.setDistance(<span class="number">0</span>)</span><br><span class="line">    start.setPred(<span class="literal">None</span>)</span><br><span class="line">    vertQueue = Queue()</span><br><span class="line">    vertQueue.enqueue(start)</span><br><span class="line">    <span class="keyword">while</span> (vertQueue.size() &gt; <span class="number">0</span>):</span><br><span class="line">        currentVert = vertQueue.dequeue()  <span class="comment"># 取队首作为当前顶点</span></span><br><span class="line">        <span class="keyword">for</span> nbr <span class="keyword">in</span> currentVert.getConnections():  <span class="comment"># 遍历邻接顶点</span></span><br><span class="line">            <span class="keyword">if</span> (nbr.getColor() == <span class="string">&#x27;white&#x27;</span>):</span><br><span class="line">                nbr.setColor(<span class="string">&#x27;gray&#x27;</span>)</span><br><span class="line">                nbr.setDistance(currentVert.getDistance()+<span class="number">1</span>)</span><br><span class="line">                nbr.setPred(currentVert)</span><br><span class="line">                vertQueue.enqueue(nbr)</span><br><span class="line">            currentVert.setColor(<span class="string">&#x27;black&#x27;</span>)  <span class="comment"># 当前顶点设为黑色</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">traverse</span>(<span class="params">y</span>):</span><br><span class="line">    x = y</span><br><span class="line">    <span class="keyword">while</span> (x.getPred()):</span><br><span class="line">        <span class="built_in">print</span>(x.getId())</span><br><span class="line">        x = x.getPred()</span><br><span class="line">    <span class="built_in">print</span>(x.getId())</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>广度优先搜索算法分析：</strong></p>
+<ul>
+<li>BFS算法主体是两个循环的嵌套，while循环对每个顶点访问一次，所以是O(|V|)，而嵌套在while中的for，由于每条边只有在其起始顶点u出队的时候才会被检查一次，而每个顶点最多出队一次，所以边最多被检查1次，一共是0(|E|)，综合起来BFS的时间复杂度为0(|V|+|E|)。</li>
+<li>词梯问题还包括两个部分算法：建立BFS树之后，回溯顶点到起始顶点的过程，最多为0(|V|)；创建单词关系图也需要时间，最多为O(|V|^2)。</li>
+</ul>
+<h3 id="2-骑士周游问题"><a href="#2-骑士周游问题" class="headerlink" title="2. 骑士周游问题"></a>2. 骑士周游问题</h3><p>在一个国际象棋棋盘上，一个棋子“马”(骑士)按照马走日的规则，从一个格子出发，要走遍所有棋盘格恰好一次。把一个这样的走棋序列称为一次“周游”。</p>
+<p><img src="/2020/06/06/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95Python%E7%89%88%E3%80%91%E2%80%94%20%E5%8C%97%E5%A4%A7%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89/20200424182702725.png" alt="在这里插入图片描述"></p>
+<ul>
+<li><p>在8*8的国际象棋棋盘上，合格的周游数量有1.305*10^35这么多，采用图搜索算法，是解决骑士周游问题最容易理解和编程的方案之一。</p>
+</li>
+<li><p>解决方案分为两步：首先将合法走棋次序表示为一个图；采用图搜索算法搜寻一个长度为(行×列-1)的路径，路径上包含每个顶点恰一次。</p>
+</li>
+<li><p>将棋盘和走棋步骤构建为图的思路：将棋盘格作为顶点，按照马走日规则的走棋步骤作为连接边，建立每一个棋盘格的所有合法走棋步骤能够到达的棋盘格关系图。</p>
+<p>  <img src="/2020/06/06/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95Python%E7%89%88%E3%80%91%E2%80%94%20%E5%8C%97%E5%A4%A7%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89/2020042418272077.png" alt="在这里插入图片描述"></p>
+</li>
+<li><p>最后生成的8×8棋盘骑士周游图具有336条边，相比起全连接的4096条边，仅8.2%，还是稀疏图。</p>
+</li>
+</ul>
+<p><strong>骑士周游算法实现：</strong></p>
+<ul>
+<li><p>用于解决骑士周游问题的图搜索算法是深度优先搜索(Depth First Search)。</p>
+</li>
+<li><p>相比前述的广度优先搜索逐层建立搜索树的特点，深度优先搜索是沿着树的单支尽量深入向下搜索，如果到无法继续的程度还未找到问题解，就回溯到上一层再搜索下一支。</p>
+</li>
+<li><p>深度优先搜索解决骑士周游的关键思路：如果沿着单支深入搜索到无法继续(所有合法移动都已经被走过了)时，路径长度还没有达到预定值(8×8棋盘为63)，那么就清除颜色标记，返回到上一层，换一个分支继续深入搜索。</p>
+</li>
+<li><p>引入一个栈来记录路径，并实施返回上一层的回溯操作。</p>
+<p>  <img src="/2020/06/06/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95Python%E7%89%88%E3%80%91%E2%80%94%20%E5%8C%97%E5%A4%A7%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89/20200424182738878.png" alt="在这里插入图片描述"></p>
+</li>
+<li><p>骑士周游问题的其中一个解：</p>
+<p>  <img src="/2020/06/06/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95Python%E7%89%88%E3%80%91%E2%80%94%20%E5%8C%97%E5%A4%A7%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89/20200424182757411.png" alt="在这里插入图片描述"></p>
+</li>
+</ul>
+<p><strong>骑士周游问题代码实现：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">genLegalMoves</span>(<span class="params">x,y,bdSize</span>):</span><br><span class="line">    newMoves = []</span><br><span class="line">    moveOffsets = [(-<span class="number">1</span>,-<span class="number">2</span>),(-<span class="number">1</span>,<span class="number">2</span>),(-<span class="number">2</span>,-<span class="number">1</span>),(-<span class="number">2</span>,<span class="number">1</span>),  <span class="comment"># 马走日8个格子</span></span><br><span class="line">                   (<span class="number">1</span>,-<span class="number">2</span>),(<span class="number">1</span>,<span class="number">2</span>),(<span class="number">2</span>,-<span class="number">1</span>),(<span class="number">2</span>,<span class="number">1</span>)]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> moveOffsets:</span><br><span class="line">        newX = x + i[<span class="number">0</span>]</span><br><span class="line">        newY = y + i[<span class="number">1</span>]</span><br><span class="line">        <span class="keyword">if</span> legalCoord(newX,bdSize) <span class="keyword">and</span> legalCoord(newY,bdSize):</span><br><span class="line">            newMoves.append((newX,newY))</span><br><span class="line">    <span class="keyword">return</span> newMoves</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">legalCoord</span>(<span class="params">x,bdSize</span>):</span><br><span class="line">    <span class="keyword">if</span> x &gt;= <span class="number">0</span> <span class="keyword">and</span> x &lt; bdSize:  <span class="comment"># 确认不会走出棋盘</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">knightGraph</span>(<span class="params">bdSize</span>):</span><br><span class="line">    ktGraph = Graph()</span><br><span class="line">    <span class="keyword">for</span> row <span class="keyword">in</span> <span class="built_in">range</span>(bdSize):  <span class="comment"># 遍历每个格子</span></span><br><span class="line">        <span class="keyword">for</span> col <span class="keyword">in</span> <span class="built_in">range</span>(bdSize):</span><br><span class="line">            nodeId = posToNodeId(row,col,bdSize)</span><br><span class="line">            newPositions = genLegalMoves(row,col,bdSize)  <span class="comment"># 单步合法走棋</span></span><br><span class="line">            <span class="keyword">for</span> e <span class="keyword">in</span> newPositions:</span><br><span class="line">                nid = posToNodeId(e[<span class="number">0</span>],e[<span class="number">1</span>],bdSize)</span><br><span class="line">                ktGraph.addEdge(nodeId,nid)  <span class="comment"># 添加边及顶点</span></span><br><span class="line">        <span class="keyword">return</span> ktGraph</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">posToNodeId</span>(<span class="params">row,col,bdSize</span>):</span><br><span class="line">    <span class="keyword">return</span> row*bdSize + col</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">knightTour</span>(<span class="params">n,path,u,limit</span>): <span class="comment"># n层次，path路径，u当前顶点，limit搜索总深度</span></span><br><span class="line">    u.setColor(<span class="string">&#x27;gray&#x27;</span>)</span><br><span class="line">    path.append(u)  <span class="comment"># 当前顶点加入路径</span></span><br><span class="line">    <span class="keyword">if</span> n &lt; limit:</span><br><span class="line">        nbrList = <span class="built_in">list</span>(u.getConnections())  <span class="comment"># 对所有合法移动逐一深入</span></span><br><span class="line">        i = <span class="number">0</span></span><br><span class="line">        done = <span class="literal">False</span></span><br><span class="line">        <span class="keyword">while</span> i &lt; <span class="built_in">len</span>(nbrList) <span class="keyword">and</span> <span class="keyword">not</span> done:</span><br><span class="line">            <span class="keyword">if</span> nbrList[i].getColor() == <span class="string">&#x27;white&#x27;</span>:  <span class="comment"># 选择白色未经过的顶点深入</span></span><br><span class="line">                done = knightTour(n+<span class="number">1</span>,path,nbrList[i],limit) <span class="comment"># 层次加1，递归深入</span></span><br><span class="line">            i = i + <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> done:  <span class="comment"># 无法完成总深度，回溯，试本层下一个节点</span></span><br><span class="line">            path.pop()</span><br><span class="line">            u.setColor(<span class="string">&#x27;white&#x27;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        done = <span class="literal">True</span></span><br><span class="line">    <span class="keyword">return</span> done</span><br></pre></td></tr></table></figure>
+
+<p><strong>骑士周游算法分析：</strong></p>
+<ul>
+<li>上述算法的性能高度依赖于棋盘大小，目前实现的算法，其复杂度为O(k^n)，其中，n是棋盘格数目。这是一个指数时间复杂度的算法，其搜索过程表现为一个层次为n的树。</li>
+</ul>
+<p><strong>骑士周游算法改进：</strong></p>
+<ul>
+<li>修改遍历下一格的次序，将u的合法移动目标棋盘格排序为：具有最少合法移动目标的格子优先搜索。</li>
+<li>采用先验知识来改进算法性能的做法，称作为“启发式规则heuristic”。启发式规则经常用于人工智能领域；可以有效地减小搜索范围、更快达到目标等；如棋类程序算法，会预先存入棋谱，布阵口诀，高手习惯等启发式规则，能够在最短时间内从海量的棋局落子点搜索树中定位最佳落子。</li>
+</ul>
+<p><strong>改进代码：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 骑士周游算法改进代码：</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">orderByAvail</span>(<span class="params">n</span>):</span><br><span class="line">    resList = []</span><br><span class="line">    <span class="keyword">for</span> v <span class="keyword">in</span> n.getConnections():</span><br><span class="line">        <span class="keyword">if</span> v.getColor() == <span class="string">&#x27;white&#x27;</span>:</span><br><span class="line">            c = <span class="number">0</span></span><br><span class="line">            <span class="keyword">for</span> w <span class="keyword">in</span> v.getConnections():</span><br><span class="line">                <span class="keyword">if</span> w.getColor() == <span class="string">&#x27;white&#x27;</span>:</span><br><span class="line">                    c = c + <span class="number">1</span></span><br><span class="line">                resList.append((c,v))</span><br><span class="line">    resList.sort(key=<span class="keyword">lambda</span> x: x[<span class="number">0</span>])</span><br><span class="line">    <span class="keyword">return</span> [y[<span class="number">1</span>] <span class="keyword">for</span> y <span class="keyword">in</span> resList]</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>骑士周游问题是一种特殊的对图进行深度优先搜索，其目的是建立一个没有分支的最深的深度优先树，表现为一条线性的包含所有节点的退化树。</li>
+</ul>
+<h3 id="3-通用的深度优先搜索"><a href="#3-通用的深度优先搜索" class="headerlink" title="3. 通用的深度优先搜索"></a>3. 通用的深度优先搜索</h3><ul>
+<li>一般的深度优先搜索目标是在图上进行尽量深的搜索，连接尽量多的顶点，必要时可以进行分支(创建了树)，有时候深度优先搜索会创建多棵树，称为“深度优先森林”。</li>
+<li>深度优先搜索同样要用到顶点的前驱属性，来构建树或森林。另外要设置“发现时间”和“结束时间”属性。前者是在第几步访问到这个顶点(设置灰色)，后者是在第几步完成了此顶点探索(设置黑色)。</li>
+</ul>
+<p><strong>代码实现：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># BFS采用队列存储待访问顶点</span></span><br><span class="line"><span class="comment"># DFS通过递归调用，隐式使用了栈</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> pythonds.graphs <span class="keyword">import</span> Graph</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">DFSGraph</span>(<span class="title class_ inherited__">Graph</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line">        self.time = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">dfs</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">for</span> aVertex <span class="keyword">in</span> self:</span><br><span class="line">            aVertex.setColor(<span class="string">&#x27;white&#x27;</span>)  <span class="comment"># 颜色初始化</span></span><br><span class="line">            aVertex.setPred(-<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">for</span> aVertex <span class="keyword">in</span> self:</span><br><span class="line">            <span class="keyword">if</span> aVertex.getColor() == <span class="string">&#x27;white&#x27;</span>:</span><br><span class="line">                self.dfsvisit(aVertex)  <span class="comment"># 如果还有未包括的顶点，则建森林</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">dfsvisit</span>(<span class="params">self,startVertex</span>):</span><br><span class="line">        startVertex.setColor(<span class="string">&#x27;gray&#x27;</span>)</span><br><span class="line">        self.time += <span class="number">1</span>  <span class="comment"># 算法的步数</span></span><br><span class="line">        startVertex.setDiscovery(self.time)</span><br><span class="line">        <span class="keyword">for</span> nextVertex <span class="keyword">in</span> startVertex.getConnections():</span><br><span class="line">            <span class="keyword">if</span> nextVertex.getColor() == <span class="string">&#x27;white&#x27;</span>:</span><br><span class="line">                nextVertex.setPred(startVertex)</span><br><span class="line">                self.dfsvisit(nextVertex)  <span class="comment"># 深度优先递归访问</span></span><br><span class="line">        startVertex.setColor(<span class="string">&#x27;black&#x27;</span>)  <span class="comment"># 节点探索完毕，设为黑色</span></span><br><span class="line">        self.time += <span class="number">1</span></span><br><span class="line">        startVertex.setFinish(self.time)</span><br></pre></td></tr></table></figure>
+
+<p><strong>通用的深度优先搜索算法：示例</strong></p>
+<p><img src="/2020/06/06/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95Python%E7%89%88%E3%80%91%E2%80%94%20%E5%8C%97%E5%A4%A7%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89/2020042418282961.png" alt="在这里插入图片描述"><img src="/20200424182839561.png" alt="在这里插入图片描述"><img src="/20200424182849287.png" alt="在这里插入图片描述"><img src="/20200424182859125.png" alt="在这里插入图片描述"></p>
+<p><strong>通用的深度优先搜索算法分析：</strong></p>
+<ul>
+<li>DFS构建的树，其顶点的发现时间和结束时间属性，具有类似括号的性质。即一个顶点的发现时间总小于所有子顶点的发现时间，而结束时间则大于所有子顶点结束时间，比子顶点更早被发现，更晚被结束探索。</li>
+<li>DFS运行时间同样也包括了两方面：dfs函数中有两个循环，每个都是|V|次，所以是O(|V|)，而dfsvisit函数中的循环则是对当前顶点所连接的顶点进行，而且仅有在顶点为白色的情况下才进行递归调用，所以对每条边来说只会运行一步，所以是O(|E|)，加起来就是和BFS一样的O(|V|+|E|)。</li>
+</ul>
+<h3 id="4-拓扑排序Topological-Sort"><a href="#4-拓扑排序Topological-Sort" class="headerlink" title="4. 拓扑排序Topological Sort"></a>4. 拓扑排序Topological Sort</h3><ul>
+<li><p>很多问题都可转化为图，利用图算法解决。</p>
+</li>
+<li><p>例如早餐吃薄煎饼的过程，以动作为起点，以先后次序为有向边。</p>
+<p>  <img src="/2020/06/06/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95Python%E7%89%88%E3%80%91%E2%80%94%20%E5%8C%97%E5%A4%A7%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89/20200424182937686.png" alt="在这里插入图片描述"></p>
+</li>
+<li><p>问题是对整个过程而言，如果一个人独自做，所有动作的先后次序是什么？</p>
+</li>
+<li><p>从工作流程图得到工作次序排列的算法，称为拓扑排序。拓扑排序处理一个DAG，输出顶点的线性序列，使得两个顶点v, w，如果G中有(v, w)边，在线性序列中v就出现在w之前。</p>
+</li>
+<li><p>拓扑排序广泛应用在依赖事件的排期上，还可以用在项目管理、数据库查询优化和矩阵乘法的次序优化上。</p>
+</li>
+<li><p>拓扑排序可以采用DFS很好地实现：将工作流程建立为图，工作项是节点，依赖关系是有向边，工作流程图一定是个DAG图，否则有循环依赖，对DAG图调用DFS算法，以得到每个顶点的结束时间。按照每个顶点的结束时间从大到小排序，输出这个次序下的顶点列表。</p>
+</li>
+</ul>
+<p>起点从3&#x2F;4 cup milk开始：</p>
+<p><img src="/2020/06/06/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95Python%E7%89%88%E3%80%91%E2%80%94%20%E5%8C%97%E5%A4%A7%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89/2020042418304164.png" alt="在这里插入图片描述"></p>
+<p>起点从1 cup mix开始：</p>
+<p><img src="/2020/06/06/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95Python%E7%89%88%E3%80%91%E2%80%94%20%E5%8C%97%E5%A4%A7%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89/20200424183122853.png" alt="在这里插入图片描述"></p>
+<h3 id="5-强连通分支"><a href="#5-强连通分支" class="headerlink" title="5. 强连通分支"></a>5. 强连通分支</h3><ul>
+<li><p>在图中发现高度聚集节点群的算法，即寻找“强连通分支Strongly Connected Components”算法。</p>
+</li>
+<li><p>强连通分支，定义为图G的一个子集C，C中的任意两个顶点v,w之间都有路径来回，即(v,w) (w,v)都是C的路径，而且C是具有这样性质的最大子集。</p>
+</li>
+<li><p>下图是具有3个强连通分支的9顶点有向图，一旦找到强连通分支，可以据此对图的顶点进行分类，并对图进行简化。<br><img src="/2020/06/06/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95Python%E7%89%88%E3%80%91%E2%80%94%20%E5%8C%97%E5%A4%A7%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89/2020042418315641.png" alt="在这里插入图片描述"></p>
+</li>
+<li><p>在用深度优先搜索来发现强连通分支之前，先熟悉一个概念：Transposition转置。一个有向图G的转置G<sup>T</sup>，定义为将图G的所有边的顶点交换次序，如将(v,w)转换为(w,v)。可以观察到图和转置图在强连通分支的数量和划分上，是相同的。<br>  <img src="/2020/06/06/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95Python%E7%89%88%E3%80%91%E2%80%94%20%E5%8C%97%E5%A4%A7%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89/20200424183220256.png" alt="在这里插入图片描述"></p>
+</li>
+</ul>
+<p><strong>强连通分支算法：Kosaraju算法思路</strong></p>
+<ul>
+<li>首先，对图G调用DFS算法，为每个顶点计算结束时间；</li>
+<li>然后，将图G进行转置，得到G<sup>T</sup>，再对G<sup>T</sup>调用DFS算法，但在dfs函数中，对每个顶点的搜索循环里，要以顶点的结束时间倒序的顺序来搜索。</li>
+<li>最后，深度优先森林中的每一棵树就是一个强连通分支。</li>
+</ul>
+<p>Kosaraju算法实例：第一趟DFS</p>
+<p><img src="/2020/06/06/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95Python%E7%89%88%E3%80%91%E2%80%94%20%E5%8C%97%E5%A4%A7%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89/20200424183238618.png" alt="在这里插入图片描述"></p>
+<p>Kosaraju算法实例：转置后第二趟DFS</p>
+<p><img src="/2020/06/06/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95Python%E7%89%88%E3%80%91%E2%80%94%20%E5%8C%97%E5%A4%A7%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89/20200424183301130.png" alt="在这里插入图片描述"></p>
+<p>Kosaraju算法实例：结果</p>
+<p><img src="/2020/06/06/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95Python%E7%89%88%E3%80%91%E2%80%94%20%E5%8C%97%E5%A4%A7%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89/20200424183322145.png" alt="在这里插入图片描述"></p>
+<h3 id="6-最短路径问题"><a href="#6-最短路径问题" class="headerlink" title="6. 最短路径问题"></a>6. 最短路径问题</h3><ul>
+<li>解决信息在路由器网络中选择传播速度最快路径的问题，可转变为在带权图上最短路径的问题。</li>
+<li>这个问题与广度优先搜索BFS算法解决的词梯问题相似，只是在边上增加了权重，如果所有权重相等，还是还原到词梯问题。</li>
+<li>解决带权最短路径问题的经典算法是以发明者命名的Dijkstra算法。这是一个迭代算法，得出从一个顶点到其余所有顶点的最短路径，很接近于广度优先搜索算法BFS的结果。</li>
+<li>具体实现上，在顶点Vertex类中的成员dist用于记录从开始顶点到本顶点的最短带权路径长度(权重之和)，算法对图中的每个顶点迭代一次。</li>
+<li>顶点的访问次序由一个优先队列来控制，队列中作为优先级的是顶点的dist属性。</li>
+<li>最初，只有开始顶点dist设为0，而其他所有顶点dist设为sys.maxsize(最大整数)，全部加入优先队列。</li>
+<li>随着队列中每个最低dist顶点率先出队，并计算它与邻接顶点的权重，会引起其它顶点dist的减小和修改，引起堆重排。并根据更新后的dist优先级再依次出队。</li>
+</ul>
+<p>最短路径问题：Dijkstra算法实例</p>
+<p><img src="/2020/06/06/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95Python%E7%89%88%E3%80%91%E2%80%94%20%E5%8C%97%E5%A4%A7%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89/20200424183435850.png" alt="在这里插入图片描述"><img src="/2020/06/06/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95Python%E7%89%88%E3%80%91%E2%80%94%20%E5%8C%97%E5%A4%A7%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89/20200424183445642.png" alt="在这里插入图片描述"><img src="/2020/06/06/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95Python%E7%89%88%E3%80%91%E2%80%94%20%E5%8C%97%E5%A4%A7%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89/20200424183458784.png" alt="在这里插入图片描述"><img src="/2020/06/06/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95Python%E7%89%88%E3%80%91%E2%80%94%20%E5%8C%97%E5%A4%A7%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89/20200424183508666.png" alt="在这里插入图片描述"><img src="/2020/06/06/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95Python%E7%89%88%E3%80%91%E2%80%94%20%E5%8C%97%E5%A4%A7%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89/20200424183520302.png" alt="在这里插入图片描述"><img src="/2020/06/06/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95Python%E7%89%88%E3%80%91%E2%80%94%20%E5%8C%97%E5%A4%A7%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89/20200424183532451.png" alt="在这里插入图片描述"></p>
+<p><strong>代码实现：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pythonds.graphs <span class="keyword">import</span> PriorityQueue,Graph,Vertex</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">dijkstra</span>(<span class="params">aGraph,start</span>):</span><br><span class="line">    pq = PriorityQueue()</span><br><span class="line">    start.setDistance(<span class="number">0</span>)</span><br><span class="line">    pq.buildHeap([(v.getDistance(),v) <span class="keyword">for</span> v <span class="keyword">in</span> aGraph]) <span class="comment"># 对所有顶点建堆，形成优先队列</span></span><br><span class="line">    <span class="keyword">while</span> <span class="keyword">not</span> pq.isEmpty():</span><br><span class="line">        currentVert = pq.delMin()  <span class="comment"># 优先队列出队</span></span><br><span class="line">        <span class="keyword">for</span> nextVert <span class="keyword">in</span> currentVert.getConnections():</span><br><span class="line">            newDist = currentVert.getDistance() + currentVert.getWeight(nextVert)</span><br><span class="line">            <span class="keyword">if</span> newDist &lt; nextVert.getDistance(): <span class="comment"># 修改出队顶点所邻接顶点的dist，并逐个重排队列</span></span><br><span class="line">                nextVert.setDistance(newDist)</span><br><span class="line">                nextVert.setPred(currentVert)</span><br><span class="line">                pq.decreaseKey(nextVert,newDist)</span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是，dijkstra算法只能处理大于0的权重，如果图中出现负数权重，则算法会陷入无限循环。虽然dijkstra散发完美解决了带权图的最短路径问题，但实际上Internet的路由器中采用的是其它算法。</p>
+<p><strong>最短路径问题：dijkstra算法分析</strong></p>
+<ul>
+<li>首先，将所有顶点加入优先队列并建堆，时间复杂度为O(|V|)；</li>
+<li>其次，每个顶点仅出队1次，每次delMin花费O(log|V|)，一共就是O(|V|log|V|)；</li>
+<li>另外，每个边关联到的顶点会做一次decreaseKey操作(O(log|V|))，一共是O(|E|log|V|)；</li>
+<li>上面三个加在一起，数量级就是O((|V|+|E|)log|V|)。</li>
+</ul>
+<h3 id="7-最小生成树"><a href="#7-最小生成树" class="headerlink" title="7. 最小生成树"></a>7. 最小生成树</h3><p><strong>信息广播问题：单播解法</strong></p>
+<p><img src="/2020/06/06/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95Python%E7%89%88%E3%80%91%E2%80%94%20%E5%8C%97%E5%A4%A7%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89/20200424183605960.png" alt="在这里插入图片描述"><img src="/2020/06/06/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95Python%E7%89%88%E3%80%91%E2%80%94%20%E5%8C%97%E5%A4%A7%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89/20200424183617488.png" alt="在这里插入图片描述"></p>
+<p><strong>信息广播问题：洪水解法</strong></p>
+<p><img src="/2020/06/06/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95Python%E7%89%88%E3%80%91%E2%80%94%20%E5%8C%97%E5%A4%A7%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89/20200424183645659.png" alt="在这里插入图片描述"><img src="/20200424183657596.png" alt="在这里插入图片描述"></p>
+<p><strong>信息广播问题：最小生成树</strong></p>
+<ul>
+<li><p>信息广播问题的最优解法，依赖于路由器关系图上选取的具有最小权重的生成树(minimum weight spanning tree)。生成树：拥有图中所有的顶点和最少数量的边，以保持连通的子图。</p>
+</li>
+<li><p>图G(V,E)的最小生成树T，定义为：包含所有顶点V，以及E的无圈子集，并且边权重之和最小。</p>
+<p>  <img src="/2020/06/06/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95Python%E7%89%88%E3%80%91%E2%80%94%20%E5%8C%97%E5%A4%A7%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89/20200424183714707.png" alt="在这里插入图片描述"></p>
+</li>
+<li><p>这样信息广播就只需要从A开始，沿着树的路径层次向下传播，就可以达到每个路由器只需要处理1次消息，同时总费用最小。</p>
+</li>
+</ul>
+<p><strong>最小生成树：prim算法</strong></p>
+<ul>
+<li><p>解决最小生成树问题的Prim算法，属于贪心算法，即每步都沿着最小权重的边向前搜索。</p>
+</li>
+<li><p>构造最小生成树的思路很简单，如果T还不是生成树，则反复做：找到一条最小权重的可以安全添加的边，将边添加到树T。</p>
+</li>
+<li><p>可以安全添加的边，定义为一端顶点在树中，另一端不在树中的边，以便保持树的无圈特性。</p>
+<p><img src="/2020/06/06/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95Python%E7%89%88%E3%80%91%E2%80%94%20%E5%8C%97%E5%A4%A7%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89/20200424183741914.png" alt="在这里插入图片描述"><img src="/2020/06/06/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95Python%E7%89%88%E3%80%91%E2%80%94%20%E5%8C%97%E5%A4%A7%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89/20200424183752755.png" alt="在这里插入图片描述"><img src="/2020/06/06/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95Python%E7%89%88%E3%80%91%E2%80%94%20%E5%8C%97%E5%A4%A7%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89/20200424183802221.png" alt="在这里插入图片描述"><img src="/2020/06/06/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95Python%E7%89%88%E3%80%91%E2%80%94%20%E5%8C%97%E5%A4%A7%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89/20200424183812822.png" alt="在这里插入图片描述"><img src="/2020/06/06/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95Python%E7%89%88%E3%80%91%E2%80%94%20%E5%8C%97%E5%A4%A7%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89/20200424183825854.png" alt="在这里插入图片描述"></p>
+</li>
+</ul>
+<p><img src="/2020/06/06/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95Python%E7%89%88%E3%80%91%E2%80%94%20%E5%8C%97%E5%A4%A7%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89/20200424183839865.png" alt="在这里插入图片描述"><br><img src="/2020/06/06/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95Python%E7%89%88%E3%80%91%E2%80%94%20%E5%8C%97%E5%A4%A7%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89/20200424183853950.png" alt="在这里插入图片描述"></p>
+<p><strong>最小生成树：prim算法代码实现</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pythonds.graphs <span class="keyword">import</span> PriorityQueue,Graph,Vertex</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">prim</span>(<span class="params">G,start</span>):</span><br><span class="line">    pq = PriorityQueue()</span><br><span class="line">    <span class="keyword">for</span> v <span class="keyword">in</span> G:</span><br><span class="line">        v.setDistance(sys.maxsize)</span><br><span class="line">        v.setPred(<span class="literal">None</span>)</span><br><span class="line">    start.setDistance(<span class="number">0</span>)</span><br><span class="line">    pq.buildHeap([(v.getDistance(),v) <span class="keyword">for</span> v <span class="keyword">in</span> G])</span><br><span class="line">    <span class="keyword">while</span> <span class="keyword">not</span> pq.isEmpty():</span><br><span class="line">        currentVert = pq.delMin()</span><br><span class="line">        <span class="keyword">for</span> nextVert <span class="keyword">in</span> currentVert.getConnections():</span><br><span class="line">            newCost = currentVert.getWeight(nextVert)</span><br><span class="line">            <span class="comment"># nextVert在pq优先队列里，就不在生成树里，说明是可以安全添加的边</span></span><br><span class="line">            <span class="keyword">if</span> nextVert <span class="keyword">in</span> pq <span class="keyword">and</span> newCost &lt; nextVert.getDistance():</span><br><span class="line">                nextVert.setPred(currentVert)</span><br><span class="line">                nextVert.setDistance(newCost)</span><br><span class="line">                pq.decreaseKey(nextVert,newCost)</span><br></pre></td></tr></table></figure>
+
+<p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;<br>课程名称：数据结构与算法Python版_北京大学_中国大学MOOC(慕课)<br>课程主页: <a target="_blank" rel="noopener" href="http://gis4g.pku.edu.cn/course/pythonds/">http://gis4g.pku.edu.cn/course/pythonds/</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="http://example.com">JoeXu</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://blog.csdn.net/Dr_BigJoe/article/details/105737408">https://blog.csdn.net/Dr_BigJoe/article/details/105737408</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">以上为个人学习笔记总结，供学习参考交流，转载请注明出处。</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a></div><div class="post_share"><div class="social-share" data-image="https://avatars.githubusercontent.com/u/67886383?s=400&amp;u=99fc4b7b2788d8823a12f2924f7942669b39b105&amp;v=4" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/10/24/hello-world/" title="Hello World"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">Hello World</div></div></a></div><div class="next-post pull-right"><a href="/2020/06/03/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95Python%E7%89%88%E3%80%91%E2%80%94%20%E5%8C%97%E5%A4%A7%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89/" title="【数据结构与算法Python版】— 北大慕课笔记（四）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">【数据结构与算法Python版】— 北大慕课笔记（四）</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2020/05/29/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95Python%E7%89%88%E3%80%91%E2%80%94%20%E5%8C%97%E5%A4%A7%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/" title="【数据结构与算法Python版】— 北大慕课笔记（二）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-29</div><div class="title">【数据结构与算法Python版】— 北大慕课笔记（二）</div></div></a></div><div><a href="/2020/05/26/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95Python%E7%89%88%E3%80%91%E2%80%94%20%E5%8C%97%E5%A4%A7%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/" title="【数据结构与算法Python版】— 北大慕课笔记（一）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-26</div><div class="title">【数据结构与算法Python版】— 北大慕课笔记（一）</div></div></a></div><div><a href="/2020/06/02/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95Python%E7%89%88%E3%80%91%E2%80%94%20%E5%8C%97%E5%A4%A7%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/" title="【数据结构与算法Python版】— 北大慕课笔记（三）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-06-02</div><div class="title">【数据结构与算法Python版】— 北大慕课笔记（三）</div></div></a></div><div><a href="/2020/06/03/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95Python%E7%89%88%E3%80%91%E2%80%94%20%E5%8C%97%E5%A4%A7%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89/" title="【数据结构与算法Python版】— 北大慕课笔记（四）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-06-03</div><div class="title">【数据结构与算法Python版】— 北大慕课笔记（四）</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://avatars.githubusercontent.com/u/67886383?s=400&amp;u=99fc4b7b2788d8823a12f2924f7942669b39b105&amp;v=4" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Joe Xu</div><div class="author-info__description">Stay hungry, Stay Foolish</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">34</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">5</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/JoeXu727" target="_blank" title="Github"><i class="fab fa-github"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95Python%E7%89%88%E3%80%91%E2%80%94-%E5%8C%97%E5%A4%A7%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">【数据结构与算法Python版】— 北大慕课笔记（五）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%9B%BEGraph"><span class="toc-number">1.1.</span> <span class="toc-text">一、图Graph</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%9B%BE%E7%9A%84%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="toc-number">1.1.1.</span> <span class="toc-text">1. 图的基础知识</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%9B%BE%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-number">1.1.2.</span> <span class="toc-text">2. 图的定义</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81ADT-Graph"><span class="toc-number">1.2.</span> <span class="toc-text">二、ADT Graph</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E9%82%BB%E6%8E%A5%E7%9F%A9%E9%98%B5"><span class="toc-number">1.2.1.</span> <span class="toc-text">1. 邻接矩阵</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E9%82%BB%E6%8E%A5%E5%88%97%E8%A1%A8"><span class="toc-number">1.2.2.</span> <span class="toc-text">2. 邻接列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-ADT-Graph%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.2.3.</span> <span class="toc-text">3. ADT Graph的实现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%9B%BE%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-number">1.3.</span> <span class="toc-text">三、图的应用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E8%AF%8D%E6%A2%AFWord-Ladder%E9%97%AE%E9%A2%98"><span class="toc-number">1.3.1.</span> <span class="toc-text">1. 词梯Word Ladder问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E9%AA%91%E5%A3%AB%E5%91%A8%E6%B8%B8%E9%97%AE%E9%A2%98"><span class="toc-number">1.3.2.</span> <span class="toc-text">2. 骑士周游问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E9%80%9A%E7%94%A8%E7%9A%84%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2"><span class="toc-number">1.3.3.</span> <span class="toc-text">3. 通用的深度优先搜索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8FTopological-Sort"><span class="toc-number">1.3.4.</span> <span class="toc-text">4. 拓扑排序Topological Sort</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E6%94%AF"><span class="toc-number">1.3.5.</span> <span class="toc-text">5. 强连通分支</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98"><span class="toc-number">1.3.6.</span> <span class="toc-text">6. 最短路径问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91"><span class="toc-number">1.3.7.</span> <span class="toc-text">7. 最小生成树</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/06/17/Object.assign%E9%87%8D%E7%BD%AE%E8%B8%A9%E5%9D%91/" title="前端菜鸡的踩坑之路（一）">前端菜鸡的踩坑之路（一）</a><time datetime="2022-06-17T14:20:18.000Z" title="Created 2022-06-17 22:20:18">2022-06-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/12/24/%E5%9F%BA%E4%BA%8Evue3%E7%9A%84%E7%88%B6%E5%AD%90%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/" title="基于vue3和antd vue的父子组件通信">基于vue3和antd vue的父子组件通信</a><time datetime="2021-12-24T02:15:18.000Z" title="Created 2021-12-24 10:15:18">2021-12-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/10/24/hello-world/" title="Hello World">Hello World</a><time datetime="2021-10-24T06:02:18.000Z" title="Created 2021-10-24 14:02:18">2021-10-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2020/06/06/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95Python%E7%89%88%E3%80%91%E2%80%94%20%E5%8C%97%E5%A4%A7%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89/" title="【数据结构与算法Python版】— 北大慕课笔记（五）">【数据结构与算法Python版】— 北大慕课笔记（五）</a><time datetime="2020-06-06T06:29:05.000Z" title="Created 2020-06-06 14:29:05">2020-06-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2020/06/03/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95Python%E7%89%88%E3%80%91%E2%80%94%20%E5%8C%97%E5%A4%A7%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89/" title="【数据结构与算法Python版】— 北大慕课笔记（四）">【数据结构与算法Python版】— 北大慕课笔记（四）</a><time datetime="2020-06-03T04:22:00.000Z" title="Created 2020-06-03 12:22:00">2020-06-03</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Joe Xu</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
