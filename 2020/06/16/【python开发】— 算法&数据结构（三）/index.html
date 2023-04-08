@@ -1,0 +1,218 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>【python开发】— 算法&amp;数据结构（三） | Debug the World</title><meta name="author" content="Joe Xu"><meta name="copyright" content="Joe Xu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="【python开发】— 算法&amp;数据结构（三）一、基于桶排序思想1. 计数排序计数排序是一个非基于比较的排序算法，他的思想是用下标记录每个元素出现的次数，而下标涵盖了所有元素的范围，最后按照下标顺序，次数是多少就输出多少次下标，输出的即为排序后的结果。 1.1 排序过程 123456789# 计数排序：def count_sort(li,max_count&#x3D;100):    count &#x3D;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【python开发】— 算法&amp;数据结构（三）">
+<meta property="og:url" content="http://example.com/2020/06/16/%E3%80%90python%E5%BC%80%E5%8F%91%E3%80%91%E2%80%94%20%E7%AE%97%E6%B3%95&%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%88%E4%B8%89%EF%BC%89/index.html">
+<meta property="og:site_name" content="Debug the World">
+<meta property="og:description" content="【python开发】— 算法&amp;数据结构（三）一、基于桶排序思想1. 计数排序计数排序是一个非基于比较的排序算法，他的思想是用下标记录每个元素出现的次数，而下标涵盖了所有元素的范围，最后按照下标顺序，次数是多少就输出多少次下标，输出的即为排序后的结果。 1.1 排序过程 123456789# 计数排序：def count_sort(li,max_count&#x3D;100):    count &#x3D;">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://avatars.githubusercontent.com/u/67886383?s=400&u=99fc4b7b2788d8823a12f2924f7942669b39b105&v=4">
+<meta property="article:published_time" content="2020-06-16T02:04:50.000Z">
+<meta property="article:modified_time" content="2023-04-08T03:45:48.781Z">
+<meta property="article:author" content="Joe Xu">
+<meta property="article:tag" content="数据结构与算法">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://avatars.githubusercontent.com/u/67886383?s=400&u=99fc4b7b2788d8823a12f2924f7942669b39b105&v=4"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2020/06/16/%E3%80%90python%E5%BC%80%E5%8F%91%E3%80%91%E2%80%94%20%E7%AE%97%E6%B3%95&amp;%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%88%E4%B8%89%EF%BC%89/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":288},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【python开发】— 算法&数据结构（三）',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-04-08 11:45:48'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://avatars.githubusercontent.com/u/67886383?s=400&amp;u=99fc4b7b2788d8823a12f2924f7942669b39b105&amp;v=4" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">40</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">5</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">5</div></a></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="Debug the World"><span class="site-name">Debug the World</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">【python开发】— 算法&amp;数据结构（三）</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2020-06-16T02:04:50.000Z" title="Created 2020-06-16 10:04:50">2020-06-16</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-04-08T03:45:48.781Z" title="Updated 2023-04-08 11:45:48">2023-04-08</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="【python开发】— 算法&amp;数据结构（三）"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="【python开发】—-算法-amp-数据结构（三）"><a href="#【python开发】—-算法-amp-数据结构（三）" class="headerlink" title="【python开发】— 算法&amp;数据结构（三）"></a>【python开发】— 算法&amp;数据结构（三）</h1><h2 id="一、基于桶排序思想"><a href="#一、基于桶排序思想" class="headerlink" title="一、基于桶排序思想"></a>一、基于桶排序思想</h2><h3 id="1-计数排序"><a href="#1-计数排序" class="headerlink" title="1. 计数排序"></a>1. 计数排序</h3><p>计数排序是一个非基于比较的排序算法，他的思想是用下标记录每个元素出现的次数，而下标涵盖了所有元素的范围，最后按照下标顺序，次数是多少就输出多少次下标，输出的即为排序后的结果。</p>
+<h4 id="1-1-排序过程"><a href="#1-1-排序过程" class="headerlink" title="1.1 排序过程"></a>1.1 排序过程</h4><p><img src="/2020/06/16/%E3%80%90python%E5%BC%80%E5%8F%91%E3%80%91%E2%80%94%20%E7%AE%97%E6%B3%95&%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%88%E4%B8%89%EF%BC%89/20200425143125487.png" alt="在这里插入图片描述"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 计数排序：</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">count_sort</span>(<span class="params">li,max_count=<span class="number">100</span></span>):</span><br><span class="line">    count = [<span class="number">0</span> <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(max_count+<span class="number">1</span>)]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> li:</span><br><span class="line">        count[i] += <span class="number">1</span></span><br><span class="line">    li.clear()</span><br><span class="line">    <span class="keyword">for</span> index,val <span class="keyword">in</span> <span class="built_in">enumerate</span>(count):</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(val):</span><br><span class="line">            li.append(index)</span><br></pre></td></tr></table></figure>
+
+<p><strong>注：</strong> 该方法存在一个问：无法保证相同元素之间的相对位置。比如上图数字代表年级，同为3年级的有两个班：3年级文科班和3年级理科班，假如排序前文科班排在理科班前面，按上述方法排序完成后无法保证文科班还在理科班前面，因为两个3都无法表示自己是哪个班的。</p>
+<h4 id="1-2-排序优化"><a href="#1-2-排序优化" class="headerlink" title="1.2 排序优化"></a>1.2 排序优化</h4><p>在上述方法的基础上，计数器 <strong>每个下标对应的数都是前面所有数的和</strong> (计数器下标从1开始)，如果计数器下标从0开始，就把下标对应的每个数都减1。接着从要排序的数列的 <strong>最后</strong> 一个元素开始，在计数器中找对应的下标，例如元素3就找计数器下标3，发现其对应的值为5，则该元素3在排好序的新序列中的位置是下标5的位置，并且计数器下标3对应的数减1；以此类推直到所有元素都放入新列表中，期间一直要保持计数器的更新。</p>
+<ul>
+<li>采用该方法排序后的结果可以保证相同元素的相对位置不变，也就是说优化计数排序算法是 <strong>稳定</strong> 的。</li>
+<li>对于把计数器每个下标对应的数都加上前面所有数，可以理解为小于等于2的元素占据着新列表下标从0到3的位置（如下图）；小于等于4的元素占据着新列表下标从0到7的位置。</li>
+<li>原列表最后一个3，排序完就在新列表下标为5的位置，然后计数器5位置的值-1变为4，原列表倒数第二个3，排序完就在新列表下标为4的位置。</li>
+<li>还有一种情况是元素范围从 <strong>非0或非1</strong> 开始，比如20-26，那就把新列表建为(26-20+1)的长度。</li>
+</ul>
+<p><img src="/2020/06/16/%E3%80%90python%E5%BC%80%E5%8F%91%E3%80%91%E2%80%94%20%E7%AE%97%E6%B3%95&%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%88%E4%B8%89%EF%BC%89/20200425153408970.png" alt="在这里插入图片描述"></p>
+<h4 id="1-3-代码实现"><a href="#1-3-代码实现" class="headerlink" title="1.3 代码实现"></a>1.3 代码实现</h4><p><strong>计数排序代码关键点：计数器、计数器与新列表的对应关系</strong></p>
+<p><strong>代码思路</strong>：首先得到原列表最大最小值，确定计数器范围；然后遍历原列表，在计数器中记录每个元素出现的次数；再循环将计数器中每个下标对应的数都加上前面所有数，如果计数器下标从0开始，则还需要把计数器中的每个值都 -1；最后对原列表倒序取值，放到新列表的对应位置。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 计数排序优化：</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">CountingSort</span>(<span class="params">li</span>):</span><br><span class="line">    maxNum=<span class="built_in">max</span>(li)  <span class="comment"># 获取li中的最大值和最小值</span></span><br><span class="line">    minNum=<span class="built_in">min</span>(li)</span><br><span class="line">    <span class="comment"># 以最大值和最小值的差作为计数器的长度,并构建计数器，初始化为0</span></span><br><span class="line">    length=maxNum-minNum+<span class="number">1</span></span><br><span class="line">    countLi=[<span class="number">0</span> <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(length)]</span><br><span class="line">    resultLi=<span class="built_in">list</span>(<span class="built_in">range</span>(<span class="built_in">len</span>(li)))  <span class="comment">#创建结果List，存放排序完成的结果</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 统计原列表li中每个元素的出现次数，放入计数器</span></span><br><span class="line">    <span class="keyword">for</span> num <span class="keyword">in</span> li:</span><br><span class="line">        countLi[num-minNum]+=<span class="number">1</span></span><br><span class="line">    <span class="built_in">print</span>(countLi)</span><br><span class="line">    <span class="comment"># 将计数器中每个下标对应的数都加上前面所有数</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,length):</span><br><span class="line">        countLi[j]=countLi[j]+countLi[j-<span class="number">1</span>]</span><br><span class="line">    <span class="built_in">print</span>(countLi)</span><br><span class="line">    <span class="comment"># 若列表下标从0开始，则需要把计数器中的每个数都-1</span></span><br><span class="line">    <span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span>(length):</span><br><span class="line">        countLi[k] -= <span class="number">1</span></span><br><span class="line">    <span class="built_in">print</span>(countLi)</span><br><span class="line">    <span class="comment"># 对原列表倒序取值，放到新列表的对应位置</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(li)-<span class="number">1</span>,-<span class="number">1</span>,-<span class="number">1</span>):</span><br><span class="line">        resultLi[countLi[li[i]-minNum]]=li[i]</span><br><span class="line">        countLi[li[i]-minNum]-=<span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> resultLi</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    li=[<span class="number">4</span>,<span class="number">6</span>,<span class="number">3</span>,<span class="number">8</span>,<span class="number">4</span>,<span class="number">11</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">3</span>]</span><br><span class="line">    <span class="built_in">print</span>(CountingSort(li))</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-4-时间复杂度（O-n-k-）"><a href="#1-4-时间复杂度（O-n-k-）" class="headerlink" title="1.4 时间复杂度（O(n+k)）"></a>1.4 时间复杂度（O(n+k)）</h4><ul>
+<li>计数排序不是基于比较的排序算法，因此它的下界可以优于Ω(nlgn)，甚至这个算法都没有出现比较元素的操作。</li>
+<li>当n个输入元素的范围是0到k-1或者1到k的整数时，其时间复杂度是O(n+k)。当k&#x3D;O(n)时，总的时间复杂度为：O(n)，这时采用计数排序就很好，因为这是线性的时间复杂度。</li>
+<li>当k&#x3D;O(n²)或者O(k)&gt;O(n)时，这时计数排序的优势就无法体现，就要考虑是否还要继续用计数排序。因此，<strong>计数排序有着限定的适用范围：不仅要排序的数必须是整数，而且还要确保这些整数的范围很小。</strong> 例如快速得知高考名次(假设相同分数的人是相同的名次)，高考人数有几十万人，而分数只有0到750分，符合要排序的数是整数且范围很小，可用计数排序。故计数排序很适合对 <strong>量大但范围小</strong> 的数进行排序。</li>
+</ul>
+<h4 id="1-5-空间复杂度（O-n-k-）"><a href="#1-5-空间复杂度（O-n-k-）" class="headerlink" title="1.5 空间复杂度（O(n+k)）"></a>1.5 空间复杂度（O(n+k)）</h4><p>计数排序的计数器需要长度为k的空间，长度为n的新列表用于存放排序后的元素，所以计数排序的空间复杂度为：O(n+k)。计数排序也用到了“空间换时间”的思想。</p>
+<h3 id="2-基数排序"><a href="#2-基数排序" class="headerlink" title="2. 基数排序"></a>2. 基数排序</h3><ul>
+<li>基数排序（radix sort）属于“分配式排序”，又称“桶子法”，顾名思义，它是透过键值的部份资讯，将要排序的元素分配至某些“桶”中，藉以达到排序的作用。</li>
+<li>基数排序的思想：把待排序的整数按位分，分为个位，十位…..从小到大依次将位数进行排序。实际上分为两个过程：分配和收集。分配就是：从个位开始，按位数从小到大把数据排好，分别放进0–9这10个桶中；收集就是：依次将0-9桶中的数据放进数组中；重复这两个过程直到最高位。</li>
+</ul>
+<h4 id="2-1-排序过程"><a href="#2-1-排序过程" class="headerlink" title="2.1 排序过程"></a>2.1 排序过程</h4><p>假设有7个十进制的三位数，首先用计数排序对个位数进行排序，然后是十位数，最后排百位数，如果遇到某位数字相同的则不要打乱顺序，按照原顺序排序。个十百三位都排完则排序完成。<br><img src="/2020/06/16/%E3%80%90python%E5%BC%80%E5%8F%91%E3%80%91%E2%80%94%20%E7%AE%97%E6%B3%95&%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%88%E4%B8%89%EF%BC%89/20200425172607183.png" alt="在这里插入图片描述"><img src="/2020/06/16/%E3%80%90python%E5%BC%80%E5%8F%91%E3%80%91%E2%80%94%20%E7%AE%97%E6%B3%95&%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%88%E4%B8%89%EF%BC%89/20200425182753883.png" alt="在这里插入图片描述"></p>
+<h4 id="2-2-代码实现"><a href="#2-2-代码实现" class="headerlink" title="2.2 代码实现"></a>2.2 代码实现</h4><p><strong>基数排序代码关键点：当前在排序的位数、桶</strong></p>
+<p><strong>代码思想</strong>：找到列表中最大的数(也就是位数最多的)，记录当前在排的是哪一位；初始化桶(0-9)，通过 int((ele &#x2F; (10**i)) % 10) 就能求出元素的某位属于下标为几的那个桶；最后用两层循环，分别从每个桶里输出元素，排序完成。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">radix_sort</span>(<span class="params">li</span>):</span><br><span class="line">    i = <span class="number">0</span> <span class="comment"># 记录当前正在排序的是哪一位，最低位为1</span></span><br><span class="line">    maxNum = <span class="built_in">max</span>(li)  <span class="comment"># 最大值</span></span><br><span class="line">    j = <span class="built_in">len</span>(<span class="built_in">str</span>(maxNum))  <span class="comment"># 记录最大值的位数</span></span><br><span class="line">    <span class="keyword">while</span> i &lt; j:</span><br><span class="line">        bucket = [[] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>)]  <span class="comment"># 初始化桶数组</span></span><br><span class="line">        <span class="keyword">for</span> ele <span class="keyword">in</span> li:</span><br><span class="line">            bucket[<span class="built_in">int</span>((ele / (<span class="number">10</span>**i)) % <span class="number">10</span>)].append(ele) <span class="comment"># 每个元素找到位置放入桶</span></span><br><span class="line">        <span class="built_in">print</span>(bucket)</span><br><span class="line">        li.clear()  <span class="comment"># 清空原列表</span></span><br><span class="line">        <span class="keyword">for</span> num <span class="keyword">in</span> bucket:   <span class="comment"># 循环每个桶</span></span><br><span class="line">            <span class="keyword">for</span> m <span class="keyword">in</span> num:    <span class="comment"># 循环桶里的每个数</span></span><br><span class="line">                li.append(m)   <span class="comment"># 放回原列表（已排序的）</span></span><br><span class="line">        i += <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    a = [<span class="number">329</span>,<span class="number">457</span>,<span class="number">657</span>,<span class="number">839</span>,<span class="number">436</span>,<span class="number">720</span>,<span class="number">355</span>]</span><br><span class="line">    radix_sort(a)</span><br><span class="line">    <span class="built_in">print</span>(a)</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-3-时间复杂度（O-d-n-k-）"><a href="#2-3-时间复杂度（O-d-n-k-）" class="headerlink" title="2.3 时间复杂度（O(d(n+k))）"></a>2.3 时间复杂度（O(d(n+k))）</h4><p>对于给定的n个d位数，取值范围为[0,k]，k通常被称为关键字的 <strong>基数</strong> 。我们使用计数排序比较元素的每一位，计数排序时间复杂度为O(n+k)，需要排序d轮，所以基数排序的时间复杂度为：**O(d(n+k))**。</p>
+<h4 id="2-4-空间复杂度（O-n-k-）"><a href="#2-4-空间复杂度（O-n-k-）" class="headerlink" title="2.4 空间复杂度（O(n+k)）"></a>2.4 空间复杂度（O(n+k)）</h4><p>基数排序空间复杂度就是在分配元素时，使用的桶空间，其空间复杂度为：<strong>O(n+k)</strong></p>
+<h3 id="3-桶排序"><a href="#3-桶排序" class="headerlink" title="3. 桶排序"></a>3. 桶排序</h3><p>桶排序是将待排序集合中处于同一个值域的元素存入同一个桶中，也就是根据元素值特性将集合拆分为多个区域，则拆分后形成的多个桶，从值域上看是处于有序状态的。对每个桶中元素进行排序，则所有桶中元素构成的集合是已排序的。</p>
+<p>首先遍历列表找出最小元素与最大元素，根据他们之间的差值选取合适的值域，之后分成若干个桶，把每个元素放到其属于某个值域的桶里，再对每个桶进行桶内排序，最后按顺序输出元素即为排序完成的。</p>
+<h4 id="3-1-排序过程"><a href="#3-1-排序过程" class="headerlink" title="3.1 排序过程"></a>3.1 排序过程</h4><p><img src="/2020/06/16/%E3%80%90python%E5%BC%80%E5%8F%91%E3%80%91%E2%80%94%20%E7%AE%97%E6%B3%95&%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%88%E4%B8%89%EF%BC%89/20200425183813582.png" alt="在这里插入图片描述"><img src="/2020/06/16/%E3%80%90python%E5%BC%80%E5%8F%91%E3%80%91%E2%80%94%20%E7%AE%97%E6%B3%95&%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%88%E4%B8%89%EF%BC%89/20200425184304874.png" alt="在这里插入图片描述"></p>
+<h4 id="3-2-代码实现"><a href="#3-2-代码实现" class="headerlink" title="3.2 代码实现"></a>3.2 代码实现</h4><p><strong>桶排序代码关键点：桶的大小、应该装在哪个桶里</strong></p>
+<p><strong>代码思路</strong>：桶的大小设定为：最大元素与最小元素的差 &#x2F; 列表元素的个数；通过 int((i - min_num) &#x2F;&#x2F; bucket_range) 就可以求得某个元素应该属于下标为几的那个桶里，在桶内排序后回给原列表，排序完成。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">bucket_sort</span>(<span class="params">li</span>):</span><br><span class="line">    min_num = <span class="built_in">min</span>(li)</span><br><span class="line">    max_num = <span class="built_in">max</span>(li)</span><br><span class="line">    <span class="comment"># 桶的大小</span></span><br><span class="line">    bucket_range = (max_num - min_num) / <span class="built_in">len</span>(li)</span><br><span class="line">    <span class="built_in">print</span>(bucket_range)</span><br><span class="line">    <span class="comment"># 桶数组</span></span><br><span class="line">    bucket_list = [[] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(li) + <span class="number">1</span>)]</span><br><span class="line">    <span class="comment"># 向桶数组填数</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> li:</span><br><span class="line">        bucket_list[<span class="built_in">int</span>((i - min_num) // bucket_range)].append(i)</span><br><span class="line">    <span class="built_in">print</span>(bucket_list)</span><br><span class="line">    li.clear()</span><br><span class="line">    <span class="comment"># 回填到原列表，这里桶内部排序直接调用了Python内置的sorted</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> bucket_list:</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">sorted</span>(i):</span><br><span class="line">            li.append(j)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    a = [<span class="number">3.2</span>, <span class="number">6</span>, <span class="number">8</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">6</span>, <span class="number">10.6</span>, <span class="number">7</span>, <span class="number">3</span>, <span class="number">23</span>]</span><br><span class="line">    bucket_sort(a)</span><br><span class="line">    <span class="built_in">print</span>(a)</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-3-时间复杂度（O-N-N-logN-N-logM-）"><a href="#3-3-时间复杂度（O-N-N-logN-N-logM-）" class="headerlink" title="3.3 时间复杂度（O(N+N*logN-N*logM)）"></a>3.3 时间复杂度（O(N+N*logN-N*logM)）</h4><p>第一个循环作用为将待排序集合中元素移动到对应的桶中，复杂度为 O(N)；第二个循环的作用为对每个桶中元素进行排序，并移动回初始集合中，若桶个数为 M，平均每个桶中元素个数为 N&#x2F;M，则复杂度为 O(N)+O(M*(N&#x2F;M)*log(N&#x2F;M)) &#x3D; O(N+N*(logN-logM)) &#x3D; **O(N+N*logN-N*logM)**。当 N&#x3D;M 时，即极限情况下每个桶只有一个数据时，桶排序的最好效率能够达到O(N)。</p>
+<h4 id="3-4-空间复杂度（O-N-M-）"><a href="#3-4-空间复杂度（O-N-M-）" class="headerlink" title="3.4 空间复杂度（O(N+M)）"></a>3.4 空间复杂度（O(N+M)）</h4><p>桶排序由于需要申请额外的空间来保存元素，并申请额外的数组来存储每个桶，所以空间复杂度为：<strong>O(N+M)</strong></p>
+<h3 id="4-计数排序-VS-基数排序-VS-桶排序"><a href="#4-计数排序-VS-基数排序-VS-桶排序" class="headerlink" title="4. 计数排序 VS 基数排序 VS 桶排序"></a>4. 计数排序 VS 基数排序 VS 桶排序</h3><p>这三种排序都是基于桶排序的思想，但对桶的使用上存在差异：</p>
+<ul>
+<li>计数排序：每个桶只存储单一键值。</li>
+<li>基数排序：根据键值的每位数字来分配桶。</li>
+<li>桶排序：每个桶存储一定范围的数值。</li>
+<li>计数排序本质上是一种特殊的桶排序，当桶排序中桶的个数取最大( maxV-minV+1 )的时候，就变成了计数排序。</li>
+<li>基数排序也是一种桶排序。桶排序是按值区间划分桶，基数排序是按数位来划分；基数排序可以看做是多轮桶排序，每个数位上都进行一轮桶排序。</li>
+<li>当用最大值作为基数时，基数排序就退化成了计数排序。</li>
+<li>当使用2进制时， k&#x3D;2 最小，位数 d 最大，时间复杂度 O(d(n+k)) 会变大，空间复杂度 O(n+k) 会变小。当用最大值作为基数时， k&#x3D;maxV 最大， d&#x3D;1 最小，此时时间复杂度 O(d(n+k)) 变小，但是空间复杂度 O(n+k) 会急剧增大，此时基数排序退化成了计数排序。</li>
+</ul>
+<p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="http://example.com">JoeXu</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://blog.csdn.net/Dr_BigJoe/article/details/105749283">https://blog.csdn.net/Dr_BigJoe/article/details/105749283</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">以上为个人学习笔记总结，供学习参考交流，转载请注明出处。</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a></div><div class="post_share"><div class="social-share" data-image="https://avatars.githubusercontent.com/u/67886383?s=400&amp;u=99fc4b7b2788d8823a12f2924f7942669b39b105&amp;v=4" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/06/25/%E3%80%90python%E5%BC%80%E5%8F%91%E3%80%91%E2%80%94%20%E7%AE%97%E6%B3%95&amp;%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%88%E5%9B%9B%EF%BC%89/" title="【python开发】— 算法&amp;数据结构（四）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">【python开发】— 算法&amp;数据结构（四）</div></div></a></div><div class="next-post pull-right"><a href="/2020/06/15/%E3%80%90python%E5%BC%80%E5%8F%91%E3%80%91%E2%80%94%20%E7%AE%97%E6%B3%95&amp;%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%88%E4%BA%8C%EF%BC%89/" title="【python开发】— 算法&amp;数据结构（二）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">【python开发】— 算法&amp;数据结构（二）</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2020/06/13/%E3%80%90python%E5%BC%80%E5%8F%91%E3%80%91%E2%80%94%20%E7%AE%97%E6%B3%95&%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%88%E4%B8%80%EF%BC%89/" title="【python开发】— 算法&amp;数据结构（一）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-06-13</div><div class="title">【python开发】— 算法&amp;数据结构（一）</div></div></a></div><div><a href="/2020/06/25/%E3%80%90python%E5%BC%80%E5%8F%91%E3%80%91%E2%80%94%20%E7%AE%97%E6%B3%95&%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%88%E5%9B%9B%EF%BC%89/" title="【python开发】— 算法&amp;数据结构（四）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-06-25</div><div class="title">【python开发】— 算法&amp;数据结构（四）</div></div></a></div><div><a href="/2020/05/29/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95Python%E7%89%88%E3%80%91%E2%80%94%20%E5%8C%97%E5%A4%A7%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/" title="【数据结构与算法Python版】— 北大慕课笔记（二）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-29</div><div class="title">【数据结构与算法Python版】— 北大慕课笔记（二）</div></div></a></div><div><a href="/2020/06/15/%E3%80%90python%E5%BC%80%E5%8F%91%E3%80%91%E2%80%94%20%E7%AE%97%E6%B3%95&%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%88%E4%BA%8C%EF%BC%89/" title="【python开发】— 算法&amp;数据结构（二）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-06-15</div><div class="title">【python开发】— 算法&amp;数据结构（二）</div></div></a></div><div><a href="/2020/06/06/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95Python%E7%89%88%E3%80%91%E2%80%94%20%E5%8C%97%E5%A4%A7%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89/" title="【数据结构与算法Python版】— 北大慕课笔记（五）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-06-06</div><div class="title">【数据结构与算法Python版】— 北大慕课笔记（五）</div></div></a></div><div><a href="/2020/05/26/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95Python%E7%89%88%E3%80%91%E2%80%94%20%E5%8C%97%E5%A4%A7%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/" title="【数据结构与算法Python版】— 北大慕课笔记（一）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-26</div><div class="title">【数据结构与算法Python版】— 北大慕课笔记（一）</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://avatars.githubusercontent.com/u/67886383?s=400&amp;u=99fc4b7b2788d8823a12f2924f7942669b39b105&amp;v=4" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Joe Xu</div><div class="author-info__description">Stay hungry, Stay Foolish</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">40</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">5</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/JoeXu727" target="_blank" title="Github"><i class="fab fa-github"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E3%80%90python%E5%BC%80%E5%8F%91%E3%80%91%E2%80%94-%E7%AE%97%E6%B3%95-amp-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%88%E4%B8%89%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">【python开发】— 算法&amp;数据结构（三）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%9F%BA%E4%BA%8E%E6%A1%B6%E6%8E%92%E5%BA%8F%E6%80%9D%E6%83%B3"><span class="toc-number">1.1.</span> <span class="toc-text">一、基于桶排序思想</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E8%AE%A1%E6%95%B0%E6%8E%92%E5%BA%8F"><span class="toc-number">1.1.1.</span> <span class="toc-text">1. 计数排序</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-%E6%8E%92%E5%BA%8F%E8%BF%87%E7%A8%8B"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">1.1 排序过程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-%E6%8E%92%E5%BA%8F%E4%BC%98%E5%8C%96"><span class="toc-number">1.1.1.2.</span> <span class="toc-text">1.2 排序优化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.1.1.3.</span> <span class="toc-text">1.3 代码实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-4-%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%EF%BC%88O-n-k-%EF%BC%89"><span class="toc-number">1.1.1.4.</span> <span class="toc-text">1.4 时间复杂度（O(n+k)）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-5-%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%EF%BC%88O-n-k-%EF%BC%89"><span class="toc-number">1.1.1.5.</span> <span class="toc-text">1.5 空间复杂度（O(n+k)）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F"><span class="toc-number">1.1.2.</span> <span class="toc-text">2. 基数排序</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-%E6%8E%92%E5%BA%8F%E8%BF%87%E7%A8%8B"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">2.1 排序过程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.1.2.2.</span> <span class="toc-text">2.2 代码实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%EF%BC%88O-d-n-k-%EF%BC%89"><span class="toc-number">1.1.2.3.</span> <span class="toc-text">2.3 时间复杂度（O(d(n+k))）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%EF%BC%88O-n-k-%EF%BC%89"><span class="toc-number">1.1.2.4.</span> <span class="toc-text">2.4 空间复杂度（O(n+k)）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%A1%B6%E6%8E%92%E5%BA%8F"><span class="toc-number">1.1.3.</span> <span class="toc-text">3. 桶排序</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-%E6%8E%92%E5%BA%8F%E8%BF%87%E7%A8%8B"><span class="toc-number">1.1.3.1.</span> <span class="toc-text">3.1 排序过程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.1.3.2.</span> <span class="toc-text">3.2 代码实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%EF%BC%88O-N-N-logN-N-logM-%EF%BC%89"><span class="toc-number">1.1.3.3.</span> <span class="toc-text">3.3 时间复杂度（O(N+N*logN-N*logM)）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4-%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%EF%BC%88O-N-M-%EF%BC%89"><span class="toc-number">1.1.3.4.</span> <span class="toc-text">3.4 空间复杂度（O(N+M)）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E8%AE%A1%E6%95%B0%E6%8E%92%E5%BA%8F-VS-%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F-VS-%E6%A1%B6%E6%8E%92%E5%BA%8F"><span class="toc-number">1.1.4.</span> <span class="toc-text">4. 计数排序 VS 基数排序 VS 桶排序</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/06/17/Object.assign%E9%87%8D%E7%BD%AE%E8%B8%A9%E5%9D%91/" title="前端菜鸡的踩坑之路（一）">前端菜鸡的踩坑之路（一）</a><time datetime="2022-06-17T14:20:18.000Z" title="Created 2022-06-17 22:20:18">2022-06-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/12/24/%E5%9F%BA%E4%BA%8Evue3%E7%9A%84%E7%88%B6%E5%AD%90%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/" title="基于vue3和antd vue的父子组件通信">基于vue3和antd vue的父子组件通信</a><time datetime="2021-12-24T02:15:18.000Z" title="Created 2021-12-24 10:15:18">2021-12-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/10/24/hello-world/" title="Hello World">Hello World</a><time datetime="2021-10-24T06:02:18.000Z" title="Created 2021-10-24 14:02:18">2021-10-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2020/07/06/%E8%A7%A3%E5%86%B3Win10%20cmd%E5%86%85%E8%BF%90%E8%A1%8CPython%E5%BC%B9%E5%87%BA%E5%BA%94%E7%94%A8%E5%95%86%E5%BA%97/" title="解决Win10 cmd内运行Python弹出应用商店">解决Win10 cmd内运行Python弹出应用商店</a><time datetime="2020-07-06T08:11:08.000Z" title="Created 2020-07-06 16:11:08">2020-07-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2020/06/25/%E3%80%90python%E5%BC%80%E5%8F%91%E3%80%91%E2%80%94%20%E7%AE%97%E6%B3%95&amp;%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%88%E5%9B%9B%EF%BC%89/" title="【python开发】— 算法&amp;数据结构（四）">【python开发】— 算法&amp;数据结构（四）</a><time datetime="2020-06-25T09:02:54.000Z" title="Created 2020-06-25 17:02:54">2020-06-25</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Joe Xu</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
