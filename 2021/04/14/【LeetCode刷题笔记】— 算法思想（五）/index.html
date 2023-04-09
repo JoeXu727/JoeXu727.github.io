@@ -1,0 +1,444 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>【LeetCode刷题笔记】— 算法思想（五） | Debug the World</title><meta name="author" content="Joe Xu"><meta name="copyright" content="Joe Xu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="【LeetCode刷题笔记】— 算法思想（五）八、数学204. 计数质数统计所有小于非负整数 n 的质数的数量。 示例: 输入: 10 输出: 4 解释: 小于 10 的质数一共有 4 个, 它们是 2, 3, 5, 7 。  思路： 此题需要考虑优化以求算法的高效，利用埃拉托色尼筛法，首先不需要从2遍历到n，只需要从2遍历到sqrt(n)，如果在这个区间没有发现可整除因子，就可以直接断定n是质数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【LeetCode刷题笔记】— 算法思想（五）">
+<meta property="og:url" content="http://example.com/2021/04/14/%E3%80%90LeetCode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0%E3%80%91%E2%80%94%20%E7%AE%97%E6%B3%95%E6%80%9D%E6%83%B3%EF%BC%88%E4%BA%94%EF%BC%89/index.html">
+<meta property="og:site_name" content="Debug the World">
+<meta property="og:description" content="【LeetCode刷题笔记】— 算法思想（五）八、数学204. 计数质数统计所有小于非负整数 n 的质数的数量。 示例: 输入: 10 输出: 4 解释: 小于 10 的质数一共有 4 个, 它们是 2, 3, 5, 7 。  思路： 此题需要考虑优化以求算法的高效，利用埃拉托色尼筛法，首先不需要从2遍历到n，只需要从2遍历到sqrt(n)，如果在这个区间没有发现可整除因子，就可以直接断定n是质数">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://avatars.githubusercontent.com/u/67886383?s=400&u=99fc4b7b2788d8823a12f2924f7942669b39b105&v=4">
+<meta property="article:published_time" content="2021-04-14T05:21:10.000Z">
+<meta property="article:modified_time" content="2023-04-09T08:16:06.241Z">
+<meta property="article:author" content="Joe Xu">
+<meta property="article:tag" content="LeetCode">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://avatars.githubusercontent.com/u/67886383?s=400&u=99fc4b7b2788d8823a12f2924f7942669b39b105&v=4"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2021/04/14/%E3%80%90LeetCode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0%E3%80%91%E2%80%94%20%E7%AE%97%E6%B3%95%E6%80%9D%E6%83%B3%EF%BC%88%E4%BA%94%EF%BC%89/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":288},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【LeetCode刷题笔记】— 算法思想（五）',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-04-09 16:16:06'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://avatars.githubusercontent.com/u/67886383?s=400&amp;u=99fc4b7b2788d8823a12f2924f7942669b39b105&amp;v=4" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">48</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">7</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">7</div></a></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="Debug the World"><span class="site-name">Debug the World</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">【LeetCode刷题笔记】— 算法思想（五）</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2021-04-14T05:21:10.000Z" title="Created 2021-04-14 13:21:10">2021-04-14</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-04-09T08:16:06.241Z" title="Updated 2023-04-09 16:16:06">2023-04-09</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/LeetCode/">LeetCode</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="【LeetCode刷题笔记】— 算法思想（五）"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="【LeetCode刷题笔记】—-算法思想（五）"><a href="#【LeetCode刷题笔记】—-算法思想（五）" class="headerlink" title="【LeetCode刷题笔记】— 算法思想（五）"></a>【LeetCode刷题笔记】— 算法思想（五）</h1><h2 id="八、数学"><a href="#八、数学" class="headerlink" title="八、数学"></a>八、数学</h2><h3 id="204-计数质数"><a href="#204-计数质数" class="headerlink" title="204. 计数质数"></a>204. 计数质数</h3><p>统计所有小于非负整数 n 的质数的数量。</p>
+<p>示例:</p>
+<pre><code>输入: 10
+输出: 4
+解释: 小于 10 的质数一共有 4 个, 它们是 2, 3, 5, 7 。
+</code></pre>
+<p><strong>思路：</strong> 此题需要考虑优化以求算法的高效，利用埃拉托色尼筛法，首先不需要从2遍历到n，只需要从2遍历到sqrt(n)，如果在这个区间没有发现可整除因子，就可以直接断定n是质数了。另外，每个质数的倍数一定不是质数，也可以排除，排除后剩下的就是质数了。推荐这篇文章：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/count-primes/solution/ru-he-gao-xiao-pan-ding-shai-xuan-su-shu-by-labula/">https://leetcode-cn.com/problems/count-primes/solution/ru-he-gao-xiao-pan-ding-shai-xuan-su-shu-by-labula/</a></p>
+<p><strong>代码实现：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">countPrimes</span>(<span class="params">self, n: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        isPrime = [<span class="literal">True</span>] * n</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>,<span class="built_in">int</span>(n**<span class="number">0.5</span>)+<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> isPrime[i]:</span><br><span class="line">                <span class="comment"># i 的倍数不可能是质数了</span></span><br><span class="line">                <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i*i, n, i):</span><br><span class="line">                    isPrime[j] = <span class="literal">False</span></span><br><span class="line">        count = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>,n):</span><br><span class="line">            <span class="keyword">if</span> isPrime[i]:</span><br><span class="line">                count += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> count</span><br></pre></td></tr></table></figure>
+
+<h3 id="最大公约数与最小公倍数"><a href="#最大公约数与最小公倍数" class="headerlink" title="最大公约数与最小公倍数"></a>最大公约数与最小公倍数</h3><p><strong>代码实现：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 最大公约数：</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">gcd</span>(<span class="params">a,b</span>):</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">min</span>(a,b)+<span class="number">1</span>):</span><br><span class="line">        <span class="keyword">if</span> a % i == <span class="number">0</span> <span class="keyword">and</span> b % i == <span class="number">0</span>:</span><br><span class="line">            gcd = i</span><br><span class="line">    <span class="keyword">return</span> gcd</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(gcd(<span class="number">8</span>,<span class="number">10</span>))</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 最小公倍数</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">lcm</span>(<span class="params">a,b</span>):</span><br><span class="line">    g = gcd(a,b)</span><br><span class="line">    <span class="keyword">return</span> a*b//g</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(lcm(<span class="number">8</span>,<span class="number">6</span>))</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用位操作和减法求解最大公约数"><a href="#使用位操作和减法求解最大公约数" class="headerlink" title="使用位操作和减法求解最大公约数"></a>使用位操作和减法求解最大公约数</h3><p><strong>思路：</strong> 对于 a 和 b 的最大公约数 f(a, b)，有：</p>
+<pre><code>如果 a 和 b 均为偶数，f(a, b) = 2*f(a/2, b/2);
+如果 a 是偶数 b 是奇数，f(a, b) = f(a/2, b);
+如果 b 是偶数 a 是奇数，f(a, b) = f(a, b/2);
+如果 a 和 b 均为奇数，f(a, b) = f(b, a-b);
+</code></pre>
+<p>乘 2 和除 2 都可以转换为移位操作。</p>
+<p><strong>代码实现：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用位操作和减法求解最大公约数</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">gcd</span>(<span class="params">a,b</span>):</span><br><span class="line">    <span class="keyword">if</span> a &lt; b:</span><br><span class="line">        <span class="keyword">return</span> gcd(b,a)   <span class="comment"># 保证第一个数不小于第二个数</span></span><br><span class="line">    <span class="keyword">if</span> b == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> a</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">is_even</span>(<span class="params">x</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span> <span class="keyword">if</span> x % <span class="number">2</span> == <span class="number">0</span> <span class="keyword">else</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">    aeven = is_even(a)</span><br><span class="line">    beven = is_even(b)</span><br><span class="line">    <span class="keyword">if</span> aeven <span class="keyword">and</span> beven:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">2</span> * gcd(a &gt;&gt; <span class="number">1</span>, b &gt;&gt; <span class="number">1</span>)  <span class="comment"># 右移一位相当于 除以2</span></span><br><span class="line">    <span class="keyword">elif</span> aeven <span class="keyword">and</span> <span class="keyword">not</span> beven:</span><br><span class="line">        <span class="keyword">return</span> gcd(a &gt;&gt; <span class="number">1</span>, b)</span><br><span class="line">    <span class="keyword">elif</span> <span class="keyword">not</span> aeven <span class="keyword">and</span> beven:</span><br><span class="line">        <span class="keyword">return</span> gcd(a, b &gt;&gt; <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">elif</span> <span class="keyword">not</span> aeven <span class="keyword">and</span> <span class="keyword">not</span> beven:</span><br><span class="line">        <span class="keyword">return</span> gcd(b, a-b)</span><br></pre></td></tr></table></figure>
+
+<h3 id="365-水壶问题"><a href="#365-水壶问题" class="headerlink" title="365. 水壶问题"></a>365. 水壶问题</h3><p>有两个容量分别为 x升 和 y升 的水壶以及无限多的水。请判断能否通过使用这两个水壶，从而可以得到恰好 z升 的水？</p>
+<p>如果可以，最后请用以上水壶中的一或两个来盛放取得的 z升 水。</p>
+<p>你允许：</p>
+<pre><code>装满任意一个水壶
+清空任意一个水壶
+从一个水壶向另外一个水壶倒水，直到装满或者倒空
+</code></pre>
+<p>示例 1: (From the famous “Die Hard” example)</p>
+<pre><code>输入: x = 3, y = 5, z = 4
+输出: True
+</code></pre>
+<p>示例 2:</p>
+<pre><code>输入: x = 2, y = 6, z = 5
+输出: False
+</code></pre>
+<p><strong>思路：</strong> 此题可以转化为纯数学题，需要用到裴蜀定理：若a,b是整数，且a,b的最大公约数为d，那么对于任意的整数x,y，ax+by都一定是d的倍数，特别地，一定存在整数x,y，使ax+by&#x3D;d成立。对于水桶的操作，每次操作只会让桶里的水总量增加 x，增加 y，减少 x，或者减少 y。你可能认为这有问题：如果往一个不满的桶里放水，或者把它排空呢？那变化量不就不是 x 或者 y 了吗？接下来我们来解释这一点：</p>
+<pre><code>首先要清楚，在题目所给的操作下，两个桶不可能同时有水且不满。因为观察所有题目中的操作，操作的结果都至少有一个桶是空的或者满的；
+其次，对一个不满的桶加水是没有意义的。因为如果另一个桶是空的，那么这个操作的结果等价于直接从初始状态给这个桶加满水；而如果另一个桶是满的，那么这个操作的结果等价于从初始状态分别给两个桶加满；
+再次，把一个不满的桶里面的水倒掉是没有意义的。因为如果另一个桶是空的，那么这个操作的结果等价于回到初始状态；而如果另一个桶是满的，那么这个操作的结果等价于从初始状态直接给另一个桶倒满。
+</code></pre>
+<p>因此，我们可以认为每次操作只会给水的总量带来 x 或者 y 的变化量。因此我们的目标可以改写成：找到一对整数 a,b，使得 ：ax + by &#x3D; z， 而只要满足 z &lt;&#x3D; x + y，且这样的 a,b存在，那么我们的目标就是可以达成的，这里的a,b可以看做是对两个水桶所做的操作。而裴蜀定理告诉我们，ax + by &#x3D; z 有解当且仅当 z 是 x,y 的最大公约数的倍数。因此我们只需要找到 x,y 的最大公约数并判断 z 是否是它的倍数即可。</p>
+<p>举一个例子：当 x &#x3D; 3, y &#x3D; 5, z &#x3D; 5 时，我们需要8步操作：（1）把x倒满（x有3L）；（2）把x倒给y（x空，y有3L）；（3）把x倒满（x有3L，y有3L）；（4）把x倒给y（x有1L，y有5L）；（5）把y倒空（x有1L，y空）；（6）把x倒给y（x空，y有1L）；（7）把x倒满（x有3L，y有1L）；（8）把x倒给y（x空，y有4L）完成！ 这8步操作中，有3步操作是把x倒满，有1步操作是y倒空，这里的3步和1步就对应着ax + by &#x3D; z中的a和b，相当于是：3x + (-1)y &#x3D; 3 * 3 + (-1) * 5 &#x3D; 4。 </p>
+<p><strong>代码实现：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">canMeasureWater</span>(<span class="params">self, x: <span class="built_in">int</span>, y: <span class="built_in">int</span>, z: <span class="built_in">int</span></span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        <span class="keyword">if</span> x + y &lt; z:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">if</span> x == <span class="number">0</span> <span class="keyword">or</span> y == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> x+y == z <span class="keyword">or</span> z == <span class="number">0</span></span><br><span class="line">        <span class="keyword">return</span> z % math.gcd(x,y) == <span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="进制转换"><a href="#进制转换" class="headerlink" title="进制转换"></a>进制转换</h2><h3 id="504-七进制数"><a href="#504-七进制数" class="headerlink" title="504. 七进制数"></a>504. 七进制数</h3><p>给定一个整数，将其转化为7进制，并以字符串形式输出。</p>
+<p>示例 1:</p>
+<pre><code>输入: 100
+输出: &quot;202&quot;
+</code></pre>
+<p>示例 2:</p>
+<pre><code>输入: -7
+输出: &quot;-10&quot;
+</code></pre>
+<p>注意: 输入范围是 [-1e7, 1e7] 。</p>
+<p><strong>思路：</strong> 利用短除法，每次除以7，把右边的余数倒着输出就是转换成的七进制数，当num为负数时，它的七进制数就是num的绝对值所对应的七进制数前面添个负号即可。比如8的七进制数为11，-8的七进制数为-11。</p>
+<p><strong>代码实现：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">convertToBase7</span>(<span class="params">self, num: <span class="built_in">int</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        flag = <span class="literal">False</span></span><br><span class="line">        <span class="keyword">if</span> num &lt; <span class="number">0</span>:</span><br><span class="line">            num = -num</span><br><span class="line">            flag = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">        res = <span class="string">&quot;&quot;</span></span><br><span class="line">        <span class="keyword">while</span> num &gt;= <span class="number">7</span>:</span><br><span class="line">            res += <span class="built_in">str</span>(num % <span class="number">7</span>)</span><br><span class="line">            num //= <span class="number">7</span></span><br><span class="line">        res += <span class="built_in">str</span>(num)</span><br><span class="line">        <span class="keyword">if</span> flag:</span><br><span class="line">            res += <span class="string">&#x27;-&#x27;</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> res[::-<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
+
+<h3 id="405-数字转换为十六进制数"><a href="#405-数字转换为十六进制数" class="headerlink" title="405. 数字转换为十六进制数"></a>405. 数字转换为十六进制数</h3><p>给定一个整数，编写一个算法将这个数转换为十六进制数。对于负整数，我们通常使用 补码运算 方法。</p>
+<p>注意:</p>
+<pre><code>十六进制中所有字母(a-f)都必须是小写。
+十六进制字符串中不能包含多余的前导零。如果要转化的数为0，那么以单个字符&#39;0&#39;来表示；对于其他情况，十六进制字符串中的第一个字符将不会是0字符。 
+给定的数确保在32位有符号整数范围内。
+不能使用任何由库提供的将数字直接转换或格式化为十六进制的方法。
+</code></pre>
+<p>示例 1：</p>
+<pre><code>输入:
+26
+
+输出:
+&quot;1a&quot;
+</code></pre>
+<p>示例 2：</p>
+<pre><code>输入:
+-1
+
+输出:
+&quot;ffffffff&quot;
+</code></pre>
+<p><strong>思路：</strong> 还是利用短除法，把十六进制对应的字符用字典存储。需要注意当num为负数时采取了补码运算，补码运算其实就是用计算位数允许的最大值作为上限，超过它就进行模运算，而负数的补码运算相当于用最大值，4294967296加上num，再进行正常的16进制转换即可。这里的4294967296就是2的32次方，因为十六进制有16个数，在计算机内部需要四位来表示十六进制（2^4 &#x3D; 16），题目给我们int型数字num，一个int &#x3D; 4字节 &#x3D; 32位，所以最大值是2的32次方。</p>
+<p><strong>代码实现：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">toHex</span>(<span class="params">self, num: <span class="built_in">int</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        <span class="keyword">if</span> num &lt; <span class="number">0</span>:</span><br><span class="line">            <span class="comment"># 如果num&lt;0，进行补码运算，补码运算其实就是用计算位数允许的最大值作为上限，超过它就进行模运算，</span></span><br><span class="line">            <span class="comment"># 而负数的补码运算相当于用最大值，4294967296加上num，再进行正常的16进制转换即可</span></span><br><span class="line">            num += <span class="number">2</span>**<span class="number">32</span></span><br><span class="line">        <span class="keyword">if</span> num == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&#x27;0&#x27;</span></span><br><span class="line">        res = <span class="string">&quot;&quot;</span></span><br><span class="line">        <span class="built_in">hash</span> = &#123;<span class="number">0</span>:<span class="string">&#x27;0&#x27;</span>, <span class="number">1</span>:<span class="string">&#x27;1&#x27;</span>, <span class="number">2</span>:<span class="string">&#x27;2&#x27;</span>, <span class="number">3</span>:<span class="string">&#x27;3&#x27;</span>, <span class="number">4</span>:<span class="string">&#x27;4&#x27;</span>, <span class="number">5</span>:<span class="string">&#x27;5&#x27;</span>, <span class="number">6</span>:<span class="string">&#x27;6&#x27;</span>, <span class="number">7</span>:<span class="string">&#x27;7&#x27;</span>, <span class="number">8</span>:<span class="string">&#x27;8&#x27;</span>, <span class="number">9</span>:<span class="string">&#x27;9&#x27;</span>,</span><br><span class="line">                <span class="number">10</span>:<span class="string">&#x27;a&#x27;</span>, <span class="number">11</span>:<span class="string">&#x27;b&#x27;</span>, <span class="number">12</span>:<span class="string">&#x27;c&#x27;</span>, <span class="number">13</span>:<span class="string">&#x27;d&#x27;</span>, <span class="number">14</span>:<span class="string">&#x27;e&#x27;</span>, <span class="number">15</span>:<span class="string">&#x27;f&#x27;</span>&#125;</span><br><span class="line">        <span class="keyword">while</span> num != <span class="number">0</span>:</span><br><span class="line">            res += <span class="built_in">hash</span>[num % <span class="number">16</span>]</span><br><span class="line">            num //= <span class="number">16</span></span><br><span class="line">        <span class="keyword">return</span> res[::-<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
+
+<h3 id="168-Excel表列名称"><a href="#168-Excel表列名称" class="headerlink" title="168. Excel表列名称"></a>168. Excel表列名称</h3><p>给定一个正整数，返回它在 Excel 表中相对应的列名称。</p>
+<p>例如，</p>
+<pre><code>1 -&gt; A
+2 -&gt; B
+3 -&gt; C
+...
+26 -&gt; Z
+27 -&gt; AA
+28 -&gt; AB 
+...
+</code></pre>
+<p>示例 1:</p>
+<pre><code>输入: 1
+输出: &quot;A&quot;
+</code></pre>
+<p>示例 2:</p>
+<pre><code>输入: 28
+输出: &quot;AB&quot;
+</code></pre>
+<p>示例 3:</p>
+<pre><code>输入: 701
+输出: &quot;ZY&quot;
+</code></pre>
+<p><strong>思路：</strong> 这道题实际上是十进制转26进制，当n&#x3D;26时，使用短除法，商1余0，而此时余数0没有对应的字母，所以可以从商借一位给余数，表示为商0余26，这样n&#x3D;26就表示为字母‘Z’。</p>
+<p><strong>代码实现：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">convertToTitle</span>(<span class="params">self, n: <span class="built_in">int</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        res = <span class="string">&quot;&quot;</span></span><br><span class="line">        <span class="keyword">while</span> n:</span><br><span class="line">            n, y = <span class="built_in">divmod</span>(n, <span class="number">26</span>)  <span class="comment"># 返回一个包含商和余数的元组(a // b, a % b)</span></span><br><span class="line">            <span class="keyword">if</span> y == <span class="number">0</span>:</span><br><span class="line">                n -= <span class="number">1</span></span><br><span class="line">                y = <span class="number">26</span></span><br><span class="line">            res = <span class="built_in">chr</span>(y + <span class="number">64</span>) + res  <span class="comment"># 转换为ASCII码对应的大写字母</span></span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+
+<h3 id="172-阶乘后的零"><a href="#172-阶乘后的零" class="headerlink" title="172. 阶乘后的零"></a>172. 阶乘后的零</h3><p>给定一个整数 n，返回 n! 结果尾数中零的数量。</p>
+<p>示例 1:</p>
+<pre><code>输入: 3
+输出: 0
+解释: 3! = 6, 尾数中没有零。
+</code></pre>
+<p>示例 2:</p>
+<pre><code>输入: 5
+输出: 1
+解释: 5! = 120, 尾数中有 1 个零.
+</code></pre>
+<p>说明: 你算法的时间复杂度应为 O(log n) 。</p>
+<p><strong>思路：</strong> 例如11的阶乘：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">11! = 11 * 10 * 9 * 8 * 7 * 6 * 5 * 4 * 3 * 2 * 1 </span><br><span class="line">    = 11 * (2 * 5) * 9 * (4 * 2) * 7 * (3 * 2) * (1 * 5) * (2 * 2) * 3 * (1 * 2) * 1 </span><br></pre></td></tr></table></figure>
+
+<p>观察规律，对于含有 2 的因子的话是 1 * 2, 2 * 2, 3 * 2, 4 * 2 …；对于含有 5 的因子的话是 1 * 5, 2 * 5…；含有 2 的因子每两个出现一次，含有 5 的因子每 5 个出现一次，所有 2 出现的个数远远多于 5，换言之找到一个 5，一定能找到一个 2 与之配对。所以我们只需要找有多少个 5。直接的，我们只需要判断每个累乘的数有多少个 5 的因子即可。另外，每隔 25 个数字，出现的是两个 5，所以除了每隔 5 个数算作一个 5，每隔 25 个数，还需要多算一个 5。也就是我们需要再加上 n &#x2F; 25 个 5。同理我们还会发现每隔 5 * 5 * 5 &#x3D; 125 个数字，会出现 3 个 5，所以我们还需要再加上 n &#x2F; 125 。综上，规律就是每隔 5 个数，出现一个 5，每隔 25 个数，出现 2 个 5，每隔 125 个数，出现 3 个 5… 以此类推。最终 5 的个数就是： </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">n / 5 + n / 25 + n / 125 ...  = n / (5^1) + n / (5^2) + n / (5^3) ...</span><br></pre></td></tr></table></figure>
+
+<p>写程序的话，如果直接按照上边的式子计算，分母可能会造成溢出。所以算 n &#x2F; 25 的时候，我们先把 n 更新，n &#x3D; n &#x2F; 5，然后再计算 n &#x2F; 5 即可。后边的同理。</p>
+<p><strong>代码实现：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">trailingZeroes</span>(<span class="params">self, n: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        count = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> n &gt; <span class="number">0</span>:</span><br><span class="line">            count = count + n//<span class="number">5</span></span><br><span class="line">            n = n // <span class="number">5</span></span><br><span class="line">        <span class="keyword">return</span> count</span><br></pre></td></tr></table></figure>
+
+<h2 id="字符串加法减法"><a href="#字符串加法减法" class="headerlink" title="字符串加法减法"></a>字符串加法减法</h2><h3 id="67-二进制求和"><a href="#67-二进制求和" class="headerlink" title="67. 二进制求和"></a>67. 二进制求和</h3><p>给你两个二进制字符串，返回它们的和（用二进制表示）。</p>
+<p>输入为 非空 字符串且只包含数字 1 和 0。</p>
+<p>示例 1:</p>
+<pre><code>输入: a = &quot;11&quot;, b = &quot;1&quot;
+输出: &quot;100&quot;
+</code></pre>
+<p>示例 2:</p>
+<pre><code>输入: a = &quot;1010&quot;, b = &quot;1011&quot;
+输出: &quot;10101&quot;
+</code></pre>
+<p>提示：</p>
+<pre><code>每个字符串仅由字符 &#39;0&#39; 或 &#39;1&#39; 组成。
+1 &lt;= a.length, b.length &lt;= 10^4
+字符串如果不是 &quot;0&quot; ，就都不含前导零。
+</code></pre>
+<p><strong>思路：</strong> 利用Python内置函数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">dec = <span class="built_in">input</span>(<span class="string">&#x27;10进制数为：&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;转换为二进制为：&quot;</span>, <span class="built_in">bin</span>(dec))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;转换为八进制为：&quot;</span>, <span class="built_in">oct</span>(dec))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;转换为十六进制为：&quot;</span>, <span class="built_in">hex</span>(dec))</span><br><span class="line"></span><br><span class="line">string1 = <span class="string">&#x27;101010&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;二进制字符串转换成十进制数为：&#x27;</span>，<span class="built_in">int</span>(string1,<span class="number">2</span>))</span><br><span class="line">string1 = <span class="string">&#x27;367&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;八进制字符串转换成十进制数为：&#x27;</span>，<span class="built_in">int</span>(string1,<span class="number">8</span>))</span><br><span class="line">string3 = <span class="string">&#x27;FFF&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;十六进制字符串转换成十进制数为：&#x27;</span>，<span class="built_in">int</span>(string1,<span class="number">16</span>))</span><br></pre></td></tr></table></figure>
+
+<p>位操作方法：步骤一：补全二进制位。步骤二：a ^ b。步骤三：(a &amp; b) &lt;&lt; 1。步骤四：将步骤二算出的a ^ b看作新的a，将步骤三算出的(a &amp; b) &lt;&lt; 1看作新的b，并重复步骤二和步骤三，直到b为0000 0000，此时a的值即为答案。推荐这篇文章：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/add-binary/solution/guan-fang-ti-jie-fang-fa-er-xiang-jie-bu-shi-yong-/">https://leetcode-cn.com/problems/add-binary/solution/guan-fang-ti-jie-fang-fa-er-xiang-jie-bu-shi-yong-/</a></p>
+<p>位运算相关操作：8的二进制表示是0000 1000，-8的二进制表示就是0000 1000的补码，计算补码就是原码取反后+1，故-8的二进制表示是1111 1000。二进制左移1位相当于乘2(上取整)，左移2位相当于乘2的平方(上取整)；右移1位相当于除以2(下取整)，右移2位相当于除以2的平方(下取整)…以此类推。</p>
+<p><strong>代码实现：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 内置函数：</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">addBinary</span>(<span class="params">self, a: <span class="built_in">str</span>, b: <span class="built_in">str</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        a = <span class="built_in">int</span>(a,<span class="number">2</span>)   <span class="comment"># 二进制转十进制：int(str,2)</span></span><br><span class="line">        b = <span class="built_in">int</span>(b,<span class="number">2</span>)</span><br><span class="line">        res = <span class="built_in">bin</span>(a + b)   <span class="comment"># 十进制转二进制：bin(str)</span></span><br><span class="line">        <span class="keyword">return</span> res[<span class="number">2</span>:]</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 位操作：</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">	<span class="keyword">def</span> <span class="title function_">addBinary</span>(<span class="params">self, a: <span class="built_in">str</span>, b: <span class="built_in">str</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">	    x, y = <span class="built_in">int</span>(a,<span class="number">2</span>), <span class="built_in">int</span>(b,<span class="number">2</span>)</span><br><span class="line">	    <span class="keyword">while</span> y != <span class="number">0</span> :</span><br><span class="line">	        ans = x^y</span><br><span class="line">	        carry = (x&amp;y) &lt;&lt; <span class="number">1</span></span><br><span class="line">	        x, y = ans, carry</span><br><span class="line">	    <span class="keyword">return</span> <span class="built_in">bin</span>(x)[<span class="number">2</span>:]</span><br></pre></td></tr></table></figure>
+
+<h3 id="415-字符串相加"><a href="#415-字符串相加" class="headerlink" title="415. 字符串相加"></a>415. 字符串相加</h3><p>给定两个字符串形式的非负整数 num1 和num2 ，计算它们的和。</p>
+<p>注意：</p>
+<pre><code>num1 和num2 的长度都小于 5100.
+num1 和num2 都只包含数字 0-9.
+num1 和num2 都不包含任何前导零。
+你不能使用任何內建 BigInteger 库， 也不能直接将输入的字符串转换为整数形式。
+</code></pre>
+<p><strong>思路：</strong> 利用双指针从两字符串的尾部向前遍历，模拟人工的列竖式加法，没有的位补成0，temp &#x2F;&#x2F; 10计算是否要进位，当跳出循环时，若carry &#x3D; 0，就不需要再开头添”1”；若carry &#x3D; 1，则需要在开头添”1”。</p>
+<p><strong>代码实现：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">addStrings</span>(<span class="params">self, num1: <span class="built_in">str</span>, num2: <span class="built_in">str</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        res = <span class="string">&quot;&quot;</span></span><br><span class="line">        i, j, carry = <span class="built_in">len</span>(num1)-<span class="number">1</span>, <span class="built_in">len</span>(num2)-<span class="number">1</span>, <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> i &gt;= <span class="number">0</span> <span class="keyword">or</span> j &gt;= <span class="number">0</span>:</span><br><span class="line">            n1 = <span class="built_in">int</span>(num1[i]) <span class="keyword">if</span> i &gt;= <span class="number">0</span> <span class="keyword">else</span> <span class="number">0</span></span><br><span class="line">            n2 = <span class="built_in">int</span>(num2[j]) <span class="keyword">if</span> j &gt;= <span class="number">0</span> <span class="keyword">else</span> <span class="number">0</span></span><br><span class="line">            temp = n1 + n2 + carry</span><br><span class="line">            carry = temp // <span class="number">10</span></span><br><span class="line">            res = <span class="built_in">str</span>(temp % <span class="number">10</span>) + res</span><br><span class="line">            i -= <span class="number">1</span></span><br><span class="line">            j -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;1&quot;</span> + res <span class="keyword">if</span> carry <span class="keyword">else</span> res</span><br></pre></td></tr></table></figure>
+
+<h3 id="462-最少移动次数使数组元素相等-II"><a href="#462-最少移动次数使数组元素相等-II" class="headerlink" title="462. 最少移动次数使数组元素相等 II"></a>462. 最少移动次数使数组元素相等 II</h3><p>给定一个非空整数数组，找到使所有数组元素相等所需的最小移动数，其中每次移动可将选定的一个元素加1或减1。 您可以假设数组的长度最多为10000。</p>
+<p>例如:</p>
+<pre><code>输入:
+[1,2,3]
+
+输出:
+2
+
+说明：
+只有两个动作是必要的（记得每一步仅可使其中一个元素加1或减1）： 
+
+[1,2,3]  =&gt;  [2,2,3]  =&gt;  [2,2,2]
+</code></pre>
+<p><strong>思路：</strong> 首先对数组进行排序，定义两个指针 i 和 j，分别指向数组的头和尾；变量 count 表示移动次数，初始化为 0；定义指针 mid 指向数组的中间元素，mid &#x3D; (i+j) &#x2F;&#x2F; 2；当 i &lt;&#x3D; mid 时，通过移动指针 i 和 j 遍历整个数组，count每次加上两个数之差的绝对值；当 i &gt; mid 时，整个数组已经被完整遍历过，可以结束循环，返回 count。</p>
+<p><strong>代码实现：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">minMoves2</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        nums.sort()</span><br><span class="line">        i, j = <span class="number">0</span>, <span class="built_in">len</span>(nums)-<span class="number">1</span></span><br><span class="line">        mid = (i+j) // <span class="number">2</span></span><br><span class="line">        count = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> i &lt;= mid:</span><br><span class="line">            count += <span class="built_in">abs</span>(nums[i] - nums[mid])</span><br><span class="line">            count += <span class="built_in">abs</span>(nums[j] - nums[mid])</span><br><span class="line">            i += <span class="number">1</span></span><br><span class="line">            j -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> count</span><br></pre></td></tr></table></figure>
+
+<h3 id="169-多数元素"><a href="#169-多数元素" class="headerlink" title="169. 多数元素"></a>169. 多数元素</h3><p>给定一个大小为 n 的数组，找到其中的多数元素。多数元素是指在数组中出现次数大于 ⌊ n&#x2F;2 ⌋ 的元素。</p>
+<p>你可以假设数组是非空的，并且给定的数组总是存在多数元素。</p>
+<p>示例 1:</p>
+<pre><code>输入: [3,2,3]
+输出: 3
+</code></pre>
+<p>示例 2:</p>
+<pre><code>输入: [2,2,1,1,1,2,2]
+输出: 2
+</code></pre>
+<p><strong>思路：</strong> 利用collections.Counter() 来保存nums中每个数出现的次数在哈希表里，对哈希表的每个值倒序排序 dict &#x3D; sorted(dict.items(),key&#x3D;lambda item:item[1], reverse&#x3D;True)，最后输出dict[0][0]即可。</p>
+<p><strong>代码实现：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Counter</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">majorityElement</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="built_in">dict</span> = Counter(nums)</span><br><span class="line">        <span class="built_in">dict</span> = <span class="built_in">sorted</span>(<span class="built_in">dict</span>.items(),key=<span class="keyword">lambda</span> item:item[<span class="number">1</span>], reverse=<span class="literal">True</span>)</span><br><span class="line">    </span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">dict</span>[<span class="number">0</span>][<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+
+<h3 id="367-有效的完全平方数"><a href="#367-有效的完全平方数" class="headerlink" title="367. 有效的完全平方数"></a>367. 有效的完全平方数</h3><p>给定一个正整数 num，编写一个函数，如果 num 是一个完全平方数，则返回 True，否则返回 False。</p>
+<p>说明：不要使用任何内置的库函数，如  sqrt。</p>
+<p>示例 1：</p>
+<pre><code>输入：16
+输出：True
+</code></pre>
+<p>示例 2：</p>
+<pre><code>输入：14
+输出：False
+</code></pre>
+<p><strong>思路：</strong> 方法一：把 num**0.5并转为整数，看这个整数的平方是否与原num相等。</p>
+<p>方法二：完全平方数1,4,9,16…他们每个数之间相差3,5,7…是差为2的等差数列，也就是16-7-5-3-1 &#x3D; 0。控制一个循环当num&gt;0时，每次循环 num -&#x3D; k，k初始化为1，每次循环 k +&#x3D; 2，当退出循环时，若num &#x3D;&#x3D; 0说明num为完全平方数，反之则不是完全平方数。</p>
+<p><strong>代码实现：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">isPerfectSquare</span>(<span class="params">self, num: <span class="built_in">int</span></span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        <span class="comment"># sq = int(num ** 0.5)</span></span><br><span class="line">        <span class="comment"># if sq ** 2 == num:</span></span><br><span class="line">        <span class="comment">#     return True</span></span><br><span class="line">        <span class="comment"># else:</span></span><br><span class="line">        <span class="comment">#     return False</span></span><br><span class="line">        </span><br><span class="line">        k = <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> num &gt; <span class="number">0</span>:</span><br><span class="line">            num -= k</span><br><span class="line">            k += <span class="number">2</span></span><br><span class="line">        <span class="keyword">return</span> num == <span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="326-3的幂"><a href="#326-3的幂" class="headerlink" title="326. 3的幂"></a>326. 3的幂</h3><p>给定一个整数，写一个函数来判断它是否是 3 的幂次方。</p>
+<p>示例 1:</p>
+<pre><code>输入: 27
+输出: true
+</code></pre>
+<p>示例 2:</p>
+<pre><code>输入: 0
+输出: false
+</code></pre>
+<p>示例 3:</p>
+<pre><code>输入: 9
+输出: true
+</code></pre>
+<p>示例 4:</p>
+<pre><code>输入: 45
+输出: false
+</code></pre>
+<p>进阶：<br>    你能不使用循环或者递归来完成本题吗？</p>
+<p><strong>思路：</strong> 假如n是3的幂次方，应该每次除以3的余数都是0，直到变成1，1除以3，商0余1，最后判断n是否为1即可。注意当n &lt;&#x3D; 0，直接返回False。</p>
+<p><strong>代码实现：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">isPowerOfThree</span>(<span class="params">self, n: <span class="built_in">int</span></span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        <span class="keyword">if</span> n &lt;= <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">while</span> n % <span class="number">3</span> == <span class="number">0</span>:</span><br><span class="line">            n = n // <span class="number">3</span></span><br><span class="line">        <span class="keyword">return</span> n == <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="238-除自身以外数组的乘积"><a href="#238-除自身以外数组的乘积" class="headerlink" title="238. 除自身以外数组的乘积"></a>238. 除自身以外数组的乘积</h3><p>给你一个长度为 n 的整数数组 nums，其中 n &gt; 1，返回输出数组 output ，其中 output[i] 等于 nums 中除 nums[i] 之外其余各元素的乘积。</p>
+<p>示例:</p>
+<pre><code>输入: [1,2,3,4]
+输出: [24,12,8,6]
+</code></pre>
+<p>​	<br>​	<br>    提示：题目数据保证数组之中任意元素的全部前缀元素和后缀（甚至是整个数组）的乘积都在 32 位整数范围内。</p>
+<pre><code>说明: 请不要使用除法，且在 O(n) 时间复杂度内完成此题。
+</code></pre>
+<p>进阶：<br>    你可以在常数空间复杂度内完成这个题目吗？（ 出于对空间复杂度分析的目的，输出数组不被视为额外空间。）</p>
+<p><strong>思路：</strong> 由于本题不让用除法，可以用两个列表pre_li, post_li 分别存储 nums[i] 的前缀元素乘积与后缀元素乘积，因为除 nums[i] 以外的乘积就是从第一个元素乘到 nums[i-1] ，再乘上 nums[i+1] 乘到最后一个元素，最后再把两个列表对应相乘得到结果，此方法空间复杂度为：O(N)。这里可以对空间复杂度进行优化，因为题目中说输出数组不被视为额外空间，所以可以把pre_li 一开始就放在输出数组，再用一个指针post代替post_li，post从后往前遍历，每次与输出数组的对应位置相乘即可，最后返回输出数组，此方法空间复杂度为：O(1)。</p>
+<p><strong>代码实现：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 空间复杂度:O(N)</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">productExceptSelf</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">    	pre_li = [<span class="number">1</span>]</span><br><span class="line">        post_li = [<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="built_in">len</span>(nums)):</span><br><span class="line">            pre_li.append(nums[i-<span class="number">1</span>] * pre_li[i-<span class="number">1</span>])</span><br><span class="line">        nums.reverse()</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="built_in">len</span>(nums)):</span><br><span class="line">            post_li.append(nums[j-<span class="number">1</span>] * post_li[j-<span class="number">1</span>])</span><br><span class="line">        post_li.reverse()</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(post_li)):</span><br><span class="line">            pre_li[i] *= post_li[i]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> pre_li</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 空间复杂度：O(1)</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">productExceptSelf</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        res = [<span class="number">1</span>]</span><br><span class="line">        post = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="built_in">len</span>(nums)):</span><br><span class="line">            res.append(nums[i-<span class="number">1</span>] * res[i-<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">reversed</span>(<span class="built_in">range</span>(<span class="built_in">len</span>(nums))):</span><br><span class="line">            res[j] *= post</span><br><span class="line">            post *= nums[j]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+
+<h3 id="628-三个数的最大乘积"><a href="#628-三个数的最大乘积" class="headerlink" title="628. 三个数的最大乘积"></a>628. 三个数的最大乘积</h3><p>给定一个整型数组，在数组中找出由三个数组成的最大乘积，并输出这个乘积。</p>
+<p>示例 1:</p>
+<pre><code>输入: [1,2,3]
+输出: 6
+</code></pre>
+<p>示例 2:</p>
+<pre><code>输入: [1,2,3,4]
+输出: 24
+</code></pre>
+<p>注意:</p>
+<pre><code>给定的整型数组长度范围是[3,104]，数组中所有的元素范围是[-1000, 1000]。
+输入的数组中任意三个数的乘积不会超出32位有符号整数的范围。
+</code></pre>
+<p><strong>思路：</strong> 首先对数组排序，本题有两种情况导致三个数乘积最大：（1）数组中没有负数或者最小的两个负数的绝对值没有最大的正数的绝对值大，那么乘积最大的三个数就是排序后数组的最后三个数的乘积；（2）数组中有负数且最小的两个负数的绝对值比最大的正数的绝对值大，那么乘积最大的三个数就是排序后数组前两个数(负数)的乘积再乘上数组最后一个数。</p>
+<p><strong>代码实现：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">maximumProduct</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        nums.sort()</span><br><span class="line">        res1 = nums[-<span class="number">1</span>] * nums[-<span class="number">2</span>] * nums[-<span class="number">3</span>]  <span class="comment"># 后三个数的乘积</span></span><br><span class="line">        res2 = nums[<span class="number">0</span>] * nums[<span class="number">1</span>] * nums[-<span class="number">1</span>]   <span class="comment"># 前两个数乘积乘最后一个数(前两个数为负数且绝对值最大)</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">max</span>(res1, res2)</span><br></pre></td></tr></table></figure>
+
+<p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</p>
+<ul>
+<li>题目全部出自LeetCode官网：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/">https://leetcode-cn.com/</a></li>
+<li>题目分类参考这篇文章：<a target="_blank" rel="noopener" href="https://github.com/CyC2018/CS-Notes/blob/master/notes/Leetcode%20%E9%A2%98%E8%A7%A3%20-%20%E7%9B%AE%E5%BD%95.md">https://github.com/CyC2018/CS-Notes/blob/master/notes/Leetcode%20%E9%A2%98%E8%A7%A3%20-%20%E7%9B%AE%E5%BD%95.md</a></li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="http://example.com">JoeXu</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://blog.csdn.net/Dr_BigJoe/article/details/106982844">https://blog.csdn.net/Dr_BigJoe/article/details/106982844</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">以上为个人学习笔记总结，供学习参考交流，转载请注明出处。</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/LeetCode/">LeetCode</a></div><div class="post_share"><div class="social-share" data-image="https://avatars.githubusercontent.com/u/67886383?s=400&amp;u=99fc4b7b2788d8823a12f2924f7942669b39b105&amp;v=4" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/05/03/%E3%80%902021%E5%B1%8A%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E3%80%91%E2%80%94%20HTML&amp;CSS/" title="【2021届前端面试】— HTML&amp;CSS"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">【2021届前端面试】— HTML&amp;CSS</div></div></a></div><div class="next-post pull-right"><a href="/2021/03/05/%E3%80%90LeetCode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0%E3%80%91%E2%80%94%20%E7%AE%97%E6%B3%95%E6%80%9D%E6%83%B3%EF%BC%88%E5%9B%9B%EF%BC%89/" title="【LeetCode刷题笔记】— 算法思想（四）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">【LeetCode刷题笔记】— 算法思想（四）</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2020/07/31/%E3%80%90LeetCode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0%E3%80%91%E2%80%94%20%E7%AE%97%E6%B3%95%E6%80%9D%E6%83%B3%EF%BC%88%E4%B8%80%EF%BC%89/" title="【LeetCode刷题笔记】— 算法思想（一）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-31</div><div class="title">【LeetCode刷题笔记】— 算法思想（一）</div></div></a></div><div><a href="/2021/03/01/%E3%80%90LeetCode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0%E3%80%91%E2%80%94%20%E7%AE%97%E6%B3%95%E6%80%9D%E6%83%B3%EF%BC%88%E4%BA%8C%EF%BC%89/" title="【LeetCode刷题笔记】— 算法思想（二）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-03-01</div><div class="title">【LeetCode刷题笔记】— 算法思想（二）</div></div></a></div><div><a href="/2021/03/02/%E3%80%90LeetCode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0%E3%80%91%E2%80%94%20%E7%AE%97%E6%B3%95%E6%80%9D%E6%83%B3%EF%BC%88%E4%B8%89%EF%BC%89/" title="【LeetCode刷题笔记】— 算法思想（三）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-03-02</div><div class="title">【LeetCode刷题笔记】— 算法思想（三）</div></div></a></div><div><a href="/2021/03/05/%E3%80%90LeetCode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0%E3%80%91%E2%80%94%20%E7%AE%97%E6%B3%95%E6%80%9D%E6%83%B3%EF%BC%88%E5%9B%9B%EF%BC%89/" title="【LeetCode刷题笔记】— 算法思想（四）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-03-05</div><div class="title">【LeetCode刷题笔记】— 算法思想（四）</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://avatars.githubusercontent.com/u/67886383?s=400&amp;u=99fc4b7b2788d8823a12f2924f7942669b39b105&amp;v=4" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Joe Xu</div><div class="author-info__description">Stay hungry, Stay Foolish</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">48</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">7</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">7</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/JoeXu727" target="_blank" title="Github"><i class="fab fa-github"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E3%80%90LeetCode%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0%E3%80%91%E2%80%94-%E7%AE%97%E6%B3%95%E6%80%9D%E6%83%B3%EF%BC%88%E4%BA%94%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">【LeetCode刷题笔记】— 算法思想（五）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E6%95%B0%E5%AD%A6"><span class="toc-number">1.1.</span> <span class="toc-text">八、数学</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#204-%E8%AE%A1%E6%95%B0%E8%B4%A8%E6%95%B0"><span class="toc-number">1.1.1.</span> <span class="toc-text">204. 计数质数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0%E4%B8%8E%E6%9C%80%E5%B0%8F%E5%85%AC%E5%80%8D%E6%95%B0"><span class="toc-number">1.1.2.</span> <span class="toc-text">最大公约数与最小公倍数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E4%BD%8D%E6%93%8D%E4%BD%9C%E5%92%8C%E5%87%8F%E6%B3%95%E6%B1%82%E8%A7%A3%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0"><span class="toc-number">1.1.3.</span> <span class="toc-text">使用位操作和减法求解最大公约数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#365-%E6%B0%B4%E5%A3%B6%E9%97%AE%E9%A2%98"><span class="toc-number">1.1.4.</span> <span class="toc-text">365. 水壶问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2"><span class="toc-number">1.2.</span> <span class="toc-text">进制转换</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#504-%E4%B8%83%E8%BF%9B%E5%88%B6%E6%95%B0"><span class="toc-number">1.2.1.</span> <span class="toc-text">504. 七进制数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#405-%E6%95%B0%E5%AD%97%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6%E6%95%B0"><span class="toc-number">1.2.2.</span> <span class="toc-text">405. 数字转换为十六进制数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#168-Excel%E8%A1%A8%E5%88%97%E5%90%8D%E7%A7%B0"><span class="toc-number">1.2.3.</span> <span class="toc-text">168. Excel表列名称</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#172-%E9%98%B6%E4%B9%98%E5%90%8E%E7%9A%84%E9%9B%B6"><span class="toc-number">1.2.4.</span> <span class="toc-text">172. 阶乘后的零</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8A%A0%E6%B3%95%E5%87%8F%E6%B3%95"><span class="toc-number">1.3.</span> <span class="toc-text">字符串加法减法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#67-%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%B1%82%E5%92%8C"><span class="toc-number">1.3.1.</span> <span class="toc-text">67. 二进制求和</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#415-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E5%8A%A0"><span class="toc-number">1.3.2.</span> <span class="toc-text">415. 字符串相加</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#462-%E6%9C%80%E5%B0%91%E7%A7%BB%E5%8A%A8%E6%AC%A1%E6%95%B0%E4%BD%BF%E6%95%B0%E7%BB%84%E5%85%83%E7%B4%A0%E7%9B%B8%E7%AD%89-II"><span class="toc-number">1.3.3.</span> <span class="toc-text">462. 最少移动次数使数组元素相等 II</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#169-%E5%A4%9A%E6%95%B0%E5%85%83%E7%B4%A0"><span class="toc-number">1.3.4.</span> <span class="toc-text">169. 多数元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#367-%E6%9C%89%E6%95%88%E7%9A%84%E5%AE%8C%E5%85%A8%E5%B9%B3%E6%96%B9%E6%95%B0"><span class="toc-number">1.3.5.</span> <span class="toc-text">367. 有效的完全平方数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#326-3%E7%9A%84%E5%B9%82"><span class="toc-number">1.3.6.</span> <span class="toc-text">326. 3的幂</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#238-%E9%99%A4%E8%87%AA%E8%BA%AB%E4%BB%A5%E5%A4%96%E6%95%B0%E7%BB%84%E7%9A%84%E4%B9%98%E7%A7%AF"><span class="toc-number">1.3.7.</span> <span class="toc-text">238. 除自身以外数组的乘积</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#628-%E4%B8%89%E4%B8%AA%E6%95%B0%E7%9A%84%E6%9C%80%E5%A4%A7%E4%B9%98%E7%A7%AF"><span class="toc-number">1.3.8.</span> <span class="toc-text">628. 三个数的最大乘积</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/06/17/Object.assign%E9%87%8D%E7%BD%AE%E8%B8%A9%E5%9D%91/" title="前端菜鸡的踩坑之路（一）">前端菜鸡的踩坑之路（一）</a><time datetime="2022-06-17T14:20:18.000Z" title="Created 2022-06-17 22:20:18">2022-06-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/12/24/%E5%9F%BA%E4%BA%8Evue3%E7%9A%84%E7%88%B6%E5%AD%90%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/" title="基于vue3和antd vue的父子组件通信">基于vue3和antd vue的父子组件通信</a><time datetime="2021-12-24T02:15:18.000Z" title="Created 2021-12-24 10:15:18">2021-12-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/10/24/hello-world/" title="Hello World">Hello World</a><time datetime="2021-10-24T06:02:18.000Z" title="Created 2021-10-24 14:02:18">2021-10-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/06/16/%E3%80%902021%E5%B1%8A%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E3%80%91%E2%80%94%20%E5%85%B6%E4%BB%96/" title="【2021届前端面试】— 其他">【2021届前端面试】— 其他</a><time datetime="2021-06-16T03:44:55.000Z" title="Created 2021-06-16 11:44:55">2021-06-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/06/16/%E3%80%902021%E5%B1%8A%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E3%80%91%E2%80%94%20JavaScript/" title="【2021届前端面试】— JavaScript">【2021届前端面试】— JavaScript</a><time datetime="2021-06-16T03:42:37.000Z" title="Created 2021-06-16 11:42:37">2021-06-16</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Joe Xu</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

@@ -1,0 +1,441 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>【2021届前端面试】— 其他 | Debug the World</title><meta name="author" content="Joe Xu"><meta name="copyright" content="Joe Xu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="【2021届前端面试】— 其他1. 什么是“前端工程化”？前端工程化是使用软件工程的技术和方法来进行前端的开发流程、技术、工具、经验等规范化、标准化，其主要目的为了提高效率和降低成本，即提高开发过程中的开发效率，减少不必要的重复工作时间，而前端工程本质上是软件工程的一种，因此我们应该从软件工程的角度来研究前端工程，”前端工程化”里面的工程指软件工程。 前端工程化就是为了让前端开发能够“自成体系”，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【2021届前端面试】— 其他">
+<meta property="og:url" content="http://example.com/2021/06/16/%E3%80%902021%E5%B1%8A%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E3%80%91%E2%80%94%20%E5%85%B6%E4%BB%96/index.html">
+<meta property="og:site_name" content="Debug the World">
+<meta property="og:description" content="【2021届前端面试】— 其他1. 什么是“前端工程化”？前端工程化是使用软件工程的技术和方法来进行前端的开发流程、技术、工具、经验等规范化、标准化，其主要目的为了提高效率和降低成本，即提高开发过程中的开发效率，减少不必要的重复工作时间，而前端工程本质上是软件工程的一种，因此我们应该从软件工程的角度来研究前端工程，”前端工程化”里面的工程指软件工程。 前端工程化就是为了让前端开发能够“自成体系”，">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://avatars.githubusercontent.com/u/67886383?s=400&u=99fc4b7b2788d8823a12f2924f7942669b39b105&v=4">
+<meta property="article:published_time" content="2021-06-16T03:44:55.000Z">
+<meta property="article:modified_time" content="2023-04-09T08:37:17.770Z">
+<meta property="article:author" content="Joe Xu">
+<meta property="article:tag" content="前端面试">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://avatars.githubusercontent.com/u/67886383?s=400&u=99fc4b7b2788d8823a12f2924f7942669b39b105&v=4"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2021/06/16/%E3%80%902021%E5%B1%8A%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E3%80%91%E2%80%94%20%E5%85%B6%E4%BB%96/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":288},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【2021届前端面试】— 其他',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-04-09 16:37:17'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://avatars.githubusercontent.com/u/67886383?s=400&amp;u=99fc4b7b2788d8823a12f2924f7942669b39b105&amp;v=4" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">48</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">7</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">7</div></a></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="Debug the World"><span class="site-name">Debug the World</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">【2021届前端面试】— 其他</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2021-06-16T03:44:55.000Z" title="Created 2021-06-16 11:44:55">2021-06-16</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-04-09T08:37:17.770Z" title="Updated 2023-04-09 16:37:17">2023-04-09</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/">前端面试</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="【2021届前端面试】— 其他"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="【2021届前端面试】—-其他"><a href="#【2021届前端面试】—-其他" class="headerlink" title="【2021届前端面试】— 其他"></a>【2021届前端面试】— 其他</h1><h3 id="1-什么是“前端工程化”？"><a href="#1-什么是“前端工程化”？" class="headerlink" title="1. 什么是“前端工程化”？"></a>1. 什么是“前端工程化”？</h3><p>前端工程化是使用软件工程的技术和方法来进行前端的开发流程、技术、工具、经验等规范化、标准化，其主要目的为了提高效率和降低成本，即提高开发过程中的开发效率，减少不必要的重复工作时间，而前端工程本质上是软件工程的一种，因此我们应该从软件工程的角度来研究前端工程，”前端工程化”里面的工程指软件工程。</p>
+<p>前端工程化就是为了让前端开发能够“自成体系”，个人认为主要应该从模块化、组件化、规范化、自动化四个方面思考。模块化只是在文件层面上，对代码或资源的拆分；而组件化是在设计层面上，对UI（用户界面）的拆分。</p>
+<h3 id="2-xss跨站脚本攻击原理？如何进行？防御手段？"><a href="#2-xss跨站脚本攻击原理？如何进行？防御手段？" class="headerlink" title="2. xss跨站脚本攻击原理？如何进行？防御手段？"></a>2. xss跨站脚本攻击原理？如何进行？防御手段？</h3><p>跨站脚本攻击，英文全称是Cross Site Script，XSS攻击，通常指黑客通过“HTML注入”篡改了网页，插入了恶意的脚本，从而在用户浏览网页时，控制用户浏览器的一种攻击。实施XSS攻击需要具备两个条件：1、需要向web页面注入恶意html代码；2、这些恶意代码能够被浏览器成功的执行。主要攻击原理就是：过于信任客户端提交的数据。</p>
+<p>防御手段如下：<strong>最重要的是后端不能信任前端发来的一切数据！</strong></p>
+<ol>
+<li><p>防堵跨站漏洞，阻止攻击者利用在被攻击网站上发布跨站攻击语句不可以信任用户提交的任何内容，首先代码里对用户输入的地方和变量都需要仔细检查长度和对”&lt;”,”&gt;”,”;”,”’”等字符做过滤；其次任何内容写到页面之前都必须加以encode，避免不小心把html tag 弄出来。这一个层面做好，至少可以堵住超过一半的XSS 攻击。</p>
+</li>
+<li><p>Cookie 防盗<br>首先，避免直接在cookie 中泄露用户隐私，例如email、密码等等。其次，通过使cookie 和系统ip 绑定来降低cookie 泄露后的危险。这样攻击者得到的cookie 没有实际价值，不可能拿来重放。</p>
+</li>
+<li><p>尽量采用POST 而非GET 提交表单<br>POST 操作不可能绕开javascript 的使用，这会给攻击者增加难度，减少可利用的跨站漏洞。</p>
+</li>
+</ol>
+<h3 id="3-CSRF跨站请求伪造原理？如何进行？防御手段？"><a href="#3-CSRF跨站请求伪造原理？如何进行？防御手段？" class="headerlink" title="3. CSRF跨站请求伪造原理？如何进行？防御手段？"></a>3. CSRF跨站请求伪造原理？如何进行？防御手段？</h3><p> CSRF：Cross-site request forgery (跨站请求伪造)，利用网站对已认证的权限去执行未授权的命令的一种恶意攻击，所谓的CSRF就是攻击者利用你的登录信息，然后做了一些没有经过你授权的一些行为。要完成一个 CSRF攻击，需要具备两个条件：1.受害者已经登录到目标网站并且没有退出(保持登录状态）；2.受害者访问了攻击者发布的链接或者表单；二者必须缺一不可。</p>
+<p>防御手段如下：</p>
+<ol>
+<li>在使用Get请求的时候非常容易伪造链接，所以尽量不要在GET请求里有任务数据修改操作。</li>
+<li>目前所有Python主流的web框架所采用的的方式令牌同步。令牌同步(Synchronizer token pattern , 简称STP)：在用户请求的表单中嵌入一个隐藏的csrf_token，服务端验证其是否与cookie中的一致(基于同源策略其他网站是无法获取cookie中的csrf_token)。黑客是拿不到你cookie中的 csrftoken值的，前提是网站本身没有 xss漏洞。</li>
+<li>如果是 js 提交需要先从cookie获取csrf_token作为 X-CSRFToken请求头提交。</li>
+<li>验证码，强制用户必须与应用进行交互，才能完成最终请求。在通常情况下，验证码能很好遏制CSRF攻击。但是出于用户体验考虑，网站不能给所有的操作都加上验证码。因此验证码只能作为一种辅助手段，不能作为主要解决方案。</li>
+</ol>
+<h3 id="4-Sql脚本注入原理？如何进行？防御手段？"><a href="#4-Sql脚本注入原理？如何进行？防御手段？" class="headerlink" title="4. Sql脚本注入原理？如何进行？防御手段？"></a>4. Sql脚本注入原理？如何进行？防御手段？</h3><p>SQL注入就是在用户可控参数寻找漏洞进行非法提交SQL语句破坏原SQL语句结构达到程序设计时意料之外结果的操作。漏洞存在的两个原因：1.程序编写者使用字符串拼接的形式编写SQL语句；2.没有对用户提交的数据进行足够的过滤就拼接到SQL语句。可能存在注入漏洞的位置：GET数据；POST数据；Header头数据；COOKIE数据；</p>
+<p>防御手段如下：<strong>避免数据变成代码被执行，时刻分清代码和数据的界限</strong>。</p>
+<ol>
+<li><p>使用预编译，绑定变量（推荐）。现在的数据库系统都提供SQL语句的预编译（prepare）和查询参数绑定功能，在SQL语句中放置占位符’?’，然后将带有占位符的SQL语句传给数据库编译，执行的时候才将用户输入的数据作为执行的参数传给用户。这样的操作不仅使得SQL语句在书写的时候不再需要拼接，看起来也更直接，而且用户输入的数据也没有机会被送到数据库的SQL解释器被编译执行，也不会越权变成代码。</p>
+</li>
+<li><p>检查数据类型。</p>
+</li>
+<li><p>过滤特殊字符和语句。</p>
+</li>
+</ol>
+<h3 id="5-web上传漏洞原理？如何进行？防御手段？"><a href="#5-web上传漏洞原理？如何进行？防御手段？" class="headerlink" title="5. web上传漏洞原理？如何进行？防御手段？"></a>5. web上传漏洞原理？如何进行？防御手段？</h3><p>用户上传了一个可执行的脚本文件，并通过此脚本文件获得了执行服务器端命令的能力。当文件上传时没有对文件的格式和上传用户做验证，导致任意用户可以上传任意文件，那么这就是一个上传漏洞。</p>
+<p>防御手段如下：</p>
+<ol>
+<li>最有效的，将文件上传目录直接设置为不可执行，对于Linux而言，撤销其目录的’x’权限；实际中很多大型网站的上传应用都会放置在独立的存储上作为静态文件处理，一是方便使用缓存加速降低能耗，二是杜绝了脚本执行的可能性；</li>
+<li>文件类型检查：强烈推荐白名单方式，结合MIME Type、后缀检查等方式；此外对于图片的处理可以使用压缩函数或resize函数，处理图片的同时破坏其包含的HTML代码；</li>
+<li>使用随机数改写文件名和文件路径，使得用户不能轻易访问自己上传的文件；</li>
+<li>单独设置文件服务器的域名。</li>
+</ol>
+<h3 id="6-前端数据加密"><a href="#6-前端数据加密" class="headerlink" title="6. 前端数据加密"></a>6. 前端数据加密</h3><p>处理用户敏感信息：前端一般使用md5、base64加密、sha1加密。</p>
+<h3 id="7-内存泄露"><a href="#7-内存泄露" class="headerlink" title="7. 内存泄露"></a>7. 内存泄露</h3><p>内存泄漏指申请的内存一直得不到释放，GC回收不了。一般在项目中就是，你创建的对象一直保存在内存中，可达但你把它的引用地址搞丢了结果没法操作它，而GC又不会回收这块内存。内存泄漏的危害就是堆积耗尽系统所有内存。</p>
+<p><strong>四种常见的内存泄漏：全局变量，未清除的定时器，闭包，以及 dom 的引用</strong></p>
+<ol>
+<li>全局变量 不用 var 声明的变量，相当于挂载到 window 对象上。如：b&#x3D;1; 解决：使用严格模式</li>
+<li>被遗忘的定时器和回调函数</li>
+<li>闭包</li>
+<li>没有清理的 DOM 元素引用</li>
+</ol>
+<h3 id="8-HTTP常用状态码及其含义？"><a href="#8-HTTP常用状态码及其含义？" class="headerlink" title="8. HTTP常用状态码及其含义？"></a>8. HTTP常用状态码及其含义？</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">1xx：指示信息--表示请求已接收，继续处理</span><br><span class="line"></span><br><span class="line">2xx：成功--表示请求已被成功接收、理解、接受</span><br><span class="line"><span class="number">200</span> <span class="variable constant_">OK</span> 一切正常，对<span class="variable constant_">GET</span>和<span class="variable constant_">POST</span>请求的应答文档跟在后面。</span><br><span class="line"><span class="number">201</span> <span class="title class_">Created</span> 服务器已经创建了文档，<span class="title class_">Location</span>头给出了它的<span class="variable constant_">URL</span>。</span><br><span class="line"><span class="number">202</span> <span class="title class_">Accepted</span> 已经接受请求，但处理尚未完成。</span><br><span class="line"></span><br><span class="line">3xx：重定向--要完成请求必须进行更进一步的操作</span><br><span class="line"><span class="number">302</span> <span class="title class_">Found</span> 表示临时性重定向。访问一个<span class="title class_">Url</span>时，被重定向到另一个url上。常用于页面跳转。与<span class="number">301</span>的区别：<span class="number">301</span>是指永久性的移动，<span class="number">302</span>是暂时性的，即以后还可能有变化。</span><br><span class="line"></span><br><span class="line">4xx：客户端错误--请求有语法错误或请求无法实现</span><br><span class="line"><span class="number">400</span> <span class="title class_">Bad</span> <span class="title class_">Request</span> 请求出现语法错误。</span><br><span class="line"><span class="number">401</span> <span class="title class_">Unauthorized</span> 客户试图未经授权访问受密码保护的页面。应答中会包含一个<span class="variable constant_">WWW</span>-<span class="title class_">Authenticate</span>头，浏览器据此显示用户名字/密码对话框，然后在填写合适的<span class="title class_">Authorization</span>头后再次发出请求。</span><br><span class="line"><span class="number">403</span> <span class="title class_">Forbidden</span> 资源不可用。服务器理解客户的请求，但拒绝处理它。通常由于服务器上文件或目录的权限设置导致。</span><br><span class="line"><span class="number">404</span> <span class="title class_">Not</span> <span class="title class_">Found</span> 无法找到指定位置的资源。这也是一个常用的应答。</span><br><span class="line"><span class="number">405</span> <span class="title class_">Method</span> <span class="title class_">Not</span> <span class="title class_">Allowed</span> 请求方法（<span class="variable constant_">GET</span>、<span class="variable constant_">POST</span>、<span class="variable constant_">HEAD</span>、<span class="variable constant_">DELETE</span>、<span class="variable constant_">PUT</span>、<span class="variable constant_">TRACE</span>等）对指定的资源不适用。（<span class="variable constant_">HTTP</span> <span class="number">1.1</span>新）</span><br><span class="line"></span><br><span class="line">5xx：服务器端错误--服务器未能实现合法的请求</span><br><span class="line"><span class="number">500</span> <span class="title class_">Internal</span> <span class="title class_">Server</span> <span class="title class_">Error</span> 服务器遇到了意料不到的情况，不能完成客户的请求。</span><br><span class="line"><span class="number">501</span> <span class="title class_">Not</span> <span class="title class_">Implemented</span> 服务器不支持实现请求所需要的功能。例如，客户发出了一个服务器不支持的<span class="variable constant_">PUT</span>请求。</span><br><span class="line"><span class="number">502</span> <span class="title class_">Bad</span> <span class="title class_">Gateway</span> 服务器作为网关或者代理时，为了完成请求访问下一个服务器，但该服务器返回了非法的应答。</span><br></pre></td></tr></table></figure>
+
+<h3 id="9-Http和Https的区别？"><a href="#9-Http和Https的区别？" class="headerlink" title="9. Http和Https的区别？"></a>9. Http和Https的区别？</h3><ol>
+<li><p>HTTPS  协议需要到 CA （Certificate Authority，证书颁发机构）申请证书，一般免费证书较少，因而需要一定费用。(以前网易官网是http，而网易邮箱是 https 。)</p>
+</li>
+<li><p>HTTP 是超文本传输协议，信息是明文传输，HTTPS 则是具有安全性的 SSL 加密传输协议。</p>
+</li>
+<li><p>HTTP 和 HTTPS 使用的是完全不同的连接方式，用的端口也不一样，前者是80，后者是443。</p>
+</li>
+<li><p>HTTP 的连接很简单，是无状态的。HTTPS 协议是由 SSL+HTTP 协议构建的可进行加密传输、身份认证的网络协议，比 HTTP 协议安全。(无状态的意思是其数据包的发送、传输和接收都是相互独立的。无连接的意思是指通信双方都不长久的维持对方的任何信息。)</p>
+</li>
+</ol>
+<p>SSL(Secure Sockets Layer 安全套接字协议)，及其继任者传输层安全（Transport Layer Security，TLS）是为网络通信提供安全及数据完整性的一种安全协议。TLS与SSL在传输层与应用层之间对网络连接进行加密。</p>
+<h3 id="10-http请求头content-type是干什么的？"><a href="#10-http请求头content-type是干什么的？" class="headerlink" title="10. http请求头content-type是干什么的？"></a>10. http请求头content-type是干什么的？</h3><p>在HTTP协议消息头中，使用Content-Type来表示请求和响应中的媒体类型信息。它用来告诉服务端如何处理请求的数据，以及告诉客户端（一般是浏览器）如何解析响应的数据，比如显示图片，解析并展示html等等。</p>
+<p>常见的媒体格式类型如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">text/html ：    <span class="variable constant_">HTML</span>格式</span><br><span class="line">text/plain ：   纯文本格式     </span><br><span class="line">text/xml ：     <span class="variable constant_">XML</span>格式</span><br><span class="line">image/gif ：    gif图片格式   </span><br><span class="line">image/jpeg ：   jpg图片格式</span><br><span class="line">image/png：     png图片格式</span><br></pre></td></tr></table></figure>
+
+<p>以application开头的媒体格式类型：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">application/xhtml+xml ：   <span class="variable constant_">XHTML</span>格式</span><br><span class="line">application/xml     ：     <span class="variable constant_">XML</span>数据格式</span><br><span class="line">application/atom+xml  ：   <span class="title class_">Atom</span> <span class="variable constant_">XML</span>聚合格式   </span><br><span class="line">application/json    ：     <span class="title class_">JSON</span>数据格式</span><br><span class="line">application/pdf       ：   pdf格式 </span><br><span class="line">application/msword  ：     <span class="title class_">Word</span>文档格式</span><br><span class="line">application/octet-stream ：二进制流数据（如常见的文件下载）</span><br><span class="line">application/x-www-form-urlencoded ： &lt;form encType=””&gt;中默认的encType，form表单数据被编码为key/value格式发送到服务器（表单默认的提交数据的格式）</span><br></pre></td></tr></table></figure>
+
+<p>另外一种常见的媒体格式是上传文件之时使用的：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">multipart/form-data ： 需要在表单中进行文件上传时，就需要使用该格式</span><br></pre></td></tr></table></figure>
+
+<h3 id="11-请求头与响应头"><a href="#11-请求头与响应头" class="headerlink" title="11. 请求头与响应头"></a>11. 请求头与响应头</h3><p>请求(客户端-&gt;服务端[request])：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">GET</span>(请求的方式) /newcoder/hello.<span class="title function_">html</span>(请求的目标资源) <span class="variable constant_">HTTP</span>/<span class="number">1.1</span>(请求采用的协议和版本号)</span><br><span class="line"><span class="title class_">Accept</span>: /(客户端能接收的资源类型)</span><br><span class="line"><span class="title class_">Accept</span>-<span class="title class_">Language</span>: en-<span class="title function_">us</span>(客户端接收的语言类型)</span><br><span class="line"><span class="title class_">Connection</span>: <span class="title class_">Keep</span>-<span class="title class_">Alive</span>(维护客户端和服务端的连接关系)</span><br><span class="line"><span class="title class_">Host</span>: <span class="attr">localhost</span>:<span class="number">8080</span>(连接的目标主机和端口号)</span><br><span class="line"><span class="title class_">Referer</span>: <span class="attr">http</span>:<span class="comment">//localhost/links.jsp(告诉服务器我来自于哪里)</span></span><br><span class="line"><span class="title class_">User</span>-<span class="title class_">Agent</span>: <span class="title class_">Mozilla</span>/<span class="number">4.0</span>(客户端版本号的名字)</span><br><span class="line"><span class="title class_">Accept</span>-<span class="title class_">Encoding</span>: gzip, <span class="title function_">deflate</span>(客户端能接收的压缩数据的类型)</span><br><span class="line"><span class="title class_">If</span>-<span class="title class_">Modified</span>-<span class="title class_">Since</span>: <span class="title class_">Tue</span>, <span class="number">11</span> <span class="title class_">Jul</span> <span class="number">2017</span> <span class="number">18</span>:<span class="number">23</span>:<span class="number">51</span> <span class="title function_">GMT</span>(缓存时间)</span><br><span class="line"><span class="title class_">Cookie</span>(客户端暂存服务端的信息)</span><br><span class="line"><span class="title class_">Date</span>: <span class="title class_">Tue</span>, <span class="number">18</span> <span class="title class_">Jul</span> <span class="number">12</span>:<span class="number">15</span>:<span class="number">02</span> <span class="title function_">GMT</span>(客户端请求服务端的时间)</span><br></pre></td></tr></table></figure>
+
+<p>响应(服务端-&gt;客户端[response])</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable constant_">HTTP</span>/<span class="number">1.1</span>(响应采用的协议和版本号) <span class="number">200</span>(状态码) <span class="title function_">OK</span>(描述信息)</span><br><span class="line"><span class="title class_">Location</span>: <span class="attr">http</span>:<span class="comment">//www.baidu.com(服务端需要客户端访问的页面路径)</span></span><br><span class="line"><span class="title class_">Server</span>:apache <span class="title function_">tomcat</span>(服务端的<span class="title class_">Web</span>服务端名)</span><br><span class="line"><span class="title class_">Content</span>-<span class="title class_">Encoding</span>: <span class="title function_">gzip</span>(服务端能够发送压缩编码类型)</span><br><span class="line"><span class="title class_">Content</span>-<span class="title class_">Length</span>: <span class="number">80</span>(服务端发送的压缩数据的长度)</span><br><span class="line"><span class="title class_">Content</span>-<span class="title class_">Language</span>: zh-<span class="title function_">cn</span>(服务端发送的语言类型)</span><br><span class="line"><span class="title class_">Content</span>-<span class="title class_">Type</span>: text/html; charset=<span class="title class_">GB2312</span>(服务端发送的类型及采用的编码方式)</span><br><span class="line"><span class="title class_">Last</span>-<span class="title class_">Modified</span>: <span class="title class_">Tue</span>, <span class="number">18</span> <span class="title class_">Jul</span> <span class="number">2017</span> <span class="number">12</span>:<span class="number">15</span>:<span class="number">02</span> <span class="title function_">GMT</span>(服务端对该资源最后修改的时间)</span><br><span class="line"><span class="title class_">Refresh</span>: <span class="number">1</span>;url=<span class="attr">http</span>:<span class="comment">//www.helloyoucan.com.(服务端要求客户端1秒钟后，刷新，然后访问指定的页面路径)</span></span><br><span class="line"><span class="title class_">Content</span>-<span class="title class_">Disposition</span>: attachment; filename=aaa.<span class="title function_">zip</span>(服务端要求客户端以下载文件的方式打开该文件)</span><br><span class="line"><span class="title class_">Transfer</span>-<span class="title class_">Encoding</span>: <span class="title function_">chunked</span>(分块传递数据到客户端）</span><br><span class="line"><span class="title class_">Set</span>-<span class="title class_">Cookie</span>:<span class="variable constant_">SS</span>=<span class="variable constant_">Q0</span>=5Lb_nQ; path=/<span class="title function_">search</span>(服务端发送到客户端的暂存数据)</span><br><span class="line"><span class="title class_">Expires</span>: -<span class="number">1</span><span class="comment">//3种(服务端禁止客户端缓存页面数据)</span></span><br><span class="line"><span class="title class_">Cache</span>-<span class="title class_">Control</span>: no-<span class="title function_">cache</span>(服务端禁止客户端缓存页面数据)</span><br><span class="line"><span class="title class_">Pragma</span>: no-<span class="title function_">cache</span>(服务端禁止客户端缓存页面数据)</span><br><span class="line"><span class="title class_">Connection</span>: <span class="title function_">close</span>(<span class="number">1.0</span>)/(<span class="number">1.1</span>)<span class="title class_">Keep</span>-<span class="title class_">Alive</span>(维护客户端和服务端的连接关系)</span><br><span class="line"><span class="title class_">Date</span>: <span class="title class_">Tue</span>, <span class="number">18</span> <span class="title class_">Jul</span> <span class="number">2017</span> <span class="number">12</span>:<span class="number">18</span>:<span class="number">03</span> <span class="title function_">GMT</span>(服务端响应客户端的时间)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="12-轮询、长轮询、长连接、WebSocket即时通讯的区别"><a href="#12-轮询、长轮询、长连接、WebSocket即时通讯的区别" class="headerlink" title="12. 轮询、长轮询、长连接、WebSocket即时通讯的区别"></a>12. 轮询、长轮询、长连接、WebSocket即时通讯的区别</h3><p><strong>轮询</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">客户端定时向服务器发送请求，服务器接到请求后马上返回响应信息并关闭连接。</span><br><span class="line"></span><br><span class="line">优点：后端程序编写比较容易。</span><br><span class="line"></span><br><span class="line">缺点：请求中有大半是无用，浪费带宽和服务器资源。这种方式由于需要不断的建立http连接，严重浪费了服务器端和客户端的资源。</span><br><span class="line"></span><br><span class="line">实例：短轮询不适用于那些同时在线用户数量比较大，并且很注重性能的<span class="title class_">Web</span>应用。适于小型应用。</span><br></pre></td></tr></table></figure>
+
+<p><strong>长轮询</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">客户端向服务器发送请求，服务器接到请求后hold住连接，直到有新消息才返回响应信息并关闭连接（或到了设定的超时时间关闭连接），客户端处理完响应信息后再向服务器发送新的请求。</span><br><span class="line"></span><br><span class="line">优点：减少了很多不必要的http请求次数，相比之下节约了资源。</span><br><span class="line"></span><br><span class="line">缺点：服务器hold连接会消耗资源，需要同时维护多个线程，服务器所能承载的<span class="variable constant_">TCP</span>连接数是有上限的，这种轮询很容易把连接数顶满。</span><br><span class="line"></span><br><span class="line">实例：<span class="title class_">WebQQ</span>、<span class="title class_">Facebook</span> <span class="variable constant_">IM</span>。</span><br></pre></td></tr></table></figure>
+
+<p><strong>长连接</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HTTP1.1通过使用Connection:keep-alive进行长连接，HTTP 1.1默认进行持久连接。在一次 TCP 连接中可以完成多个 HTTP 请求，但是对每个请求仍然要单独发 header。</span><br></pre></td></tr></table></figure>
+
+<p><strong>websocket</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WebSocket 协议本质上是一个基于 TCP 的协议。为了建立一个 WebSocket 连接，客户端浏览器首先要向服务器发起一个 HTTP 请求，这个请求和通常的 HTTP 请求不同，包含了一些附加头信息，其中附加头信息”Upgrade: WebSocket”表明这是一个申请协议升级的 HTTP 请求，服务器端解析这些附加的头信息然后产生应答信息返回给客户端，客户端和服务器端的 WebSocket 连接就建立起来了，双方就可以通过这个连接通道自由的传递信息，并且这个连接会持续存在直到客户端或者服务器端的某一方主动的关闭连接。</span><br></pre></td></tr></table></figure>
+
+<p><strong>比较</strong></p>
+<p>兼容性：短轮询&gt;长轮询&gt;长连接&gt;WebSocket</p>
+<p>性能：WebSocket&gt;长连接&gt;长轮询&gt;短轮询</p>
+<h3 id="13-什么是会话cookie-什么是持久cookie"><a href="#13-什么是会话cookie-什么是持久cookie" class="headerlink" title="13. 什么是会话cookie,什么是持久cookie?"></a>13. 什么是会话cookie,什么是持久cookie?</h3><p>cookie是服务器返回的，指定了expire time（有效期）的是持久cookie，没有指定的是会话cookie。</p>
+<h3 id="14-cookie和session的区别"><a href="#14-cookie和session的区别" class="headerlink" title="14. cookie和session的区别"></a>14. cookie和session的区别</h3><p><strong>session 是基于 cookie 实现的。</strong>cookie 保存在客户端浏览器中，而 session  保存在服务器上。cookie 机制是通过检查客户身上的“通行证”来确定客户身份的话，那么 session  机制就是通过检查服务器上的“客户明细表”来确认客户身份。session  相当于程序在服务器上建立的一份客户档案，客户来访的时候只需要查询客户档案表就可以了。</p>
+<p>cookie 和 session 的区别：</p>
+<ol>
+<li>存在的位置：<br>cookie 存在于客户端，临时文件夹中；session 存在于服务器的内存中，一个 session 域对象为一个用户浏览器服务。</li>
+<li>安全性<br>cookie 是以明文的方式存放在客户端的，安全性低，可以通过一个加密算法进行加密后存放；session 存放于服务器的内存中，所以安全性好。</li>
+<li>生命周期(以 20 分钟为例)<br>cookie 的生命周期是累计的，从创建时，就开始计时，20 分钟后 cookie 生命周期结束；<br>session 的生命周期是间隔的，从创建时，开始计时如在 20 分钟，没有访问 session，那么 session  生命周期被销毁。但是，如果在 20 分钟内（如在第 19 分钟时）访问过 session，那么，将重新计算 session  的生命周期。关机会造成 session 生命周期的结束，但是对 cookie 没有影响。</li>
+<li>访问范围<br>cookie 为多个用户浏览器共享；session 为一个用户浏览器独享。</li>
+</ol>
+<h3 id="15-cookie、localStorage、sessionStorage的区别和使用？"><a href="#15-cookie、localStorage、sessionStorage的区别和使用？" class="headerlink" title="15. cookie、localStorage、sessionStorage的区别和使用？"></a>15. cookie、localStorage、sessionStorage的区别和使用？</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">cookie用来保存客户浏览器请求服务器页面的请求信息；</span><br><span class="line"><span class="title class_">HTML5</span>的<span class="title class_">WebStorage</span>提供了两种<span class="variable constant_">API</span>：<span class="variable language_">localStorage</span>（本地存储）和sessionStorage（会话存储）；</span><br><span class="line"><span class="title class_">WebStorage</span>的目的是克服由cookie所带来的一些限制，当数据需要被严格控制在客户端时，不需要持续的将数据发回服务器。三者的共同点都是保存在浏览器端，且同源。</span><br><span class="line"></span><br><span class="line">下面是他们之间的区别：</span><br><span class="line"></span><br><span class="line">生命周期：</span><br><span class="line">cookie：可以通过expires设置失效时间，不设置默认关闭浏览器即失效</span><br><span class="line"><span class="variable language_">localStorage</span>：除非手动清除，否则永久保存</span><br><span class="line">sessionStorage：仅在当前会话时候生效，关闭页面即失效</span><br><span class="line"></span><br><span class="line">存储大小：</span><br><span class="line"><span class="attr">cookie</span>:4KB左右</span><br><span class="line"><span class="variable language_">localStorage</span>、<span class="attr">sessionStorage</span>:可以保存5M的信息</span><br><span class="line"></span><br><span class="line"><span class="variable constant_">HTTP</span>请求：</span><br><span class="line"><span class="attr">cookie</span>:每次都会携带在http头中，过多使用cookie会带来性能问题</span><br><span class="line"><span class="variable language_">localStorage</span>、<span class="attr">sessionStorage</span>:仅在客户端（即浏览器）中保存，不参与和服务器的通信</span><br><span class="line"></span><br><span class="line">易用性：</span><br><span class="line"><span class="attr">cookie</span>:需要程序员自己封装，源生的<span class="title class_">Cookie</span>接口不友好</span><br><span class="line"><span class="variable language_">localStorage</span>、sessionStorage：源生接口可以接受，亦可再次封装来对<span class="title class_">Object</span>和<span class="title class_">Array</span>有更好的支持</span><br><span class="line"></span><br><span class="line">应用场景：</span><br><span class="line">cookie：适合识别用户登录</span><br><span class="line"><span class="variable language_">localStorage</span>和sessionStorage唯一的差别一个是永久保存在浏览器里面，一个是关闭网页就清除了信息</span><br><span class="line"><span class="variable language_">localStorage</span>：可以用来跨页面传递参数</span><br><span class="line">sessionStorage：用来保存临时数据，防止用户刷新页面之后丢失参数</span><br></pre></td></tr></table></figure>
+
+<h3 id="16-如何实现浏览器内多个标签页之间的通信？"><a href="#16-如何实现浏览器内多个标签页之间的通信？" class="headerlink" title="16. 如何实现浏览器内多个标签页之间的通信？"></a>16. 如何实现浏览器内多个标签页之间的通信？</h3><p>本题主要考察数据存储的知识，数据存储有本地和服务器存储两种方式。这里主要讲解用本地存储方式解决。即调用 localStorage、Cookie等本地存储方式。</p>
+<ol>
+<li>调用 localStorage：在一个标签页里面使用 localStorage.setItem(key,value)添加（修改、删除）内容；在另一个标签页里面监听 storage 事件。即可得到 localstorge 存储的值，实现不同标签页之间的通信。</li>
+<li>调用 cookie+setInterval()：将要传递的信息存储在cookie中，每隔一定时间读取cookie信息，即可随时获取要传递的信息。</li>
+</ol>
+<h3 id="17-GET-和-POST-请求的区别"><a href="#17-GET-和-POST-请求的区别" class="headerlink" title="17. GET 和 POST 请求的区别"></a>17. GET 和 POST 请求的区别</h3><ul>
+<li>GET 参数通过 url 传递，POST 放在 body 中。（http 协议规定，url 在请求头中，所以大小限制很小）</li>
+<li>GET 请求在 url 中传递的参数是有长度限制的，而 POST 没有。</li>
+<li>GET 在浏览器回退时是无害的，而 POST 会再次提交请求</li>
+<li>GET 请求会被浏览器主动 cache，而 POST 不会，除非手动设置</li>
+<li>GET 比 POST 更不安全，因为参数直接暴露在 url 中，所以不能用来传递敏感信息</li>
+<li>对参数的数据类型，GET 只接受 ASCII字符，而 POST 没有限制</li>
+<li>GET 请求只能进行 url(x-www-form-urlencoded)编码，而 POST 支持多种编码方式</li>
+<li><strong>GET 产生一个 TCP 数据包；POST 产生两个 TCP 数据包</strong>。对于 GET  方式的请求，浏览器会把 http 的 header 和 data 一并发送出去，服务器响应200（返回数据）。而对于 POST，浏览器先发送  header，服务器响应100 continue，浏览器再发送 data，服务器响应200 ok（返回数据）。</li>
+</ul>
+<h3 id="18-输入URL发生什么？"><a href="#18-输入URL发生什么？" class="headerlink" title="18. 输入URL发生什么？"></a>18. 输入URL发生什么？</h3><ol>
+<li>DNS 域名解析（域名解析成ip地址，走UTP协议，因此不会有握手过程）：浏览器将 URL 解析出相对应的服务器的 IP 地址（1.  本地浏览器的 DNS 缓存中查找 2. 再向系统DNS缓存发送查询请求 3. 再向路由器DNS缓存 4. 网络运营商DNS缓存 5.  递归搜索），并从 url 中解析出端口号</li>
+<li>浏览器与目标服务器建立一条 TCP 连接（三次握手）</li>
+<li>浏览器向服务器发送一条 HTTP 请求报文</li>
+<li>服务器返回给浏览器一条 HTTP 响应报文</li>
+<li>浏览器进行渲染</li>
+<li>关闭 TCP 连接（四次挥手）</li>
+</ol>
+<h3 id="19-浏览器的强制缓存和协商缓存"><a href="#19-浏览器的强制缓存和协商缓存" class="headerlink" title="19. 浏览器的强制缓存和协商缓存"></a>19. 浏览器的强制缓存和协商缓存</h3><p><strong>强制缓存</strong>：不会向服务器发送请求，直接从缓存中读取资源，在chrome控制台的network选项中可以看到该请求返回200的状态码; 控制字段：Expires和Catch-control 。</p>
+<p><strong>协商缓存</strong>：向服务器发送请求，服务器会根据这个请求的request header的一些参数来判断是否命中协商缓存，如果命中，则返回304状态码并带上新的response header通知浏览器从缓存中读取资源；控制字段：Last-Modified&#x2F;If-Modified-Since 和 Etag&#x2F;If-None-Match 。</p>
+<p>两者的共同点是，都是从客户端缓存中读取资源；区别是强缓存不会发请求，协商缓存会发请求。</p>
+<p>较为合理的缓存方案：</p>
+<ol>
+<li>HTML：使用协商缓存。</li>
+<li>CSS&amp;JS&amp;图片：使用强缓存，文件命名带上hash值。</li>
+</ol>
+<p><strong>浏览器缓存的优点有：</strong></p>
+<p>1.减少了冗余的数据传输，节省了网费。</p>
+<p>2.减少了服务器的负担，大大提升了网站的性能。</p>
+<p>3.加快了客户端加载网页的速度。</p>
+<h3 id="20-浏览器渲染的步骤"><a href="#20-浏览器渲染的步骤" class="headerlink" title="20. 浏览器渲染的步骤"></a>20. 浏览器渲染的步骤</h3><ol>
+<li><p>浏览器会将HTML解析成一个DOM树，DOM 树的构建过程是一个深度遍历过程：当前节点的所有子节点都构建好后才会去构建当前节点的下一个兄弟节点。 </p>
+</li>
+<li><p>将CSS解析成 CSS Rule Tree 。 </p>
+</li>
+<li><p>根据DOM树和CSSOM来构造 Rendering Tree。注意：Rendering Tree 渲染树并不等同于 DOM 树，因为一些像Header或display:none的东西就没必要放在渲染树中了。</p>
+</li>
+<li><p>有了Render Tree，浏览器已经能知道网页中有哪些节点、各个节点的CSS定义以及他们的从属关系。下一步操作称之为layout，顾名思义就是计算出每个节点在屏幕中的位置。 </p>
+</li>
+<li><p>再下一步就是绘制，根据计算好的信息进行渲染整个页面，即遍历render树，并使用UI后端层绘制每个节点。</p>
+</li>
+</ol>
+<p><strong>注意：</strong> 浏览器解析文档的过程中，如果遇到 script 标签，会立即解析脚本，停止解析文档（因为 JS 可能会改变 DOM 和 CSS, 如果继续解析会造成浪费）。如果是外部 script, 会等待脚本下载完成之后在继续解析文档。现在 script 标签增加了 defer 和 async  属性，脚本解析会将脚本中改变 DOM 和 css 的地方&gt; 解析出来，追加到 DOM Tree 和 Style Rules 上。</p>
+<h3 id="21-回流和重绘"><a href="#21-回流和重绘" class="headerlink" title="21. 回流和重绘"></a>21. 回流和重绘</h3><ul>
+<li>回流：当render tree中的一部分(或全部)因为元素的规模尺寸，布局，隐藏等改变而需要重新构建。这就称为回流(reflow)。每个页面至少需要一次回流，就是在页面第一次加载的时候，这时候是一定会发生回流的，因为要构建render tree。在回流的时候，浏览器会使渲染树中受到影响的部分失效，并重新构造这部分渲染树，完成回流后，浏览器会重新绘制受影响的部分到屏幕中，该过程成为重绘。</li>
+<li>重绘：当render tree中的一些元素需要更新属性，而这些属性只是影响元素的外观，风格，而不会影响布局的，比如background-color。则就叫称为重绘。</li>
+</ul>
+<p>区别：</p>
+<ul>
+<li>回流必将引起重绘，而重绘不一定会引起回流。比如：只有颜色改变的时候就只会发生重绘而不会引起回流。</li>
+<li>当页面布局和几何属性改变时就需要回流。比如：添加或者删除可见的DOM元素，元素位置改变，元素尺寸改变。</li>
+<li>回流往往伴随着布局的变化，代价较大。</li>
+<li>重绘只是样式的变化，结构不会变化。</li>
+</ul>
+<h3 id="22-页面渲染优化"><a href="#22-页面渲染优化" class="headerlink" title="22. 页面渲染优化"></a>22. 页面渲染优化</h3><ol>
+<li>HTML 文档结构层次尽量少，最好不深于 6 层</li>
+<li>脚本尽量放后边，避免组织页面加载</li>
+<li>少量首屏样式可以放在便签内</li>
+<li>样式结构层次尽量简单</li>
+<li>脚本减少 DOM 操作，减少回流，尽量缓存访问 DOM 的样式信息</li>
+<li>尽量减少 JS 修改样式，可以通过修改 class 名的方式解决</li>
+<li>减少 DOM 查找，缓存 DOM 查找结果</li>
+<li>动画在屏幕外或页面滚动时，尽量停止</li>
+</ol>
+<h3 id="23-前端性能优化的七大手段"><a href="#23-前端性能优化的七大手段" class="headerlink" title="23. 前端性能优化的七大手段"></a>23. 前端性能优化的七大手段</h3><ol>
+<li><p>减少HTTP请求数量：主要是优化js、css和图片资源三个方面，因为html是没有办法避免的。合并js文件、合并css文件。</p>
+</li>
+<li><p>减小资源体积：可以通过以下几个方面进行实施：gzip压缩、js混淆、css压缩、图片压缩。gzip压缩主要是针对html文件来说的，它可以将html中重复的部分进行一个打包，多次复用的过程。js的混淆可以有简单的压缩(将空白字符删除)、丑化(丑化的方法，就是将一些变量缩小)、或者可以使用php对js进行混淆加密。css压缩，就是进行简单的压缩。图片的压缩，主要也是减小体积，在不影响观感的前提下，尽量压缩图片，使用png等图片格式，减少矢量图、高清图等的使用。这样子的做法不仅可以加快网页显示，也能减少流量的损耗。</p>
+</li>
+<li><p>缓存：可以通过以下几个方面来描述：DNS缓存、CDN部署与缓存、http缓存。由于浏览器会在DNS解析步骤中消耗一定的时间，所以，对于一些高访问量网站来说，做好DNS的缓存工作，就会一定程度上提升网站效率。CDN缓存，CDN作为静态资源文件的分发网络，本身就已经提升了，网站静态资源的获取速度，加快网站的加载速度，同时也给静态资源做好缓存工作，有效的利用已缓存的静态资源，加快获取速度。http缓存，也是给资源设定缓存时间，防止在有效的缓存时间内对资源进行重复的下载，从而提升整体网页的加载速度。</p>
+</li>
+<li><p>优化网页渲染：css的文件放在头部，js文件放在尾部或者异步、尽量避免內联样式。css文件放在「头部加载」，可以保证解析DOM的同时，解析css文件。因为，CSS（外链或内联）会阻塞整个DOM的渲染，然而DOM解析会正常进行，所以将css文件放在头部进行解析，可以加快网页的构建速度。假设将其放在尾部，那时DOM树几乎构建，这时就得等到CSSOM树构建完成，才能够继续下面的步骤。「js放在尾部」：js文件不同，将js文件放在尾部或者异步加载的原因是JS（外链或内联）会阻塞后续DOM的解析，后续DOM的渲染也将被阻塞，而且一旦js中遇到DOM元素的操作，很可能会影响。「避免使用内联样式」，可以有效的减少html的体积，一般考虑内联样式的时候，往往是样式本身体积比较小，往往加载网络资源的时间会大于它的时候。</p>
+</li>
+<li><p>图片加载处理：图片预加载、图片懒加载、首屏加载时进度条的显示。「图片预加载」，预加载的寓意就是提前加载内容。而图片的预加载往往会被用在图片资源比较大，即时加载时会导致很长的等待过程时，才会被使用的。常见场景：图片漫画展示时。往往会预加载一张到两张的图片。「图片懒加载」，懒加载或许你是第一次听说，但是，这种方式在开发中会被经常使用。首先，我们需要明白一个道理：往往只有看到的资源是必须的，其他资源是可以随着用户的滚动，随即显示的。所以，特别是对于图片资源特别多的网站来说，做好图片的懒加载是可以大大提升网页的载入速度的。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">常见的图片懒加载的方式就是：在最初给图片的src设置一个比较简单的图片，然后将图片的真实地址设置给自定义的属性，做一个占位，然后给图片设置监听事件，一旦图片到达视口范围，从图片的自定义属性中获取出真是地址，然后赋值给src，让其进行加载。</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="24-单页面应用程序（SPA）的优缺点"><a href="#24-单页面应用程序（SPA）的优缺点" class="headerlink" title="24. 单页面应用程序（SPA）的优缺点"></a>24. 单页面应用程序（SPA）的优缺点</h3><p>我们通常所说的单页面应用程序通常通过前端框架（angular、react、vue）进行开发，单页面应用程序将所有的活动局限于一个Web页面中，仅在该Web页面初始化时加载相应的HTML、JavaScript 和 CSS。一旦页面加载完成了，SPA不会因为用户的操作而进行页面的重新加载或跳转。取而代之的是利用 JavaScript  动态的变换HTML的内容，从而实现UI与用户的交互。由于避免了页面的重新加载，SPA 可以提供较为流畅的用户体验。</p>
+<p><strong>优点：</strong></p>
+<ol>
+<li><p>良好的交互体验：单页应用的内容的改变不需要重新加载整个页面，获取数据也是通过Ajax异步获取，没有页面之间的切换，就不会出现“白屏现象”,也不会出现假死并有“闪烁”现象，页面显示流畅，web应用更具响应性和更令人着迷。</p>
+</li>
+<li><p>良好的前后端工作分离模式：后端不再负责模板渲染、输出页面工作，后端API通用化，即同一套后端程序代码，不用修改就可以用于Web界面、手机、平板等多种客户端。</p>
+</li>
+<li><p>减轻服务器压力：单页应用相对服务器压力小，服务器只用出数据就可以，不用管展示逻辑和页面合成，吞吐能力会提高几倍。</p>
+</li>
+</ol>
+<p><strong>缺点：</strong></p>
+<ol>
+<li><p>首屏加载慢：如果不对路由进行处理，在加载首页的时候，就会将所有组件全部加载，并向服务器请求数据，这必将拖慢加载速度。解决方法：懒加载、使用CDN加速。</p>
+</li>
+<li><p>不利于SEO：seo  本质是一个服务器向另一个服务器发起请求，解析请求内容。但一般来说搜索引擎是不会去执行请求到的js的。也就是说，搜索引擎的基础爬虫的原理就是抓取url，然后获取html源代码并解析。 如果一个单页应用，html在服务器端还没有渲染部分数据数据，在浏览器才渲染出数据，即搜索引擎请求到的html是模型页面而不是最终数据的渲染页面。 这样就很不利于内容被搜索引擎搜索到。解决方案：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- 服务端渲染：服务器合成完整的 html 文件再输出到浏览器</span><br><span class="line">- 页面预渲染</span><br><span class="line">- 路由采用h5 history模式</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>不适合开发大型项目：大型项目中可能会涉及大量的DOM操作、复杂的动画效果，也就不适合使用Vue、react框架进行开发。</p>
+</li>
+</ol>
+<h3 id="25-为什么要使用websocket？"><a href="#25-为什么要使用websocket？" class="headerlink" title="25. 为什么要使用websocket？"></a>25. 为什么要使用websocket？</h3><p>因为HTTP协议有一个缺陷：通信只能由客户端发起。举例来说，我们想了解今天的天气，只能是客户端向服务器发出请求，服务器返回查询结果。HTTP协议做不到服务器主动向客户端推送信息。这种单向请求的特点，注定了如果服务器有连续的状态变化，客户端要获知就非常麻烦。我们只能使用”轮询”：每隔一段时候，就发出一个询问，了解服务器有没有新的信息。最典型的场景就是聊天室。轮询的效率低，非常浪费资源（因为必须不停连接，或者HTTP连接始终打开）。因此，工程师们一直在思考，有没有更好的方法，WebSocket就是这样发明的。</p>
+<p>websocket最大特点就是，服务器可以主动向客户端推送信息，客户端也可以主动向服务器发送信息，是真正的双向平等对话，属于服务器推送技术的一种。其他特点包括：</p>
+<p>（1）建立在TCP协议之上，服务器端的实现比较容易。</p>
+<p>（2）与HTTP协议有着良好的兼容性。默认端口也是80和443，并且握手阶段采用HTTP协议，因此握手时不容易 屏蔽，能通过各种HTTP代理服务器。</p>
+<p>（3）数据格式比较轻量，性能开销小，通信高效。</p>
+<p>（4）可以发送文本，也可以发送二进制数据。</p>
+<p>（5）没有同源限制，客户端可以与任意服务器通信。</p>
+<p>（6）协议标识符是ws（如果加密，则为wss），服务器网址就是URL。     </p>
+<h3 id="26-常见的浏览器兼容问题"><a href="#26-常见的浏览器兼容问题" class="headerlink" title="26. 常见的浏览器兼容问题"></a>26. 常见的浏览器兼容问题</h3><ol>
+<li>不同浏览器的默认标签的内外边距不同；</li>
+<li>在某些浏览器中，图片有默认的间距；</li>
+<li>标签最低高度设置min-height不兼容问题；</li>
+<li>IE9以下浏览器不能使用opacity透明度；</li>
+</ol>
+<h3 id="27-面向对象和面向过程"><a href="#27-面向对象和面向过程" class="headerlink" title="27. 面向对象和面向过程"></a>27. 面向对象和面向过程</h3><ol>
+<li>面向对象和面向过程的主要区别是面向过程主要是以动词为主，解决问题的方式是按照顺序一步一步调用不同的函数；面向对象主要是以名词为主，将问题抽象出具体的对象，而这个对象有自己的属性和方法，在解决问题的时候是将不同的对象组合在一起使用。</li>
+<li>面向过程就是分析出解决问题所需要的步骤，然后用函数把这些步骤一步一步实现，使用的时候一步一步依次调用即可；面向对象是把构成问题事务分解成各个对象，建立对象的目的不是为了完成一个步骤，而是为了描述某个事物在整个解决问题的步骤中的行为。</li>
+</ol>
+<h3 id="28-封装、继承和多态"><a href="#28-封装、继承和多态" class="headerlink" title="28. 封装、继承和多态"></a>28. 封装、继承和多态</h3><ol>
+<li>封装：把客观事物封装成抽象的类，隐藏属性和方法的实现细节，仅对外公开接口</li>
+<li>继承：子类可以使用父类的所有功能，并且对这些功能进行扩展。继承的过程，就是从一般到特殊的过程。</li>
+<li>多态：一个类实例的相同方法在不同情形下有不同的表现形式。</li>
+</ol>
+<h3 id="29-MVC、MTV、MVVM区别"><a href="#29-MVC、MTV、MVVM区别" class="headerlink" title="29. MVC、MTV、MVVM区别"></a>29. MVC、MTV、MVVM区别</h3><p>MVC（Model View Controller 模型-视图-控制器）：是一种Web架构的模式。特点：把业务逻辑、模型数据、用户界面分离开来，让开发者将数据与表现解耦。</p>
+<ul>
+<li>Model： 模型负责业务对象与数据库的对象(ORM)，代表数据存取层；</li>
+<li>View：视图负责与用户的交互(页面)，代表的是系统中选择显示什么和怎么显示的部分；</li>
+<li>Controller：控制器(C)接受用户的输入调用模型和视图完成用户的请求，指的是系统中根据用户输入并视需要访问模型，以决定使用哪个视图的那部分；</li>
+</ul>
+<p><img src="/2021/06/16/%E3%80%902021%E5%B1%8A%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E3%80%91%E2%80%94%20%E5%85%B6%E4%BB%96/1471035329.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">models(数据库，模型);  views(HTML模板);      controllers(业务逻辑处理)  —&gt; MVC</span><br><span class="line">models(数据库，模型);  templates(HTML模板);  views(业务逻辑处理)        —&gt; MTV</span><br></pre></td></tr></table></figure>
+
+<p>MTV（Model Templates View 模型-模板-视图）：MTV是Django独有的模式，MTV模式本质上与MVC模式没有什么差别，也是各组件之间为了保持松耦合关系，只是定义上有些许不同，Django的MTV分别代表：</p>
+<ul>
+<li><p>Model(模型)：负责业务对象与数据库的对象(ORM)，数据存取层。 该层处理与数据相关的所有事务： 如何存取、如何验证有效，是一个抽象层，用来构建和操作你的web应用中的数据，模型是你的数据的唯一的、权威的信息源。它包含你所储存数据的必要字段和行为。通常，每个模型对应数据库中唯一的一张表</p>
+</li>
+<li><p>Template(模版)：负责如何把页面展示给用户，即表现层。 该层处理与表现相关的决定： 如何在页面或其他类型文档中进行显示。模板层提供了设计友好的语法来展示信息给用户。使用模板方法可以动态地生成HTML。模板包含所需HTML 输出的静态部分，以及一些特殊的语法，描述如何将动态内容插入。</p>
+</li>
+<li><p>View(视图)：业务逻辑层，负责业务逻辑，并在适当的时候调用Model和Template，该层包含存取模型及调取恰当模板的相关逻辑。用于封装负责处理用户请求及返回响应的逻辑。视图可以看作是前端与数据库的中间人，他会将前端想要的数据从数据库中读出来给前端。他也会将用户要想保存的数据写到数据库。</p>
+</li>
+<li><p>此外，Django还有一个url分发器，它的作用是将一个个URL的页面请求分发给不同的view处理，view再调用相应的Model和Template。</p>
+</li>
+</ul>
+<p><img src="/2021/06/16/%E3%80%902021%E5%B1%8A%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E3%80%91%E2%80%94%20%E5%85%B6%E4%BB%96/5d27eb5f449522660198c3fd33ff6846.png" alt="img"></p>
+<p>在MVVM里，Controller的存在感被降低了。在MVVM中，Controller不再像MVC那样直接持有Model了。想象Controller是一个Boss，数据是一堆文件（Model），如果现在是MVC，那么数据解析（比如整理文件）需要由Boss亲自完成，然而实际上Boss需要的仅仅是整理好的文件而不是那一堆乱七八糟的整理前的文件。所以Boss招聘了一个秘书，现在Boss就不再需要管理原始数据（整理之前的文件）了，他只需要去找秘书：你帮我把文件整理好后给我。那么这个秘书就首先去拿到文件（原始数据），然后进行整理（数据解析），接下来把整理的结果给Boss。所以秘书就是VM了，并且Controller（Boss）现在只需要直接持有VM而不需要再持有M了。如果再进一步理解C、VM、M之间的关系：因为Controller只需要数据解析的结果而不关心过程，所以就相当于VM把“如何解析Model”给封装起来了，C甚至根本就不需要知道M的存在就能把工作做好，前提它需要持有一个VM。那么我们MVVM中的持有关系就是：C持有VM，VM持有M。这里有一个比较争议的地方：C该不该持有M。我的答案是不该。为什么呢，因为C持有M没有任何意义。就算C直接拿到了M的数据，它还是要去让VM进行数据解析，而数据解析就需要M，那么直接让VM持有M而C直接持有VM就足够了。</p>
+<p>MVVM组成：</p>
+<ul>
+<li><p>M：model 数据模型，专门用来操作数据，数据的CRUD。</p>
+</li>
+<li><p>V：view 视图，就是我们在浏览器中所看到的页面。</p>
+</li>
+<li><p>VM：ViewModel 视图模型，这个是数据的核心。</p>
+</li>
+</ul>
+<p>MVC模式需要频繁的操作DOM，这样页面就有大量DOM绑定与监听类的操作；MVVM通过数据双向绑定让数据自动地双向同步，view修改数据自动同步model、model修改数据自动同步到view；整体看来，MVVM比MVC精简很多，不仅简化了业务与界面的依赖，还解决了数据频繁更新的问题，不用再用选择器操作DOM元素。因为在MVVM中，View不知道Model的存在，Model和ViewModel也观察不到View，这种低耦合模式提高代码的可重用性。</p>
+<p><img src="/2021/06/16/%E3%80%902021%E5%B1%8A%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E3%80%91%E2%80%94%20%E5%85%B6%E4%BB%96/bg2015020110.png"></p>
+<h3 id="30-SEO优化方法"><a href="#30-SEO优化方法" class="headerlink" title="30. SEO优化方法"></a>30. SEO优化方法</h3><p>SEO（Search Engine Optimization）：译为搜索引擎优化。是一种方式：利用搜索引擎的规则提高网站在有关搜索引擎内的自然排名。目的是让其在行业内占据领先地位，获得品牌收益。很大程度上是网站经营者的一种商业行为，将自己或自己公司的排名前移。</p>
+<ol>
+<li>选取正确的关键字和布局：关键字分为核心关键字，核心关键字的变体(同义词，近义词，简写，拼写错误)一级关键词，二级关键词，长尾词。一切的搜索引擎都是基于关键字进行索引。放置关键字的区域有：网站标题，网站描述，网站的元标签(这个权重几乎忽略不计)网站页面的内容。一个网站一般来讲，首页的权重是最高的，所以不要在首页上堆砌关键字，反而要集中关键字来优化。首页的关键字一般是核心关键字和主关键字为主，而类似二级关键词，长尾词等我们可以把他们放在内页里面进行优化，这样的布局是搜索引擎比较喜欢的，给以的排名也会更高。</li>
+<li>网站内页的优化：内页优化包括标题优化，页面中的关键字布局，Alt标签，加粗，斜体，nofollow&#x2F;dofollow.标签用要合理使用，你不能再写一篇文章的时候大量的出现H标签，H标签主要是用来突出主题，不可滥用，加粗标签也要节制的使用，一般一篇文章出现到3-5个就够了，Alt描述和结合实际图片展开，切勿过多堆积关键词。Nofollow的使用是很重要的，对于网站中不想分散权重的链接和页面要及时的进行Nofollow掉，使网站的权重集中起来，比如在contact us，about，支付信息都可以把这些进行Nofollow。</li>
+<li>持续的高质量的原创文章：现在SEO的玩法更多是输出有质量的文章，毕竟是内容为王时代!而且一定要保证你的网站文章是持续，高质量，原创的文章! 要知道搜索引擎是为了及时的解决用户的需要问题，是要提高用户的体验度。所以你的文章可以围绕用户的需求来写，及时的向用户展示高质量的原创文章。</li>
+<li>内部链接要设置好：做内链最重要指标是网站各个链接有没有出现死链接、有没有404页面?网址是否规范化?网页URL设置是否正确?robots文件是合理相互精准链接。同时要记住页面内不能用同一个锚文本进行链接，要多样化。</li>
+<li>运用工具：例如百度统计是百度推出的一款免费的专业网站流量分析工具，能够告诉用户访客是如何找到并浏览用户的网站，在网站上做了些什么，有了这些信息，可以帮助用户改善访客在用户的网站上的使用体验。其中的优化分析还可以对你的网站进行跑分，通过它给出的结果可清晰的得知那些地方还可完善。</li>
+</ol>
+<h3 id="31-浏览器内核"><a href="#31-浏览器内核" class="headerlink" title="31. 浏览器内核"></a>31. 浏览器内核</h3><ol>
+<li>IE –&gt; Trident</li>
+<li>Chrome –&gt; Webkit(Blink)</li>
+<li>Safari –&gt; Webkit</li>
+<li>Firefox –&gt; Gecko</li>
+<li>Opera –&gt; Presto</li>
+</ol>
+<p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;<br>以上为个人学习笔记总结，参考了许多网上大神的文章，供大家学习参考交流，如有版权问题请联系我，侵删。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="http://example.com">JoeXu</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://blog.csdn.net/Dr_BigJoe/article/details/108261554">https://blog.csdn.net/Dr_BigJoe/article/details/108261554</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">以上为个人学习笔记总结，供学习参考交流，转载请注明出处。</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/">前端面试</a></div><div class="post_share"><div class="social-share" data-image="https://avatars.githubusercontent.com/u/67886383?s=400&amp;u=99fc4b7b2788d8823a12f2924f7942669b39b105&amp;v=4" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/10/24/hello-world/" title="Hello World"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">Hello World</div></div></a></div><div class="next-post pull-right"><a href="/2021/06/16/%E3%80%902021%E5%B1%8A%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E3%80%91%E2%80%94%20JavaScript/" title="【2021届前端面试】— JavaScript"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">【2021届前端面试】— JavaScript</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2021/05/03/%E3%80%902021%E5%B1%8A%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E3%80%91%E2%80%94%20HTML&CSS/" title="【2021届前端面试】— HTML&amp;CSS"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-05-03</div><div class="title">【2021届前端面试】— HTML&amp;CSS</div></div></a></div><div><a href="/2021/06/16/%E3%80%902021%E5%B1%8A%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E3%80%91%E2%80%94%20JavaScript/" title="【2021届前端面试】— JavaScript"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-06-16</div><div class="title">【2021届前端面试】— JavaScript</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://avatars.githubusercontent.com/u/67886383?s=400&amp;u=99fc4b7b2788d8823a12f2924f7942669b39b105&amp;v=4" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Joe Xu</div><div class="author-info__description">Stay hungry, Stay Foolish</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">48</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">7</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">7</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/JoeXu727" target="_blank" title="Github"><i class="fab fa-github"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E3%80%902021%E5%B1%8A%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E3%80%91%E2%80%94-%E5%85%B6%E4%BB%96"><span class="toc-number">1.</span> <span class="toc-text">【2021届前端面试】— 其他</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BB%80%E4%B9%88%E6%98%AF%E2%80%9C%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96%E2%80%9D%EF%BC%9F"><span class="toc-number">1.0.1.</span> <span class="toc-text">1. 什么是“前端工程化”？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-xss%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%E5%8E%9F%E7%90%86%EF%BC%9F%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%EF%BC%9F%E9%98%B2%E5%BE%A1%E6%89%8B%E6%AE%B5%EF%BC%9F"><span class="toc-number">1.0.2.</span> <span class="toc-text">2. xss跨站脚本攻击原理？如何进行？防御手段？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-CSRF%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0%E5%8E%9F%E7%90%86%EF%BC%9F%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%EF%BC%9F%E9%98%B2%E5%BE%A1%E6%89%8B%E6%AE%B5%EF%BC%9F"><span class="toc-number">1.0.3.</span> <span class="toc-text">3. CSRF跨站请求伪造原理？如何进行？防御手段？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Sql%E8%84%9A%E6%9C%AC%E6%B3%A8%E5%85%A5%E5%8E%9F%E7%90%86%EF%BC%9F%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%EF%BC%9F%E9%98%B2%E5%BE%A1%E6%89%8B%E6%AE%B5%EF%BC%9F"><span class="toc-number">1.0.4.</span> <span class="toc-text">4. Sql脚本注入原理？如何进行？防御手段？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-web%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86%EF%BC%9F%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%EF%BC%9F%E9%98%B2%E5%BE%A1%E6%89%8B%E6%AE%B5%EF%BC%9F"><span class="toc-number">1.0.5.</span> <span class="toc-text">5. web上传漏洞原理？如何进行？防御手段？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E5%89%8D%E7%AB%AF%E6%95%B0%E6%8D%AE%E5%8A%A0%E5%AF%86"><span class="toc-number">1.0.6.</span> <span class="toc-text">6. 前端数据加密</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2"><span class="toc-number">1.0.7.</span> <span class="toc-text">7. 内存泄露</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-HTTP%E5%B8%B8%E7%94%A8%E7%8A%B6%E6%80%81%E7%A0%81%E5%8F%8A%E5%85%B6%E5%90%AB%E4%B9%89%EF%BC%9F"><span class="toc-number">1.0.8.</span> <span class="toc-text">8. HTTP常用状态码及其含义？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-Http%E5%92%8CHttps%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="toc-number">1.0.9.</span> <span class="toc-text">9. Http和Https的区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-http%E8%AF%B7%E6%B1%82%E5%A4%B4content-type%E6%98%AF%E5%B9%B2%E4%BB%80%E4%B9%88%E7%9A%84%EF%BC%9F"><span class="toc-number">1.0.10.</span> <span class="toc-text">10. http请求头content-type是干什么的？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-%E8%AF%B7%E6%B1%82%E5%A4%B4%E4%B8%8E%E5%93%8D%E5%BA%94%E5%A4%B4"><span class="toc-number">1.0.11.</span> <span class="toc-text">11. 请求头与响应头</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-%E8%BD%AE%E8%AF%A2%E3%80%81%E9%95%BF%E8%BD%AE%E8%AF%A2%E3%80%81%E9%95%BF%E8%BF%9E%E6%8E%A5%E3%80%81WebSocket%E5%8D%B3%E6%97%B6%E9%80%9A%E8%AE%AF%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.0.12.</span> <span class="toc-text">12. 轮询、长轮询、长连接、WebSocket即时通讯的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-%E4%BB%80%E4%B9%88%E6%98%AF%E4%BC%9A%E8%AF%9Dcookie-%E4%BB%80%E4%B9%88%E6%98%AF%E6%8C%81%E4%B9%85cookie"><span class="toc-number">1.0.13.</span> <span class="toc-text">13. 什么是会话cookie,什么是持久cookie?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-cookie%E5%92%8Csession%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.0.14.</span> <span class="toc-text">14. cookie和session的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#15-cookie%E3%80%81localStorage%E3%80%81sessionStorage%E7%9A%84%E5%8C%BA%E5%88%AB%E5%92%8C%E4%BD%BF%E7%94%A8%EF%BC%9F"><span class="toc-number">1.0.15.</span> <span class="toc-text">15. cookie、localStorage、sessionStorage的区别和使用？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E6%B5%8F%E8%A7%88%E5%99%A8%E5%86%85%E5%A4%9A%E4%B8%AA%E6%A0%87%E7%AD%BE%E9%A1%B5%E4%B9%8B%E9%97%B4%E7%9A%84%E9%80%9A%E4%BF%A1%EF%BC%9F"><span class="toc-number">1.0.16.</span> <span class="toc-text">16. 如何实现浏览器内多个标签页之间的通信？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17-GET-%E5%92%8C-POST-%E8%AF%B7%E6%B1%82%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.0.17.</span> <span class="toc-text">17. GET 和 POST 请求的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#18-%E8%BE%93%E5%85%A5URL%E5%8F%91%E7%94%9F%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">1.0.18.</span> <span class="toc-text">18. 输入URL发生什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#19-%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E5%BC%BA%E5%88%B6%E7%BC%93%E5%AD%98%E5%92%8C%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%98"><span class="toc-number">1.0.19.</span> <span class="toc-text">19. 浏览器的强制缓存和协商缓存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#20-%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E7%9A%84%E6%AD%A5%E9%AA%A4"><span class="toc-number">1.0.20.</span> <span class="toc-text">20. 浏览器渲染的步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-%E5%9B%9E%E6%B5%81%E5%92%8C%E9%87%8D%E7%BB%98"><span class="toc-number">1.0.21.</span> <span class="toc-text">21. 回流和重绘</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22-%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93%E4%BC%98%E5%8C%96"><span class="toc-number">1.0.22.</span> <span class="toc-text">22. 页面渲染优化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#23-%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%9A%84%E4%B8%83%E5%A4%A7%E6%89%8B%E6%AE%B5"><span class="toc-number">1.0.23.</span> <span class="toc-text">23. 前端性能优化的七大手段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#24-%E5%8D%95%E9%A1%B5%E9%9D%A2%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%EF%BC%88SPA%EF%BC%89%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-number">1.0.24.</span> <span class="toc-text">24. 单页面应用程序（SPA）的优缺点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#25-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8websocket%EF%BC%9F"><span class="toc-number">1.0.25.</span> <span class="toc-text">25. 为什么要使用websocket？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#26-%E5%B8%B8%E8%A7%81%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%BC%E5%AE%B9%E9%97%AE%E9%A2%98"><span class="toc-number">1.0.26.</span> <span class="toc-text">26. 常见的浏览器兼容问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#27-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%92%8C%E9%9D%A2%E5%90%91%E8%BF%87%E7%A8%8B"><span class="toc-number">1.0.27.</span> <span class="toc-text">27. 面向对象和面向过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#28-%E5%B0%81%E8%A3%85%E3%80%81%E7%BB%A7%E6%89%BF%E5%92%8C%E5%A4%9A%E6%80%81"><span class="toc-number">1.0.28.</span> <span class="toc-text">28. 封装、继承和多态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#29-MVC%E3%80%81MTV%E3%80%81MVVM%E5%8C%BA%E5%88%AB"><span class="toc-number">1.0.29.</span> <span class="toc-text">29. MVC、MTV、MVVM区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#30-SEO%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95"><span class="toc-number">1.0.30.</span> <span class="toc-text">30. SEO优化方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#31-%E6%B5%8F%E8%A7%88%E5%99%A8%E5%86%85%E6%A0%B8"><span class="toc-number">1.0.31.</span> <span class="toc-text">31. 浏览器内核</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/06/17/Object.assign%E9%87%8D%E7%BD%AE%E8%B8%A9%E5%9D%91/" title="前端菜鸡的踩坑之路（一）">前端菜鸡的踩坑之路（一）</a><time datetime="2022-06-17T14:20:18.000Z" title="Created 2022-06-17 22:20:18">2022-06-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/12/24/%E5%9F%BA%E4%BA%8Evue3%E7%9A%84%E7%88%B6%E5%AD%90%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/" title="基于vue3和antd vue的父子组件通信">基于vue3和antd vue的父子组件通信</a><time datetime="2021-12-24T02:15:18.000Z" title="Created 2021-12-24 10:15:18">2021-12-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/10/24/hello-world/" title="Hello World">Hello World</a><time datetime="2021-10-24T06:02:18.000Z" title="Created 2021-10-24 14:02:18">2021-10-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/06/16/%E3%80%902021%E5%B1%8A%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E3%80%91%E2%80%94%20%E5%85%B6%E4%BB%96/" title="【2021届前端面试】— 其他">【2021届前端面试】— 其他</a><time datetime="2021-06-16T03:44:55.000Z" title="Created 2021-06-16 11:44:55">2021-06-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/06/16/%E3%80%902021%E5%B1%8A%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E3%80%91%E2%80%94%20JavaScript/" title="【2021届前端面试】— JavaScript">【2021届前端面试】— JavaScript</a><time datetime="2021-06-16T03:42:37.000Z" title="Created 2021-06-16 11:42:37">2021-06-16</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Joe Xu</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
